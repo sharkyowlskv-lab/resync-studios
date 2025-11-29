@@ -25,6 +25,7 @@ import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
 import StaffDirectory from "@/pages/staff-directory";
 import Announcements from "@/pages/announcements";
+import DMCA from "@/pages/dmca";
 
 function AppLayout({ children }: { children: React.ReactNode }) {
   const style = {
@@ -67,6 +68,7 @@ function AuthenticatedRoutes() {
         <Route path="/terms" component={Terms} />
         <Route path="/staff" component={StaffDirectory} />
         <Route path="/announcements" component={Announcements} />
+        <Route path="/dmca" component={DMCA} />
         <Route component={NotFound} />
       </Switch>
     </AppLayout>

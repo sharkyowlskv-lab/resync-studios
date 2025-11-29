@@ -384,7 +384,7 @@ export default function Landing() {
             <a href="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="footer-link-terms">Terms of Service</a>
             <a href="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="footer-link-privacy">Privacy Policy</a>
             <a href="/guidelines" className="text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="footer-link-guidelines">Community Guidelines</a>
-            <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Contact Support</a>
+            <a href="/dmca" className="text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="footer-link-dmca">DMCA Policy</a>
           </div>
         </div>
       </footer>

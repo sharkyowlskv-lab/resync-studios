@@ -58,6 +58,7 @@ const accountNavItems = [
   { title: "Community Guidelines", url: "/guidelines", icon: Shield },
   { title: "Privacy Policy", url: "/privacy", icon: Shield },
   { title: "Terms of Service", url: "/terms", icon: FileText },
+  { title: "DMCA Policy", url: "/dmca", icon: Shield },
 ];
 
 export function AppSidebar() {

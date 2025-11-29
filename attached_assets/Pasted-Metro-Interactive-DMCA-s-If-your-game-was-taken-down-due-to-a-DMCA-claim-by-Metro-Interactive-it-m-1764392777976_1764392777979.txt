@@ -1,0 +1,13 @@
+Metro Interactive DMCA's
+If your game was taken down due to a DMCA claim by Metro Interactive, it means we identified content that potentially infringes on intellectual property owned by us or one of our affiliated clients. There are several possible reasons why this may have happened.
+
+One of the most common reasons is the use of assets that belong to Metro Interactive. This includes 3D models, textures, UI elements, scripts, sound effects, or music that were originally created for our projects. If any of these assets were used without permission, the game may have been flagged for removal by Metro Interactive's Copyright Team.
+
+Another possibility is the use of content from one of our affiliate clients. Metro Interactive works with other game developers to protect their intellectual property, and if your game includes assets, scripts, or concepts from one of these clients without authorization, it could be subject to a takedown. In some cases, a game may be taken down due to its similarity to one of our projects. Even if no direct assets are used, if the gameplay mechanics, branding, or experience are closely mimicking a Metro Interactive title, it could be flagged for copyright infringement. Unauthorized use of our branding is another potential reason. Our company name, logos, and game-related branding cannot be used without explicit permission. This includes UI styles, promotional materials, and game names that create confusion with our products.
+
+If you believe your game was taken down by mistake, you can submit a counter-notification through Roblox’s DMCA process. You may also contact us at support@metrointeractive.com (or by visiting the admin profile and sending a Message to it) with details about your game, why you believe the takedown was incorrect, and any proof that you own the disputed assets or have permission to use them. Filing a false counter-notification can have legal consequences, so only proceed if you are certain that no infringement has occurred.
+
+For more details on our intellectual property policies, visit Metro Interactive’s DMCA Policy.
+
+CEO & Founder at Metro Interactive
+
