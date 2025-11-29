@@ -36,7 +36,23 @@ async function buildAll() {
   await rm("dist", { recursive: true, force: true });
 
   console.log("building client...");
-  await viteBuild();
+  const buildConfig = {
+    ...((await import("./vite.config")).default.build || {}),
+    sourcemap: false,
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
+    reportCompressedSize: false,
+    chunkSizeWarningLimit: 1000,
+  };
+  
+  await viteBuild({
+    build: buildConfig,
+  });
 
   console.log("building server...");
   const pkg = JSON.parse(await readFile("package.json", "utf-8"));
