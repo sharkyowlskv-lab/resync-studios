@@ -36,6 +36,7 @@ import {
   ChevronUp,
   BarChart3,
   Shield,
+  FileText,
 } from "lucide-react";
 
 const mainNavItems = [
@@ -52,6 +53,7 @@ const accountNavItems = [
   { title: "Settings", url: "/settings", icon: Settings },
   { title: "Community Guidelines", url: "/guidelines", icon: Shield },
   { title: "Privacy Policy", url: "/privacy", icon: Shield },
+  { title: "Terms of Service", url: "/terms", icon: FileText },
 ];
 
 export function AppSidebar() {

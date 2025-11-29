@@ -22,6 +22,7 @@ import Profile from "@/pages/profile";
 import Settings from "@/pages/settings";
 import Guidelines from "@/pages/guidelines";
 import Privacy from "@/pages/privacy";
+import Terms from "@/pages/terms";
 
 function AppLayout({ children }: { children: React.ReactNode }) {
   const style = {
@@ -61,6 +62,7 @@ function AuthenticatedRoutes() {
         <Route path="/settings" component={Settings} />
         <Route path="/guidelines" component={Guidelines} />
         <Route path="/privacy" component={Privacy} />
+        <Route path="/terms" component={Terms} />
         <Route component={NotFound} />
       </Switch>
     </AppLayout>
