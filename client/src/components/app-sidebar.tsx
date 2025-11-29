@@ -38,10 +38,12 @@ import {
   Shield,
   FileText,
   UsersRound,
+  Megaphone,
 } from "lucide-react";
 
 const mainNavItems = [
   { title: "Dashboard", url: "/", icon: Home },
+  { title: "Announcements", url: "/announcements", icon: Megaphone },
   { title: "LFG Matchmaking", url: "/lfg", icon: Target },
   { title: "Clans", url: "/clans", icon: Users },
   { title: "Builds & Meta", url: "/builds", icon: Swords },

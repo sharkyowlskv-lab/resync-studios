@@ -1,0 +1,28 @@
+After more than five months of building, rebuilding, and polishing, our new website is finally live. This project has taken a huge amount of time and effort, and seeing it come together has been extremely rewarding. We have been working on this behind the scenes for a long time, and now that it is ready, we are excited to finally share it with everyone.
+
+The first thing many people will notice is our new subscription system. It has a cleaner look, it is easier to use, and it is built to support all the new things we plan to introduce. Along with that, we added several new integrations that help the entire platform feel smoother and more connected. Everything behind the scenes is now more stable and more organized, which will help us move faster as we continue building.
+
+The launch of this site is only the start of what we want to do. Now that the foundation is in place, we can focus on the bigger features that will shape the future of our community.
+
+One of the major additions we are working on is Community Groups. These groups will connect directly with Project Ventura and will let players manage many of their in game tools and features straight from the website. This includes things like group management, assets, permissions, logs, and even the possibility of private servers later on. Our goal is to create a system that makes groups feel important and gives them real control both inside and outside the game.
+
+We are also building a Community Marketplace. This will be a place where creators can upload and sell digital files and other content. Anyone who wants to earn money from their creations will be able to link their own Stripe Product Link and get paid directly. We want this marketplace to become a place where talented creators can grow, share their work, and benefit from it.
+
+Another feature in development is our Custom Vehicle Orders system for Project Ventura. Players will be able to request personalized vehicles, pick the style they want, and make their ride feel unique. Once the system is fully ready, players can even share their creations with friends. This has been a highly requested idea for a long time, and we are finally turning it into something real.
+
+The new website marks a major step forward for everything we are building. There is still a lot more coming, and we are excited for everyone to experience it piece by piece. Thank you to everyone who has supported us throughout this entire process. We are just getting started, and the best parts are still ahead.
+
+
+👍
+7
+
+❤️
+7
+
+😂
+
+😮
+
+😢
+
+😡
