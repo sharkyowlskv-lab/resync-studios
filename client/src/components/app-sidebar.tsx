@@ -35,6 +35,7 @@ import {
   Gamepad2,
   ChevronUp,
   BarChart3,
+  Shield,
 } from "lucide-react";
 
 const mainNavItems = [
@@ -49,6 +50,7 @@ const accountNavItems = [
   { title: "VIP Membership", url: "/vip", icon: Crown },
   { title: "Profile", url: "/profile", icon: User },
   { title: "Settings", url: "/settings", icon: Settings },
+  { title: "Community Guidelines", url: "/guidelines", icon: Shield },
 ];
 
 export function AppSidebar() {
