@@ -20,6 +20,7 @@ import Forums from "@/pages/forums";
 import VIP from "@/pages/vip";
 import Profile from "@/pages/profile";
 import Settings from "@/pages/settings";
+import Guidelines from "@/pages/guidelines";
 
 function AppLayout({ children }: { children: React.ReactNode }) {
   const style = {
@@ -57,6 +58,7 @@ function AuthenticatedRoutes() {
         <Route path="/vip" component={VIP} />
         <Route path="/profile" component={Profile} />
         <Route path="/settings" component={Settings} />
+        <Route path="/guidelines" component={Guidelines} />
         <Route component={NotFound} />
       </Switch>
     </AppLayout>
