@@ -27,6 +27,7 @@ import StaffDirectory from "@/pages/staff-directory";
 import Announcements from "@/pages/announcements";
 import DMCA from "@/pages/dmca";
 import ProjectReimaginedrules from "@/pages/project-reimagined-rules";
+import VolunteerStaffAgreement from "@/pages/volunteer-staff-agreement";
 
 function AppLayout({ children }: { children: React.ReactNode }) {
   const style = {
@@ -71,6 +72,7 @@ function AuthenticatedRoutes() {
         <Route path="/announcements" component={Announcements} />
         <Route path="/dmca" component={DMCA} />
         <Route path="/project-reimagined-rules" component={ProjectReimaginedrules} />
+        <Route path="/volunteer-agreement" component={VolunteerStaffAgreement} />
         <Route component={NotFound} />
       </Switch>
     </AppLayout>

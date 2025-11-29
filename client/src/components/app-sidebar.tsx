@@ -40,6 +40,7 @@ import {
   UsersRound,
   Megaphone,
   BookOpen,
+  Handshake,
 } from "lucide-react";
 
 const mainNavItems = [
@@ -61,6 +62,7 @@ const accountNavItems = [
   { title: "Terms of Service", url: "/terms", icon: FileText },
   { title: "DMCA Policy", url: "/dmca", icon: Shield },
   { title: "Project Reimagined Rules", url: "/project-reimagined-rules", icon: BookOpen },
+  { title: "Volunteer Staff Agreement", url: "/volunteer-agreement", icon: Handshake },
 ];
 
 export function AppSidebar() {

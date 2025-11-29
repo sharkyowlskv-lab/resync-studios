@@ -1,0 +1,577 @@
+OFFICIAL EMERGENCY & LEO GUIDELINES IN METRO INTERACTIVE
+These rules will guide you to the proper use of your position. Department Guidelines can vary as each team is vastly different with both of our games, LA and Perris. Departments are allowed to modify these rules in an EXEPTIONAL MANNER. However, these rules should stay within the guidelines in other department server guidelines.
+
+Table of Contents
+
+I. COMMUNITY & GAMEPLAY GUIDELINES FOR EMERGENCY SERVICES / LAW ENFORCEMENT
+[1] Code of Conduct
+[2] Radio & Communication Protocols
+[3] Patrol & Scene Behavior
+[4] Use of Force & Weapon Authorization
+[5] Jurisdiction & Boundaries
+[6] Arrests & Detainments
+[7] Medical & Fire Response Guidelines
+[8] Instanced Properties & Entering Buildings
+[9] Equipment Usage & Vehicle Conduct
+[10] Department-Specific Notes
+[10.1] Police Department
+[10.2] SWAT
+[10.3] Fire Department
+[10.4] EMS / Paramedics
+[10.5] Department of Corrections
+[10.6] Secret Service
+[10.7] Private Security
+
+[1] Code of Conduct
+Rule
+
+Description
+
+Professionalism
+
+Emergency Services personnel must maintain professionalism at all times, both on-duty and off-duty. This includes how you speak to players, respond to situations, and represent your department.
+
+Abuse of Power
+
+Using your position to gain unfair advantages, harass players, or interfere with unrelated RP is strictly prohibited.
+
+Chain of Command
+
+Follow all lawful orders from higher-ranking personnel. Disputes should be taken to internal command channels or reported to staff if necessary.
+
+Corruption RP
+
+You may only engage in corrupt behavior if it has been pre-approved by an Official Team Member or Developer.
+
+Community Interaction
+
+Treat all civilians fairly. Use escalation only when necessary. Avoid being overly aggressive or controlling without justification.
+
+Off-Duty Expectations
+
+Even when not actively playing your emergency role, you are expected to uphold basic standards and not ruin roleplay for others.
+
+[2] Radio & Communication Protocols
+Guideline
+
+Description
+
+Radio Clarity
+
+Keep radio communications clear and concise. Avoid cluttering the channel with unnecessary chatter during active situations.
+
+Call Sign Usage
+
+Use your proper in-game unit call sign (e.g., 2A-24, Medic-2) when communicating on radio. This helps with organization and chain-of-command clarity.
+
+Priority Traffic
+
+During critical incidents, request “priority radio” if needed. All non-essential radio traffic must cease until the scene is cleared or command ends the priority.
+
+Status Updates
+
+Regularly update dispatch or your department on your status (e.g., en route, on scene, transporting, clear).
+
+Scene Transfers
+
+If handing off responsibility to another unit (e.g., EMS arriving to treat a suspect), clearly state that over the radio so both sides acknowledge.
+
+Cross-Department Comms
+
+Be respectful when communicating with other agencies (e.g., Fire to Police). Remain coordinated and clear about jurisdiction when calling for or responding to backup.
+
+[3] Patrol & Scene Behavior
+Guideline
+
+Description
+
+Purposeful Patrol
+
+Emergency Services personnel must have a valid in-character reason for their patrol. Do not drive aimlessly or insert yourself into RP scenes without justification.
+
+Scene Arrival
+
+Upon arriving to a scene, assess the situation before acting. Do not immediately jump into action or assume control unless your role requires it.
+
+Non-Escalation
+
+Do not escalate a situation unless there is clear and direct threat. If it can be resolved peacefully, attempt that first.
+
+Role Respect
+
+Respect the role of other departments. Police handle law enforcement; EMS handles treatment. Don’t cross into duties that are not your own.
+
+Obey Scene Command
+
+In large incidents, follow the direction of the commanding officer or highest rank on scene—even if they are from another department.
+
+Civilians at Scenes
+
+Keep bystanders at a distance, but do not arrest or detain without a valid reason. Use warnings first.
+
+RP Engagement
+
+You are expected to engage in meaningful, realistic roleplay. Don't stand around silently or act robotic during scenes.
+
+[4] Use of Force & Weapon Authorization
+Guideline
+
+Description
+
+Use of Force Continuum
+
+Force must always match the threat. Start with verbal commands, escalate to non-lethal force (e.g., taser), and only use lethal force if your life or others’ lives are in immediate danger.
+
+Drawing Weapons
+
+Do not draw your firearm unless you suspect a threat or need to be ready. Drawing on someone for no reason is considered powergaming.
+
+Firing Weapons
+
+You may only fire your weapon when someone poses a direct and immediate threat to you or another person. Verbal de-escalation must be attempted first unless unsafe.
+
+Taser Usage
+
+Tasers may only be used when the suspect is actively resisting or fleeing. You may not tase someone who is facing you with a weapon unless it is holstered or are running at you with a knife.
+
+Warning Shots
+
+Warning shots are not allowed. You must make a clear decision to engage or not.
+
+Vehicle Use
+
+Do not use your vehicle as a weapon. Ramming, blocking, or PIT maneuvers should only be used in high-risk situations where it’s safe to do so.
+
+Crossfire Awareness
+
+Be mindful of where you're aiming. Never shoot into crowds, through teammates, or without a clear shot.
+
+[5] Jurisdiction & Boundaries
+Guideline
+
+Description
+
+Stay Within Role
+
+Stick to your department’s jurisdiction. Police handle law enforcement, EMS handles medical, Fire handles hazards—do not interfere with tasks outside your role.
+
+Department Zones
+
+Each department operates in clearly defined zones. For example, Corrections handles the prison, while City Police patrol urban zones. Do not act outside your assigned zone unless mutual aid is requested.
+
+Mutual Aid
+
+You may assist other departments only if requested or if the situation presents immediate danger to life. Otherwise, wait for proper jurisdiction to take over.
+
+Scene Ownership
+
+The first unit on scene may take initial control, but must hand over to a higher-ranking or more relevant department once they arrive.
+
+Instanced Areas
+
+Do not enter instanced interiors (e.g., houses, businesses, prisons) unless there is a valid RP reason and your department is allowed to operate inside.
+
+Government Facilities
+
+Do not patrol or loiter around restricted government buildings unless assigned or responding to an active call.
+
+[6] Arrests & Detainments
+Guideline
+
+Description
+
+Probable Cause
+
+You must have valid in-character probable cause (witnessed crime, 911 report, etc.) before detaining or arresting any individual.
+
+Use of Restraints
+
+Only use handcuffs, zipties, or restraints if the individual is non-compliant or poses a threat. Do not cuff players for minor offenses without cause.
+
+Rights & Info
+
+You must inform the player of why they are being detained or arrested. Silence or ambiguity is not acceptable.
+
+Excessive Detainment
+
+Do not keep individuals restrained or detained for extended periods without moving forward with roleplay or charges.
+
+Processing Procedure
+
+Once detained, suspects must be processed in a realistic and timely manner. Avoid dragging situations or stalling.
+
+Confiscation
+
+Only confiscate items relevant to the crime. Do not take items out of revenge or without IC justification. Illegal items may be seized.
+
+Escalation to Lethal
+
+Arrests should not escalate into shootings unless the suspect pulls a weapon or attempts to cause serious harm. Lethal force must follow all use-of-force rules.
+
+[7] Medical & Fire Response Guidelines
+Guideline
+
+Description
+
+EMS Priority
+
+EMS must focus solely on providing medical assistance. You are not law enforcement and should not interfere with arrests, investigations, or searches.
+
+Entry Timing
+
+Do not enter active crime or combat scenes until it is confirmed safe by Law Enforcement. Rushing in during gunfights is not allowed.
+
+Scene Safety
+
+If a scene is unsecured, wait at a safe distance until clearance is given. If you're unsure, ask over radio before entering.
+
+Firefighter Role
+
+Firefighters may only extinguish fires and secure hazard zones. You may not act as law enforcement or detain players.
+
+Combat Treatment
+
+EMS may not treat individuals actively in combat. Wait until the scene is cleared or both parties disengage.
+
+Mass Casualty Incidents
+
+In large events (e.g., shootings, explosions), prioritize treatment by severity. Request additional EMS units if needed.
+
+Patient Refusal
+
+Players may refuse treatment unless unconscious or incapacitated. Respect their choice unless doing so would break RP realism.
+
+Transport & Handoff
+
+When transporting patients, clearly communicate status and location over radio. Handoffs at hospitals must be roleplayed properly.
+
+[8] Instanced Properties & Entering Buildings
+Guideline
+
+Description
+
+Entry Without Cause
+
+You may not enter instanced interiors (homes, businesses, etc.) without valid in-character reason. Curiosity or suspicion alone is not enough.
+
+Law Enforcement Entry
+
+Police and SWAT may only enter with a search warrant, direct pursuit, or if an emergency (e.g., shots fired inside) justifies forced entry.
+
+EMS/Fire Entry
+
+EMS and Firefighters may only enter if dispatched to a medical/fire emergency inside. Do not explore or roam interiors.
+
+Scene Preservation
+
+Do not tamper with property unless it’s part of the RP. For example, do not move furniture, props, or loot items while inside.
+
+Stacking Entry
+
+Do not enter a property in large numbers unless justified by the scene. Scenes involving entry must be controlled and realistic.
+
+Raid Conduct
+
+During raids, follow all assigned roles. Only raid leads or high-command should give orders to breach or clear rooms.
+
+Re-entry Rules
+
+If you die inside an instanced property during a raid or call, you may not return unless revived or instructed by command/staff.
+
+[9] Equipment Usage & Vehicle Conduct
+Guideline
+
+Description
+
+Loadout Usage
+
+Use only the equipment issued to your department. Do not spawn or use weapons/items not meant for your role.
+
+Vehicle Driving
+
+All emergency vehicles must be driven responsibly, even with lights/sirens active. Reckless driving may result in punishment.
+
+Emergency Lighting
+
+Only activate lights/sirens when responding to active emergencies or transporting. Do not abuse lights to speed or bypass traffic without cause.
+
+Vehicle Blocking
+
+Roadblocks or parked vehicles must serve a valid RP purpose (e.g., scene control). Don’t use them to trap or troll players.
+
+Parking & Staging
+
+Park vehicles in realistic, accessible areas. Avoid blocking doorways, intersections, or spawn points unless required by scene control.
+
+Unauthorized Use
+
+Do not use other department vehicles (e.g., a Police Officer using a Fire Truck). Stay within your assigned assets.
+
+Vehicle Storage
+
+Return or properly park emergency vehicles when going off duty. Do not leave them abandoned or in odd locations.
+
+Aerial Units (if applicable)
+
+Helicopters or drones may only be used by authorized personnel and under strict RP needs (e.g., search and rescue, air support).
+
+[10.1] Department-Specific Notes – Police Department
+Guideline
+
+Description
+
+General Duties
+
+Patrol city zones, respond to 911 calls, conduct traffic stops, investigate suspicious activity, and assist other agencies.
+
+Ticketing
+
+Tickets must match the offense. Do not issue extreme fines unless the situation reasonably calls for it (e.g., repeat offenses).
+
+Arrest Authority
+
+Police may arrest suspects with valid probable cause. Always announce the reason and follow arrest RP properly.
+
+Investigations
+
+Detectives (if available) may investigate crimes in more depth, but patrol officers may still question and detain suspects if needed.
+
+Pursuits
+
+Vehicle pursuits must be based on RP cause. Do not chase players for fun. Only PIT or block vehicles when safe and justified.
+
+Tow Requests
+
+Police may request civilian tow services or impound vehicles tied to crimes. Do not abuse impounding powers.
+
+Jail Transfers
+
+Police are responsible for transporting suspects to jail or handing them over to corrections. This should be fully roleplayed.
+
+Scene Leadership
+
+Highest-ranking officer on scene takes control unless a special unit (e.g., SWAT) is designated to lead.
+
+[10.2] Department-Specific Notes – SWAT
+Guideline
+
+Description
+
+Deployment Conditions
+
+SWAT may only be deployed for high-risk scenarios, such as hostage situations, heavily armed suspects, barricaded criminals, or organized raids.
+
+Command Approval
+
+SWAT deployment should be authorized by a high-ranking officer or server staff. Unauthorized use may result in disciplinary action.
+
+Scene Supervision
+
+During deployments, the SWAT Commander or highest-ranking SWAT officer is responsible for tactical coordination unless staff assigns otherwise.
+
+Equipment Restrictions
+
+SWAT loadouts must be used responsibly. Do not bring excessive gear to low-threat situations. Tactical gear should match the threat level.
+
+Tactical Entry
+
+SWAT must use realistic breaching and clearing methods. Do not rush blindly or go solo unless the RP justifies it.
+
+Non-Lethal First
+
+When possible, use non-lethal options first (e.g., beanbags, tasers, tear gas). Lethal force is a last resort.
+
+Vehicles & Armor
+
+SWAT vehicles must be used for valid deployments. Do not use them for casual patrol or intimidation.
+
+Team Communication
+
+SWAT must communicate clearly during breaches and stack formations. Accidental team kills or reckless movement may result in administrative action.
+
+[10.3] Department-Specific Notes – Fire Department
+Guideline
+
+Description
+
+Primary Role
+
+Firefighters are responsible for responding to structure fires, vehicle fires, hazmat incidents, and assisting with scene safety at large-scale emergencies.
+
+Scene Entry
+
+Do not enter active police or criminal scenes without clearance. Wait for the scene to be marked safe before beginning fire suppression.
+
+Equipment Use
+
+Use hoses, extinguishers, and fire gear appropriately. Do not carry weapons or non-fire tools unless RP-relevant (e.g., jaws of life).
+
+RP Hazards
+
+Treat fire or chemical incidents with full roleplay seriousness. Establish perimeters, use breathing gear, and coordinate with EMS for injured persons.
+
+Dispatch Reporting
+
+Always report via radio when en route, on scene, or clearing a call. If a call is canceled, announce it clearly.
+
+Fire Origin
+
+Fires must have an RP cause (e.g., arson, vehicle explosion, electrical fire). Random fires should be treated as accidental unless otherwise specified.
+
+Civilian Safety
+
+Your focus is public safety. Assist with evacuations, warn bystanders, and prioritize life over property.
+
+No Combat RP
+
+Fire Department members may not participate in fights, arrests, or armed incidents. You are a neutral responder, not an enforcement role.
+
+[10.4] Department-Specific Notes – EMS / Paramedics
+Guideline
+
+Description
+
+Medical Priority
+
+EMS is responsible for life-saving care, stabilizing injuries, and transporting patients to hospitals. You are not law enforcement and should not interfere in arrests or investigations.
+
+Scene Entry
+
+Never enter active combat or crime scenes without confirmation from law enforcement that it is safe. Wait for clearance before approaching downed individuals.
+
+RP Medical Treatment
+
+Always roleplay treatment — e.g., checking pulse, applying bandages, using a stretcher. Avoid simple “revive” commands without context.
+
+Transporting Patients
+
+If transporting to a hospital, announce departure and arrival via radio. Include basic patient status (e.g., GSW, unconscious).
+
+No Firearms or Combat
+
+EMS may not carry weapons or engage in any combat. If threatened, withdraw and call for police assistance.
+
+Refusal of Care
+
+If a conscious player refuses treatment, you must respect their choice unless they’re in a medical crisis that demands stabilization.
+
+Scene Handoffs
+
+Coordinate clearly with Fire or Police on who takes over care, especially during joint scenes.
+
+Equipment Use
+
+Use only medical tools in your inventory. Do not carry or spawn law enforcement items or props unrelated to your job.
+
+[10.5] Department-Specific Notes – Department of Corrections (LA)
+Guideline
+
+Description
+
+Jurisdiction
+
+Corrections officers are limited to the Penitentiary and the road leading to it. You may only leave this area when chasing escaped inmates or responding to a direct prison-related emergency.
+
+Role
+
+Your primary duties include managing inmates, ensuring prison security, and overseeing prisoner intake and release procedures.
+
+Prisoner Interaction
+
+Treat prisoners fairly. Use force only when they pose a threat or are non-compliant after multiple warnings.
+
+Releases
+
+Prisoners may only be released with proper RP justification and permission from at least two of the following: Mayor, Police Chief, or Warden.
+
+Escaped Prisoners
+
+If a prisoner escapes, you may pursue them—but you must communicate over radio and not engage solo unless necessary.
+
+Contraband
+
+You may confiscate illegal items, but do not abuse your power or take items unrelated to the roleplay situation.
+
+Lockdowns
+
+Full lockdowns must be approved by a high-ranking corrections officer or staff. Must be justified with in-character reason (e.g., riot, escape).
+
+RP at Intake
+
+Do not skip booking procedures. Roleplay check-in, searches, and placement fully unless the player refuses or disconnects.
+
+[10.6] Department-Specific Notes – Secret Service (LA)
+Guideline
+
+Description
+
+Primary Role
+
+The Secret Service is solely responsible for the protection of the mayor. You are not standard law enforcement and may not patrol or respond to unrelated calls.
+
+Proximity
+
+You must remain within reasonable distance of the Mayor at all times. Roaming without the Mayor present is not allowed.
+
+No Independent Action
+
+You may not conduct arrests, traffic stops, or raids. Your only duties are related to security and defensive response.
+
+Bribes & Corruption
+
+You may not accept bribes or engage in corrupt RP unless the Mayor has staff-approved permissions and it fits the scenario.
+
+Weapon Use
+
+You may carry a sidearm and long gun for protective purposes only. Do not use weapons unless the Mayor is under threat or in confirmed danger.
+
+Jurisdiction Conflict
+
+You may not interfere with Police or Sheriff's Department operations. Secret Service must yield authority in law enforcement matters.
+
+Legal Accountability
+
+Secret Service agents are not above the law and are subject to the same rules, tickets, and arrests as any other role.
+
+Internal Breach
+
+You may not harm government officials, including Law Enforcement or fellow Secret Service agents, under any RP context.
+
+[10.7] Department-Specific Notes – Private Security (LA)
+Guideline
+
+Description
+
+Patrol Zones
+
+You may only patrol public spaces (e.g., banks, neighborhoods, gas stations) or private businesses where you have been hired with owner and security lead approval.
+
+No Police Powers
+
+Private Security may not perform arrests, conduct investigations, or act as law enforcement. You are not a government official.
+
+Jurisdiction Limits
+
+You must remain within your assigned patrol zone. Do not intervene in unrelated scenes outside your designated area.
+
+Use of Force
+
+You may only use force in self-defense or to protect your assigned location. You may not attack suspects outside of your patrol zone.
+
+Response Restrictions
+
+Do not respond to police calls, pursuits, or scenes unless directly related to your hired post. You are not backup for law enforcement.
+
+Equipment Limits
+
+Use only your assigned Private Security loadout. Do not equip police-grade weapons or spawn equipment not designated for your role.
+
+Scene Protection
+
+You may only assist in defending a property if you were already on-site before the scene began. You may not show up after it starts.
+
+Civilian Relations
+
+Treat civilians respectfully. Do not intimidate or abuse your presence—your job is protection, not dominance.
+
+CEO & Managing Director at Metro Interactive
