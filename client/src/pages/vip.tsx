@@ -1,7 +1,4 @@
 import { useAuth } from "@/hooks/useAuth";
-import { useMutation } from "@tanstack/react-query";
-import { useToast } from "@/hooks/use-toast";
-import { apiRequest } from "@/lib/queryClient";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -127,26 +124,6 @@ const tiers = [
 
 export default function VIP() {
   const { user } = useAuth();
-  const { toast } = useToast();
-
-  const checkoutMutation = useMutation({
-    mutationFn: async (tierId: string) => {
-      const response = await apiRequest("POST", "/api/subscriptions/checkout", { tierId });
-      return response.json();
-    },
-    onSuccess: (data) => {
-      if (data.url) {
-        window.location.href = data.url;
-      }
-    },
-    onError: () => {
-      toast({ 
-        title: "Error", 
-        description: "Failed to start checkout. Please try again.", 
-        variant: "destructive" 
-      });
-    },
-  });
 
   const currentTierIndex = tiers.findIndex(t => t.id === user?.vipTier);
 
@@ -268,11 +245,10 @@ export default function VIP() {
                 <Button 
                   className="w-full"
                   variant={isCurrentTier ? "outline" : "default"}
-                  disabled={isCurrentTier || checkoutMutation.isPending}
-                  onClick={() => checkoutMutation.mutate(tier.id)}
+                  disabled={!isCurrentTier}
                   data-testid={`button-subscribe-${tier.id}`}
                 >
-                  {isCurrentTier ? 'Current Plan' : isUpgrade ? 'Upgrade' : 'Get Started'}
+                  {isCurrentTier ? 'Current Plan' : 'Coming Soon'}
                 </Button>
               </CardContent>
             </Card>
@@ -379,9 +355,9 @@ export default function VIP() {
             </p>
           </div>
           <div>
-            <h4 className="font-semibold">What payment methods do you accept?</h4>
+            <h4 className="font-semibold">When will VIP subscriptions be available?</h4>
             <p className="text-sm text-muted-foreground mt-1">
-              We accept all major credit cards, debit cards, and various digital payment methods through Stripe.
+              VIP subscriptions are currently in development. Check back soon for payment options!
             </p>
           </div>
           <div>
