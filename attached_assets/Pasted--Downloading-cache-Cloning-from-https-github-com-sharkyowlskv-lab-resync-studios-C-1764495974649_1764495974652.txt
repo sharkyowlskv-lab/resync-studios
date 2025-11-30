@@ -1,0 +1,76 @@
+==> Downloading cache...
+==> Cloning from https://github.com/sharkyowlskv-lab/resync-studios
+==> Checking out commit 44a7a6640aa4c5576a6ad7433013b8d0ed9bfe8f in branch main
+==> Downloaded 214MB in 3s. Extraction took 10s.
+==> Using Node.js version 22.16.0 (default)
+==> Docs on specifying a Node.js version: https://render.com/docs/node-version
+==> Running build command 'bash build.sh'...
+up to date, audited 551 packages in 6s
+77 packages are looking for funding
+  run `npm fund` for details
+11 vulnerabilities (3 low, 7 moderate, 1 high)
+To address issues that do not require attention, run:
+  npm audit fix
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+Run `npm audit` for details.
+building client...
+vite v5.4.20 building for production...
+transforming...
+A PostCSS plugin did not pass the `from` option to `postcss.parse`. This may cause imported assets to be incorrectly transformed. If you've recently added a PostCSS plugin that raised this warning, please contact the package author to fix the issue.
+✓ 1765 modules transformed.
+rendering chunks...
+../dist/public/index.html                   2.60 kB
+../dist/public/assets/index-DTNkfF-7.css   84.62 kB
+../dist/public/assets/index-BPMXTT_D.js   709.06 kB
+✓ built in 9.14s
+building server...
+▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
+    vite.config.ts:24:24:
+      24 │       "@": path.resolve(import.meta.dirname, "client", "src"),
+         ╵                         ~~~~~~~~~~~
+  You need to set the output format to "esm" for "import.meta" to work correctly.
+▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
+    vite.config.ts:25:30:
+      25 │       "@shared": path.resolve(import.meta.dirname, "shared"),
+         ╵                               ~~~~~~~~~~~
+  You need to set the output format to "esm" for "import.meta" to work correctly.
+▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
+    vite.config.ts:26:30:
+      26 │ ...  "@assets": path.resolve(import.meta.dirname, "attached_assets"),
+         ╵                              ~~~~~~~~~~~
+  You need to set the output format to "esm" for "import.meta" to work correctly.
+▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
+    vite.config.ts:29:21:
+      29 │   root: path.resolve(import.meta.dirname, "client"),
+         ╵                      ~~~~~~~~~~~
+  You need to set the output format to "esm" for "import.meta" to work correctly.
+▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
+    vite.config.ts:31:25:
+      31 │     outDir: path.resolve(import.meta.dirname, "dist/public"),
+         ╵                          ~~~~~~~~~~~
+  You need to set the output format to "esm" for "import.meta" to work correctly.
+5 warnings
+  dist/index.cjs  1.3mb ⚠️
+⚡ Done in 309ms
+==> Uploading build...
+==> Uploaded in 5.2s. Compression took 17.2s
+==> Build successful 🎉
+==> Deploying...
+==> Running 'npm run start'
+> rest-express@1.0.0 start
+> NODE_ENV=production node dist/index.cjs
+🔐 Discord OAuth Callback URL: https://resync-studios.onrender.com/auth/discord/callback
+✅ Discord OAuth configured with Client ID: 14286445...
+📍 CWD: /opt/render/project/src
+📍 Index.html path: /opt/render/project/src/dist/public/index.html
+📍 Index.html exists: true
+✅ PRODUCTION MODE: Serving from dist/public
+9:45:05 AM [express] serving on port 5000
+==> Your service is live 🎉
+==> 
+==> ///////////////////////////////////////////////////////////
+==> 
+==> Available at your primary URL https://resync-studios.onrender.com
+==> 
+==> ///////////////////////////////////////////////////////////
