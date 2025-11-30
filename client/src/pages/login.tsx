@@ -12,32 +12,30 @@ import { apiRequest } from "@/lib/queryClient";
 export default function Login() {
   const [, navigate] = useLocation();
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
 
   const emailLoginMutation = useMutation({
-    mutationFn: async (emailAddr: string) => {
-      const response = await apiRequest("POST", "/api/auth/email-login", { email: emailAddr });
+    mutationFn: async (data: { email: string; password: string }) => {
+      const response = await apiRequest("POST", "/api/auth/email-login", data);
       return response.json();
     },
     onSuccess: () => {
-      setSuccessMessage("Check your email for a login link!");
-      setError("");
-      setEmail("");
+      navigate("/");
     },
     onError: (err: any) => {
-      setError(err.message || "Failed to send email. Please try again.");
+      setError(err.message || "Invalid email or password. Please try again.");
     },
   });
 
   const handleEmailSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-    if (!email) {
-      setError("Please enter your email");
+    if (!email || !password) {
+      setError("Please enter your email and password");
       return;
     }
-    emailLoginMutation.mutate(email);
+    emailLoginMutation.mutate({ email, password });
   };
 
   return (
@@ -80,13 +78,6 @@ export default function Login() {
               </div>
             )}
 
-            {successMessage && (
-              <div className="bg-green-500/10 border border-green-500/20 rounded-md p-3 flex gap-2">
-                <Mail className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                <p className="text-sm text-green-500">{successMessage}</p>
-              </div>
-            )}
-
             {/* Discord Sign In */}
             <div className="space-y-2">
               <p className="text-xs font-medium text-muted-foreground uppercase">Discord</p>
@@ -109,11 +100,11 @@ export default function Login() {
                 <div className="w-full border-t border-border/50"></div>
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="px-2 bg-card text-muted-foreground">Or email</span>
+                <span className="px-2 bg-card text-muted-foreground">Or email & password</span>
               </div>
             </div>
 
-            {/* Email Login Form */}
+            {/* Email & Password Login Form */}
             <form onSubmit={handleEmailSubmit} className="space-y-3">
               <div className="space-y-2">
                 <label className="text-sm font-medium text-foreground">Email</label>
@@ -127,16 +118,26 @@ export default function Login() {
                   className="bg-background border-border/50"
                 />
               </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-foreground">Password</label>
+                <Input
+                  type="password"
+                  placeholder="Your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  disabled={emailLoginMutation.isPending}
+                  data-testid="input-password"
+                  className="bg-background border-border/50"
+                />
+              </div>
               <Button 
                 type="submit"
                 size="lg"
-                variant="outline"
                 className="w-full"
                 disabled={emailLoginMutation.isPending}
-                data-testid="button-email-link"
+                data-testid="button-login"
               >
-                <Mail className="w-4 h-4 mr-2" />
-                {emailLoginMutation.isPending ? "Sending..." : "Email me a login link"}
+                {emailLoginMutation.isPending ? "Logging in..." : "Log in"}
               </Button>
             </form>
 
