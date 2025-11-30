@@ -68,14 +68,7 @@ export async function initializeDatabase() {
       }
     }
 
-    // Create sessions table if it doesn't exist
-    await db.execute(`
-      CREATE TABLE IF NOT EXISTS sessions (
-        sid varchar PRIMARY KEY,
-        sess jsonb NOT NULL,
-        expire timestamp NOT NULL
-      );
-    `);
+    // Sessions table is managed by connect-pg-simple middleware
 
     // Create magic_link_tokens table if it doesn't exist
     await db.execute(`
