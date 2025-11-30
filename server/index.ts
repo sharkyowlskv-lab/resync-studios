@@ -6,6 +6,8 @@ import session from "express-session";
 import passport from "./auth";
 import ConnectPgSimple from "connect-pg-simple";
 import { pool } from "./db";
+import fs from "fs";
+import path from "path";
 
 const app = express();
 const httpServer = createServer(app);
@@ -108,11 +110,12 @@ app.use((req, res, next) => {
 (async () => {
   await registerRoutes(httpServer, app);
 
-  // importantly only setup vite in development and after
-  // setting up all the other routes so the catch-all route
-  // doesn't interfere with the other routes
-  if (process.env.NODE_ENV === "production") {
-    console.log("🚀 Running in PRODUCTION mode - serving static files");
+  // Check if dist/public exists (built production files)
+  const publicPath = path.resolve(__dirname, "./public");
+  const hasDistFiles = fs.existsSync(publicPath);
+  
+  if (process.env.NODE_ENV === "production" || hasDistFiles) {
+    console.log("🚀 Serving static files (production or dist files detected)");
     serveStatic(app);
   } else {
     console.log("🔧 Running in DEVELOPMENT mode - using Vite dev server");
