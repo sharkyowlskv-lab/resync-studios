@@ -110,15 +110,21 @@ app.use((req, res, next) => {
 (async () => {
   await registerRoutes(httpServer, app);
 
-  // Check if dist/public exists (built production files)
-  const distPublicPath = path.join(process.cwd(), "dist", "public", "index.html");
-  const hasDistFiles = fs.existsSync(distPublicPath);
+  // CRITICAL: Add static file serving middleware BEFORE error handler
+  // This serves index.html for all non-API routes (SPA routing)
+  const distPublicPath = path.join(process.cwd(), "dist", "public");
+  const indexHtmlPath = path.join(distPublicPath, "index.html");
   
-  if (process.env.NODE_ENV === "production" || hasDistFiles) {
-    console.log("🚀 Serving static files (production or dist files detected)");
-    serveStatic(app);
+  if (fs.existsSync(indexHtmlPath)) {
+    console.log("✅ Serving static files from:", distPublicPath);
+    app.use(express.static(distPublicPath));
+    
+    // Serve index.html for all non-API routes
+    app.get("*", (_req, res) => {
+      res.sendFile(indexHtmlPath);
+    });
   } else {
-    console.log("🔧 Running in DEVELOPMENT mode - using Vite dev server");
+    console.log("🔧 dist/public not found, using Vite dev server");
     const { setupVite } = await import("./vite");
     await setupVite(httpServer, app);
   }
