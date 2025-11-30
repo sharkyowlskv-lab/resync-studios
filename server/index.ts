@@ -121,15 +121,21 @@ app.use((req, res, next) => {
   
   if (fs.existsSync(indexHtmlPath)) {
     console.log("✅ PRODUCTION MODE: Serving static files from:", distPublicPath);
-    app.use(express.static(distPublicPath, { etag: false }));
     
-    // Serve index.html for all non-API, non-auth routes (SPA routing)
-    app.use((req, res, next) => {
-      // Only serve index.html for HTML requests to non-API routes
-      if (!req.path.startsWith("/api") && !req.path.startsWith("/auth")) {
-        return res.sendFile(indexHtmlPath);
+    // Serve static files (CSS, JS, images, etc.)
+    app.use(express.static(distPublicPath, { 
+      etag: false,
+      maxAge: 0
+    }));
+    
+    // Serve index.html for all non-API routes (SPA routing catch-all)
+    app.use((req, res) => {
+      // Don't serve HTML for API/auth routes
+      if (req.path.startsWith("/api") || req.path.startsWith("/auth")) {
+        return res.status(404).json({ error: "Not found" });
       }
-      next();
+      // Serve index.html for all other routes
+      res.sendFile(indexHtmlPath);
     });
   } else {
     console.log("🔧 DEV MODE: dist/public not found, using Vite dev server");
