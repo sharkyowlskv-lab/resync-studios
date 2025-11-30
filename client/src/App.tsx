@@ -19,6 +19,7 @@ import LFG from "@/pages/lfg";
 import Clans from "@/pages/clans";
 import Builds from "@/pages/builds";
 import Forums from "@/pages/forums";
+import ForumThread from "@/pages/forums/thread";
 import VIP from "@/pages/vip";
 import Profile from "@/pages/profile";
 import Settings from "@/pages/settings";
@@ -70,6 +71,7 @@ function AuthenticatedRoutes() {
         <Route path="/clans" component={Clans} />
         <Route path="/builds" component={Builds} />
         <Route path="/forums" component={Forums} />
+        <Route path="/forums/thread/:id" component={ForumThread} />
         <Route path="/chat" component={Chat} />
         <Route path="/vip" component={VIP} />
         <Route path="/profile" component={Profile} />
