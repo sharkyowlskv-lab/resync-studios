@@ -12,18 +12,19 @@ export default function Signup() {
   const [, navigate] = useLocation();
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
   const signupMutation = useMutation({
-    mutationFn: async (data: { email: string; username: string }) => {
+    mutationFn: async (data: { email: string; username: string; password: string }) => {
       const response = await apiRequest("POST", "/api/auth/signup", data);
       return response.json();
     },
     onSuccess: () => {
       setSuccess(true);
       setError("");
-      setTimeout(() => navigate("/login"), 3000);
+      setTimeout(() => navigate("/login"), 2000);
     },
     onError: (err: any) => {
       setError(err.message || "Signup failed. Please try again.");
@@ -33,11 +34,15 @@ export default function Signup() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-    if (!email || !username) {
+    if (!email || !username || !password) {
       setError("Please fill in all fields");
       return;
     }
-    signupMutation.mutate({ email, username });
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters");
+      return;
+    }
+    signupMutation.mutate({ email, username, password });
   };
 
   if (success) {
@@ -65,9 +70,9 @@ export default function Signup() {
                   <Mail className="w-6 h-6 text-white" />
                 </div>
               </div>
-              <CardTitle className="text-2xl font-bold">Check your email!</CardTitle>
+              <CardTitle className="text-2xl font-bold">Account created!</CardTitle>
               <CardDescription className="text-base text-muted-foreground">
-                We've sent a confirmation link to <strong>{email}</strong>. Redirecting to login...
+                Your account has been created successfully. Redirecting to login...
               </CardDescription>
             </CardHeader>
           </Card>
@@ -137,6 +142,18 @@ export default function Signup() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   data-testid="input-email"
+                  className="bg-background border-border/50"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-foreground">Password</label>
+                <Input
+                  type="password"
+                  placeholder="At least 6 characters"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  data-testid="input-password"
                   className="bg-background border-border/50"
                 />
               </div>

@@ -1,7 +1,8 @@
 import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
-import { storage, sendSignupEmail, sendLoginLinkEmail } from "./storage";
+import { storage } from "./storage";
 import passport from "./auth";
+import { hashPassword, verifyPassword } from "./auth-utils";
 import { 
   insertLfgPostSchema, 
   insertClanSchema, 
@@ -35,11 +36,15 @@ export async function registerRoutes(
   // Email-based signup
   app.post("/api/auth/signup", async (req, res) => {
     try {
-      console.log("📧 Signup request received for email:", req.body.email);
-      const { email, username } = req.body;
+      console.log("📝 Signup request received for email:", req.body.email);
+      const { email, username, password } = req.body;
       
-      if (!email || !username) {
-        return res.status(400).json({ message: "Email and username required" });
+      if (!email || !username || !password) {
+        return res.status(400).json({ message: "Email, username, and password required" });
+      }
+
+      if (password.length < 6) {
+        return res.status(400).json({ message: "Password must be at least 6 characters" });
       }
 
       const existing = await storage.getUserByEmail(email);
@@ -52,47 +57,51 @@ export async function registerRoutes(
         return res.status(400).json({ message: "Username already taken" });
       }
 
-      const token = await storage.createMagicLinkToken(email);
-      const appUrl = process.env.NODE_ENV === "production" 
-        ? "https://resync-studios.onrender.com"
-        : "http://localhost:5000";
-      const confirmLink = `${appUrl}/auth/verify-token?token=${token}&email=${encodeURIComponent(email)}&username=${encodeURIComponent(username)}`;
-      
-      console.log("📧 Sending signup email to:", email);
-      await sendSignupEmail(email, confirmLink);
-      console.log("✅ Signup email sent successfully");
-      res.json({ message: "Signup email sent" });
+      const hashedPassword = hashPassword(password);
+      const user = await storage.createUser({
+        email,
+        username,
+        password: hashedPassword,
+        userRank: 'member',
+        vipTier: 'none'
+      });
+
+      console.log("✅ Account created:", user.id);
+      res.json({ message: "Account created successfully", user });
     } catch (error) {
       console.error("❌ Error in signup:", error instanceof Error ? error.message : error);
-      console.error("Full error:", error);
-      res.status(500).json({ message: "Failed to process signup", error: error instanceof Error ? error.message : "Unknown error" });
+      res.status(500).json({ message: "Failed to create account" });
     }
   });
 
   // Email-based login
   app.post("/api/auth/email-login", async (req, res) => {
     try {
-      console.log("📧 Login request received for email:", req.body.email);
-      const { email } = req.body;
+      console.log("🔑 Login request received for email:", req.body.email);
+      const { email, password } = req.body;
       
-      if (!email) {
-        return res.status(400).json({ message: "Email required" });
+      if (!email || !password) {
+        return res.status(400).json({ message: "Email and password required" });
       }
 
-      const token = await storage.createMagicLinkToken(email);
-      const appUrl = process.env.NODE_ENV === "production" 
-        ? "https://resync-studios.onrender.com"
-        : "http://localhost:5000";
-      const loginLink = `${appUrl}/auth/verify-token?token=${token}&email=${encodeURIComponent(email)}`;
-      
-      console.log("📧 Sending login email to:", email);
-      await sendLoginLinkEmail(email, loginLink);
-      console.log("✅ Login email sent successfully");
-      res.json({ message: "Login email sent" });
+      const user = await storage.getUserByEmail(email);
+      if (!user || !user.password) {
+        return res.status(401).json({ message: "Invalid email or password" });
+      }
+
+      if (!verifyPassword(password, user.password)) {
+        return res.status(401).json({ message: "Invalid email or password" });
+      }
+
+      // Create session
+      req.session.userId = user.id;
+      req.session.user = user;
+
+      console.log("✅ User logged in:", user.id);
+      res.json({ message: "Logged in successfully", user });
     } catch (error) {
-      console.error("❌ Error in email login:", error instanceof Error ? error.message : error);
-      console.error("Full error:", error);
-      res.status(500).json({ message: "Failed to send login email", error: error instanceof Error ? error.message : "Unknown error" });
+      console.error("❌ Error in login:", error instanceof Error ? error.message : error);
+      res.status(500).json({ message: "Failed to login" });
     }
   });
 
