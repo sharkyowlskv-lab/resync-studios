@@ -40,6 +40,7 @@ import Admin from "@/pages/admin";
 import ModCP from "@/pages/modcp";
 import AdminCP from "@/pages/admin-cp";
 
+// Full layout with sidebar (authenticated users)
 function AppLayout({ children }: { children: React.ReactNode }) {
   const style = {
     "--sidebar-width": "16rem",
@@ -64,6 +65,48 @@ function AppLayout({ children }: { children: React.ReactNode }) {
   );
 }
 
+// Simple layout for public pages (unauthenticated users)
+function PublicLayout({ children }: { children: React.ReactNode }) {
+  const { user } = useAuth();
+
+  return (
+    <div className="flex flex-col h-screen w-full">
+      <header className="flex items-center justify-between h-14 px-4 border-b shrink-0">
+        <div className="font-display font-bold text-lg">RESYNC Studios</div>
+        <div className="flex gap-2">
+          {!user ? (
+            <>
+              <a href="/login" className="text-sm hover:underline">Login</a>
+              <a href="/signup" className="text-sm hover:underline">Sign Up</a>
+            </>
+          ) : null}
+          <ThemeToggle />
+        </div>
+      </header>
+      <main className="flex-1 overflow-auto p-4 sm:p-6">
+        {children}
+      </main>
+    </div>
+  );
+}
+
+// Protected route component - redirects to login if not authenticated
+function ProtectedRoute({ component: Component }: { component: any }) {
+  const { isAuthenticated, isLoading } = useAuth();
+  const [, setLocation] = useLocation();
+
+  if (isLoading) {
+    return <Skeleton className="h-screen w-full" />;
+  }
+
+  if (!isAuthenticated) {
+    setLocation("/login");
+    return null;
+  }
+
+  return <Component />;
+}
+
 function AuthenticatedRoutes() {
   return (
     <AppLayout>
@@ -78,10 +121,27 @@ function AuthenticatedRoutes() {
         <Route path="/vip" component={VIP} />
         <Route path="/profile" component={Profile} />
         <Route path="/settings" component={Settings} />
+        <Route path="/admin" component={Admin} />
+        <Route path="/modcp" component={ModCP} />
+        <Route path="/admin-cp" component={AdminCP} />
+        <Route component={NotFound} />
+      </Switch>
+    </AppLayout>
+  );
+}
+
+function PublicRoutes() {
+  return (
+    <PublicLayout>
+      <Switch>
+        <Route path="/" component={Landing} />
+        <Route path="/forums" component={Forums} />
+        <Route path="/forums/thread/:id" component={ForumThread} />
+        <Route path="/builds" component={Builds} />
+        <Route path="/staff" component={StaffDirectory} />
         <Route path="/guidelines" component={Guidelines} />
         <Route path="/privacy" component={Privacy} />
         <Route path="/terms" component={Terms} />
-        <Route path="/staff" component={StaffDirectory} />
         <Route path="/announcements" component={Announcements} />
         <Route path="/dmca" component={DMCA} />
         <Route path="/project-reimagined-rules" component={ProjectReimaginedrules} />
@@ -90,12 +150,11 @@ function AuthenticatedRoutes() {
         <Route path="/community-rules" component={CommunityRules} />
         <Route path="/about" component={AboutMetro} />
         <Route path="/fort-loredo" component={FortLoredo} />
-        <Route path="/admin" component={Admin} />
-        <Route path="/modcp" component={ModCP} />
-        <Route path="/admin-cp" component={AdminCP} />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
         <Route component={NotFound} />
       </Switch>
-    </AppLayout>
+    </PublicLayout>
   );
 }
 
@@ -115,13 +174,7 @@ function Router() {
   }
 
   if (!isAuthenticated) {
-    return (
-      <Switch>
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
-        <Route component={Landing} />
-      </Switch>
-    );
+    return <PublicRoutes />;
   }
 
   return <AuthenticatedRoutes />;
