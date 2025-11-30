@@ -8,8 +8,13 @@ const CALLBACK_URL = process.env.NODE_ENV === "production"
   ? (process.env.DISCORD_CALLBACK_URL || "http://localhost:5000/auth/discord/callback")
   : "http://localhost:5000/auth/discord/callback";
 
+console.log(`🔐 Discord OAuth Callback URL: ${CALLBACK_URL}`);
+console.log(`🔐 NODE_ENV: ${process.env.NODE_ENV}`);
+
 if (!DISCORD_CLIENT_ID || !DISCORD_CLIENT_SECRET) {
   console.warn("⚠️ Discord OAuth not configured. Set DISCORD_CLIENT_ID and DISCORD_CLIENT_SECRET to enable Discord login.");
+} else {
+  console.log(`✅ Discord OAuth configured with Client ID: ${DISCORD_CLIENT_ID.slice(0, 8)}...`);
 }
 
 // Passport user serialization
