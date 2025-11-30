@@ -24,7 +24,7 @@ async function getResendClient() {
   if (process.env.RESEND_API_KEY) {
     return {
       client: new Resend(process.env.RESEND_API_KEY),
-      fromEmail: process.env.RESEND_FROM_EMAIL || 'noreply@resync.community'
+      fromEmail: process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev'
     };
   }
 
@@ -72,7 +72,7 @@ async function getResendClient() {
 
   return {
     client: new Resend(connectionSettings.settings.api_key),
-    fromEmail: connectionSettings.settings.from_email || 'noreply@resync.community'
+    fromEmail: connectionSettings.settings.from_email || 'onboarding@resend.dev'
   };
 }
 
