@@ -65,6 +65,7 @@ const accountNavItems = [
   { title: "Profile", url: "/profile", icon: User },
   { title: "Settings", url: "/settings", icon: Settings },
   { title: "Moderator CP", url: "/modcp", icon: Shield },
+  { title: "Admin CP", url: "/admin-cp", icon: BarChart3 },
   { title: "Admin Panel", url: "/admin", icon: Lock },
   { title: "Community Rules", url: "/community-rules", icon: Heart },
   { title: "Community Guidelines", url: "/guidelines", icon: Shield },

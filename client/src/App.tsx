@@ -38,6 +38,7 @@ import FortLoredo from "@/pages/fort-loredo";
 import Chat from "@/pages/chat";
 import Admin from "@/pages/admin";
 import ModCP from "@/pages/modcp";
+import AdminCP from "@/pages/admin-cp";
 
 function AppLayout({ children }: { children: React.ReactNode }) {
   const style = {
@@ -91,6 +92,7 @@ function AuthenticatedRoutes() {
         <Route path="/fort-loredo" component={FortLoredo} />
         <Route path="/admin" component={Admin} />
         <Route path="/modcp" component={ModCP} />
+        <Route path="/admin-cp" component={AdminCP} />
         <Route component={NotFound} />
       </Switch>
     </AppLayout>

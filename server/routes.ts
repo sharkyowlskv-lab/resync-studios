@@ -868,6 +868,7 @@ export async function registerRoutes(
         username: user.username,
         email: user.email,
         userRank: user.userRank,
+        vipTier: user.vipTier,
         createdAt: user.createdAt,
       }));
       
@@ -875,6 +876,30 @@ export async function registerRoutes(
     } catch (error) {
       console.error("Error fetching users:", error);
       res.status(500).json({ message: "Failed to fetch users" });
+    }
+  });
+
+  app.delete("/api/admin/users/:id", requireAuth, async (req, res) => {
+    try {
+      const adminId = (req.user as any).id;
+      if (!isAdmin(adminId)) {
+        return res.status(403).json({ message: "Only admins can delete users" });
+      }
+
+      const targetId = req.params.id;
+      if (targetId === adminId) {
+        return res.status(400).json({ message: "Cannot delete yourself" });
+      }
+
+      await storage.updateUser(targetId, { 
+        username: `[deleted-${Date.now()}]`, 
+        email: null 
+      });
+
+      res.json({ message: "User deleted successfully" });
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      res.status(500).json({ message: "Failed to delete user" });
     }
   });
 
