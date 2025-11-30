@@ -110,6 +110,12 @@ app.use((req, res, next) => {
 (async () => {
   await registerRoutes(httpServer, app);
 
+  // Diagnostic middleware to log all requests
+  app.use((req, res, next) => {
+    console.log(`📨 [${new Date().toISOString()}] ${req.method} ${req.path}`);
+    next();
+  });
+
   // CRITICAL: Add static file serving middleware BEFORE error handler
   // This serves index.html for all non-API routes (SPA routing)
   const distPublicPath = path.join(process.cwd(), "dist", "public");
@@ -125,16 +131,19 @@ app.use((req, res, next) => {
     // Serve static files (CSS, JS, images, etc.)
     app.use(express.static(distPublicPath, { 
       etag: false,
-      maxAge: 0
+      maxAge: 0,
+      fallthrough: true
     }));
     
-    // Serve index.html for all non-API routes (SPA routing catch-all)
-    app.use((req, res) => {
-      // Don't serve HTML for API/auth routes
+    // Final catch-all: serve index.html for any unmatched request
+    app.all("*", (req, res) => {
+      // Explicit check for API/auth - return 404 JSON
       if (req.path.startsWith("/api") || req.path.startsWith("/auth")) {
+        console.log(`❌ API/auth route not found: ${req.path}`);
         return res.status(404).json({ error: "Not found" });
       }
-      // Serve index.html for all other routes
+      // Everything else gets index.html (React SPA routing)
+      console.log(`✅ Serving index.html for route: ${req.path}`);
       res.sendFile(indexHtmlPath);
     });
   } else {
