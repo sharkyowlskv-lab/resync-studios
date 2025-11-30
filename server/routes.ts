@@ -573,5 +573,10 @@ export async function registerRoutes(
     }
   });
 
+  // Catch-all route - DO NOT send 404, let next() pass to static middleware
+  app.all("*", (_req, _res, next) => {
+    next();
+  });
+
   return httpServer;
 }
