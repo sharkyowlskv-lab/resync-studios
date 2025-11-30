@@ -57,10 +57,8 @@ export default function AdminPanel() {
 
   const assignRankMutation = useMutation({
     mutationFn: async ({ userId, rank }: { userId: string; rank: string }) => {
-      return apiRequest("/api/admin/assign-rank", {
-        method: "POST",
-        body: JSON.stringify({ userId, rank }),
-      });
+      const response = await apiRequest("POST", "/api/admin/assign-rank", { userId, rank });
+      return response.json();
     },
     onSuccess: (data) => {
       toast({
