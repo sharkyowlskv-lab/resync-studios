@@ -54,6 +54,20 @@ export async function initializeDatabase() {
       );
     `);
 
+    // Add password column if it doesn't exist
+    try {
+      await db.execute(`
+        ALTER TABLE users ADD COLUMN password varchar;
+      `);
+      console.log("✅ Added password column to users table");
+    } catch (e: any) {
+      if (e.code === '42701') {
+        // Column already exists, ignore
+      } else {
+        throw e;
+      }
+    }
+
     // Create sessions table if it doesn't exist
     await db.execute(`
       CREATE TABLE IF NOT EXISTS sessions (
