@@ -115,14 +115,17 @@ function PublicLayout({ children }: { children: React.ReactNode }) {
 // Protected route component - redirects to login if not authenticated
 function ProtectedRoute({ component: Component }: { component: any }) {
   const { isAuthenticated, isLoading } = useAuth();
-  const [, setLocation] = useLocation();
+  const [location, setLocation] = useLocation();
 
   if (isLoading) {
     return <Skeleton className="h-screen w-full" />;
   }
 
   if (!isAuthenticated) {
-    setLocation("/login");
+    // Use replace to prevent back button issues
+    if (location !== "/login") {
+      setLocation("/login");
+    }
     return null;
   }
 
