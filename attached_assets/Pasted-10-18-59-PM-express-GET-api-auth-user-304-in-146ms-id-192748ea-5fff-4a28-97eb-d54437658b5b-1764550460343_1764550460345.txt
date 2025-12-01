@@ -1,0 +1,134 @@
+10:18:59 PM [express] GET /api/auth/user 304 in 146ms :: {"id":"192748ea-5fff-4a28-97eb-d54437658b5b","email":"isaac632165@gmail.com","password":null,"firstName":"cxiqlne.","lastName":null,"profileImageUrl":"https://cdn.discordapp.com/avatars/1398302382051557456/d59d9dc3ff62059f6edaf49dcdadf609.png","username":"cxiqlne","bio":null,"vipTier":"none","stripeCustomerId":null,"stripeSubscriptionId":null,"discordId":"1398302382051557456","discordUsername":"cxiqlne.","discordAvatar":"d59d9dc3ff62059f6edaf49dcdadf609","discordLinkedAt":"2025-11-30T22:11:14.169Z","robloxId":null,"robloxUsername":null,"robloxDisplayName":null,"robloxLinkedAt":null,"gamesPlayed":0,"totalPosts":0,"reputation":0,"clanId":null,"clanRole":null,"userRank":"company_director","createdAt":"2025-11-30T11:52:21.825Z","updatedAt":"2025-11-30T22:11:14.169Z"}
+10:19:00 PM [express] GET /api/lfg/recent 404 in 286ms :: {"message":"LFG post not found"}
+10:19:00 PM [express] GET /api/builds/recent 404 in 287ms :: {"message":"Build not found"}
+10:19:01 PM [express] GET /api/stats 304 in 717ms :: {"totalMembers":2,"activeLfg":0,"totalClans":0,"totalBuilds":0}
+10:19:20 PM [express] GET /api/forums/categories 304 in 288ms :: []
+10:19:20 PM [express] GET /api/forums/threads/ 304 in 287ms :: []
+10:19:33 PM [express] GET /api/builds 304 in 286ms :: []
+10:19:37 PM [express] GET /api/lfg 200 in 287ms :: []
+10:19:57 PM [express] POST /api/lfg 201 in 299ms :: {"id":"78b050e2-4359-4515-8142-4663fbc13105","authorId":"192748ea-5fff-4a28-97eb-d54437658b5b","title":"ttttttttttttttttttttttttt","description":"tttttttttttttttt","game":"Valorant","platform":"PlayStation","region":"Oceania","skillLevel":"advanced","roleNeeded":"support","playersNeeded":1,"playersJoined":0,"scheduledAt":null,"isActive":true,"createdAt":"2025-11-30T22:19:56.920Z","updatedAt":"2025-11-30T22:19:56.920Z"}
+10:19:58 PM [express] GET /api/lfg 200 in 430ms :: [{"id":"78b050e2-4359-4515-8142-4663fbc13105","authorId":"192748ea-5fff-4a28-97eb-d54437658b5b","title":"ttttttttttttttttttttttttt","description":"tttttttttttttttt","game":"Valorant","platform":"PlayStation","region":"Oceania","skillLevel":"advanced","roleNeeded":"support","playersNeeded":1,"playersJoined":0,"scheduledAt":null,"isActive":true,"createdAt":"2025-11-30T22:19:56.920Z","updatedAt":"2025-11-30T22:19:56.920Z","author":{"id":"192748ea-5fff-4a28-97eb-d54437658b5b","email":"isaac632165@gmail.com","password":null,"firstName":"cxiqlne.","lastName":null,"profileImageUrl":"https://cdn.discordapp.com/avatars/1398302382051557456/d59d9dc3ff62059f6edaf49dcdadf609.png","username":"cxiqlne","bio":null,"vipTier":"none","stripeCustomerId":null,"stripeSubscriptionId":null,"discordId":"1398302382051557456","discordUsername":"cxiqlne.","discordAvatar":"d59d9dc3ff62059f6edaf49dcdadf609","discordLinkedAt":"2025-11-30T22:11:14.169Z","robloxId":null,"robloxUsername":null,"robloxDisplayName":null,"robloxLinkedAt":null,"gamesPlayed":0,"totalPosts":0,"reputation":0,"clanId":null,"clanRole":null,"userRank":"company_director","createdAt":"2025-11-30T11:52:21.825Z","updatedAt":"2025-11-30T22:11:14.169Z"}}]
+10:20:46 PM [express] POST /api/builds 201 in 290ms :: {"id":"e29756d2-02f8-44e5-9cb9-9439a3b91228","authorId":"192748ea-5fff-4a28-97eb-d54437658b5b","title":"[RS] Los Angeles, California: Reimagined","description":"Test Build","game":"Roblox","character":"nil","category":"Other","content":"                                  t                                           ","imageUrl":null,"upvotes":0,"downvotes":0,"viewCount":0,"isFeatured":false,"createdAt":"2025-11-30T22:20:46.427Z","updatedAt":"2025-11-30T22:20:46.427Z"}
+10:20:48 PM [express] GET /api/builds 200 in 573ms :: [{"id":"e29756d2-02f8-44e5-9cb9-9439a3b91228","authorId":"192748ea-5fff-4a28-97eb-d54437658b5b","title":"[RS] Los Angeles, California: Reimagined","description":"Test Build","game":"Roblox","character":"nil","category":"Other","content":"                                  t                                           ","imageUrl":null,"upvotes":0,"downvotes":0,"viewCount":0,"isFeatured":false,"createdAt":"2025-11-30T22:20:46.427Z","updatedAt":"2025-11-30T22:20:46.427Z","author":{"id":"192748ea-5fff-4a28-97eb-d54437658b5b","email":"isaac632165@gmail.com","password":null,"firstName":"cxiqlne.","lastName":null,"profileImageUrl":"https://cdn.discordapp.com/avatars/1398302382051557456/d59d9dc3ff62059f6edaf49dcdadf609.png","username":"cxiqlne","bio":null,"vipTier":"none","stripeCustomerId":null,"stripeSubscriptionId":null,"discordId":"1398302382051557456","discordUsername":"cxiqlne.","discordAvatar":"d59d9dc3ff62059f6edaf49dcdadf609","discordLinkedAt":"2025-11-30T22:11:14.169Z","robloxId":null,"robloxUsername":null,"robloxDisplayName":null,"robloxLinkedAt":null,"gamesPlayed":0,"totalPosts":0,"reputation":0,"clanId":null,"clanRole":null,"userRank":"company_director","createdAt":"2025-11-30T11:52:21.825Z","updatedAt":"2025-11-30T22:11:14.169Z"},"userVote":null}]
+10:21:05 PM [express] GET /api/clans 304 in 287ms :: []
+10:21:09 PM [express] GET /api/lfg/recent 404 in 288ms :: {"message":"LFG post not found"}
+10:21:09 PM [express] GET /api/builds/recent 404 in 288ms :: {"message":"Build not found"}
+🔍 Auth check - isAuth: true user: 192748ea-5fff-4a28-97eb-d54437658b5b sessionID: Ib_e3L1n9sghO6hPnHqdRUhsf4XlVphr
+10:21:23 PM [express] GET /api/auth/user 304 in 142ms :: {"id":"192748ea-5fff-4a28-97eb-d54437658b5b","email":"isaac632165@gmail.com","password":null,"firstName":"cxiqlne.","lastName":null,"profileImageUrl":"https://cdn.discordapp.com/avatars/1398302382051557456/d59d9dc3ff62059f6edaf49dcdadf609.png","username":"cxiqlne","bio":null,"vipTier":"none","stripeCustomerId":null,"stripeSubscriptionId":null,"discordId":"1398302382051557456","discordUsername":"cxiqlne.","discordAvatar":"d59d9dc3ff62059f6edaf49dcdadf609","discordLinkedAt":"2025-11-30T22:11:14.169Z","robloxId":null,"robloxUsername":null,"robloxDisplayName":null,"robloxLinkedAt":null,"gamesPlayed":0,"totalPosts":0,"reputation":0,"clanId":null,"clanRole":null,"userRank":"company_director","createdAt":"2025-11-30T11:52:21.825Z","updatedAt":"2025-11-30T22:11:14.169Z"}
+10:21:23 PM [express] GET /api/builds/recent 404 in 285ms :: {"message":"Build not found"}
+10:21:23 PM [express] GET /api/lfg/recent 404 in 286ms :: {"message":"LFG post not found"}
+10:21:24 PM [express] GET /api/stats 200 in 718ms :: {"totalMembers":2,"activeLfg":1,"totalClans":0,"totalBuilds":1}
+10:21:28 PM [express] GET /api/lfg 304 in 436ms :: [{"id":"78b050e2-4359-4515-8142-4663fbc13105","authorId":"192748ea-5fff-4a28-97eb-d54437658b5b","title":"ttttttttttttttttttttttttt","description":"tttttttttttttttt","game":"Valorant","platform":"PlayStation","region":"Oceania","skillLevel":"advanced","roleNeeded":"support","playersNeeded":1,"playersJoined":0,"scheduledAt":null,"isActive":true,"createdAt":"2025-11-30T22:19:56.920Z","updatedAt":"2025-11-30T22:19:56.920Z","author":{"id":"192748ea-5fff-4a28-97eb-d54437658b5b","email":"isaac632165@gmail.com","password":null,"firstName":"cxiqlne.","lastName":null,"profileImageUrl":"https://cdn.discordapp.com/avatars/1398302382051557456/d59d9dc3ff62059f6edaf49dcdadf609.png","username":"cxiqlne","bio":null,"vipTier":"none","stripeCustomerId":null,"stripeSubscriptionId":null,"discordId":"1398302382051557456","discordUsername":"cxiqlne.","discordAvatar":"d59d9dc3ff62059f6edaf49dcdadf609","discordLinkedAt":"2025-11-30T22:11:14.169Z","robloxId":null,"robloxUsername":null,"robloxDisplayName":null,"robloxLinkedAt":null,"gamesPlayed":0,"totalPosts":0,"reputation":0,"clanId":null,"clanRole":null,"userRank":"company_director","createdAt":"2025-11-30T11:52:21.825Z","updatedAt":"2025-11-30T22:11:14.169Z"}}]
+10:21:51 PM [express] GET /api/clans 304 in 287ms :: []
+10:21:53 PM [express] GET /api/builds 304 in 574ms :: [{"id":"e29756d2-02f8-44e5-9cb9-9439a3b91228","authorId":"192748ea-5fff-4a28-97eb-d54437658b5b","title":"[RS] Los Angeles, California: Reimagined","description":"Test Build","game":"Roblox","character":"nil","category":"Other","content":"                                  t                                           ","imageUrl":null,"upvotes":0,"downvotes":0,"viewCount":0,"isFeatured":false,"createdAt":"2025-11-30T22:20:46.427Z","updatedAt":"2025-11-30T22:20:46.427Z","author":{"id":"192748ea-5fff-4a28-97eb-d54437658b5b","email":"isaac632165@gmail.com","password":null,"firstName":"cxiqlne.","lastName":null,"profileImageUrl":"https://cdn.discordapp.com/avatars/1398302382051557456/d59d9dc3ff62059f6edaf49dcdadf609.png","username":"cxiqlne","bio":null,"vipTier":"none","stripeCustomerId":null,"stripeSubscriptionId":null,"discordId":"1398302382051557456","discordUsername":"cxiqlne.","discordAvatar":"d59d9dc3ff62059f6edaf49dcdadf609","discordLinkedAt":"2025-11-30T22:11:14.169Z","robloxId":null,"robloxUsername":null,"robloxDisplayName":null,"robloxLinkedAt":null,"gamesPlayed":0,"totalPosts":0,"reputation":0,"clanId":null,"clanRole":null,"userRank":"company_director","createdAt":"2025-11-30T11:52:21.825Z","updatedAt":"2025-11-30T22:11:14.169Z"},"userVote":null}]
+10:22:31 PM [express] PATCH /api/users/profile 200 in 435ms :: {"id":"192748ea-5fff-4a28-97eb-d54437658b5b","email":"isaac632165@gmail.com","password":null,"firstName":"cxiqlne.","lastName":null,"profileImageUrl":"https://cdn.discordapp.com/avatars/1398302382051557456/d59d9dc3ff62059f6edaf49dcdadf609.png","username":"cxiqlne","bio":"Company Director @ RESYNC Studios","vipTier":"none","stripeCustomerId":null,"stripeSubscriptionId":null,"discordId":"1398302382051557456","discordUsername":"cxiqlne.","discordAvatar":"d59d9dc3ff62059f6edaf49dcdadf609","discordLinkedAt":"2025-11-30T22:11:14.169Z","robloxId":null,"robloxUsername":null,"robloxDisplayName":null,"robloxLinkedAt":null,"gamesPlayed":0,"totalPosts":0,"reputation":0,"clanId":null,"clanRole":null,"userRank":"company_director","createdAt":"2025-11-30T11:52:21.825Z","updatedAt":"2025-11-30T22:22:31.490Z"}
+🔍 Auth check - isAuth: true user: 192748ea-5fff-4a28-97eb-d54437658b5b sessionID: Ib_e3L1n9sghO6hPnHqdRUhsf4XlVphr
+10:22:32 PM [express] GET /api/auth/user 200 in 145ms :: {"id":"192748ea-5fff-4a28-97eb-d54437658b5b","email":"isaac632165@gmail.com","password":null,"firstName":"cxiqlne.","lastName":null,"profileImageUrl":"https://cdn.discordapp.com/avatars/1398302382051557456/d59d9dc3ff62059f6edaf49dcdadf609.png","username":"cxiqlne","bio":"Company Director @ RESYNC Studios","vipTier":"none","stripeCustomerId":null,"stripeSubscriptionId":null,"discordId":"1398302382051557456","discordUsername":"cxiqlne.","discordAvatar":"d59d9dc3ff62059f6edaf49dcdadf609","discordLinkedAt":"2025-11-30T22:11:14.169Z","robloxId":null,"robloxUsername":null,"robloxDisplayName":null,"robloxLinkedAt":null,"gamesPlayed":0,"totalPosts":0,"reputation":0,"clanId":null,"clanRole":null,"userRank":"company_director","createdAt":"2025-11-30T11:52:21.825Z","updatedAt":"2025-11-30T22:22:31.490Z"}
+10:22:40 PM [express] PATCH /api/users/profile 200 in 432ms :: {"id":"192748ea-5fff-4a28-97eb-d54437658b5b","email":"isaac632165@gmail.com","password":null,"firstName":"cxiqlne.","lastName":null,"profileImageUrl":"https://cdn.discordapp.com/avatars/1398302382051557456/d59d9dc3ff62059f6edaf49dcdadf609.png","username":"cxiqlne","bio":"CEO @ RESYNC Studios","vipTier":"none","stripeCustomerId":null,"stripeSubscriptionId":null,"discordId":"1398302382051557456","discordUsername":"cxiqlne.","discordAvatar":"d59d9dc3ff62059f6edaf49dcdadf609","discordLinkedAt":"2025-11-30T22:11:14.169Z","robloxId":null,"robloxUsername":null,"robloxDisplayName":null,"robloxLinkedAt":null,"gamesPlayed":0,"totalPosts":0,"reputation":0,"clanId":null,"clanRole":null,"userRank":"company_director","createdAt":"2025-11-30T11:52:21.825Z","updatedAt":"2025-11-30T22:22:40.015Z"}
+🔍 Auth check - isAuth: true user: 192748ea-5fff-4a28-97eb-d54437658b5b sessionID: Ib_e3L1n9sghO6hPnHqdRUhsf4XlVphr
+10:22:40 PM [express] GET /api/auth/user 200 in 145ms :: {"id":"192748ea-5fff-4a28-97eb-d54437658b5b","email":"isaac632165@gmail.com","password":null,"firstName":"cxiqlne.","lastName":null,"profileImageUrl":"https://cdn.discordapp.com/avatars/1398302382051557456/d59d9dc3ff62059f6edaf49dcdadf609.png","username":"cxiqlne","bio":"CEO @ RESYNC Studios","vipTier":"none","stripeCustomerId":null,"stripeSubscriptionId":null,"discordId":"1398302382051557456","discordUsername":"cxiqlne.","discordAvatar":"d59d9dc3ff62059f6edaf49dcdadf609","discordLinkedAt":"2025-11-30T22:11:14.169Z","robloxId":null,"robloxUsername":null,"robloxDisplayName":null,"robloxLinkedAt":null,"gamesPlayed":0,"totalPosts":0,"reputation":0,"clanId":null,"clanRole":null,"userRank":"company_director","createdAt":"2025-11-30T11:52:21.825Z","updatedAt":"2025-11-30T22:22:40.015Z"}
+10:23:30 PM [express] PATCH /api/users/profile 200 in 430ms :: {"id":"192748ea-5fff-4a28-97eb-d54437658b5b","email":"isaac632165@gmail.com","password":null,"firstName":"cxiqlne.","lastName":null,"profileImageUrl":"https://cdn.discordapp.com/avatars/1398302382051557456/d59d9dc3ff62059f6edaf49dcdadf609.png","username":"cxiqlne","bio":"RS™ Employee","vipTier":"none","stripeCustomerId":null,"stripeSubscriptionId":null,"discordId":"1398302382051557456","discordUsername":"cxiqlne.","discordAvatar":"d59d9dc3ff62059f6edaf49dcdadf609","discordLinkedAt":"2025-11-30T22:11:14.169Z","robloxId":null,"robloxUsername":null,"robloxDisplayName":null,"robloxLinkedAt":null,"gamesPlayed":0,"totalPosts":0,"reputation":0,"clanId":null,"clanRole":null,"userRank":"company_director","createdAt":"2025-11-30T11:52:21.825Z","updatedAt":"2025-11-30T22:23:30.561Z"}
+🔍 Auth check - isAuth: true user: 192748ea-5fff-4a28-97eb-d54437658b5b sessionID: Ib_e3L1n9sghO6hPnHqdRUhsf4XlVphr
+10:23:31 PM [express] GET /api/auth/user 200 in 145ms :: {"id":"192748ea-5fff-4a28-97eb-d54437658b5b","email":"isaac632165@gmail.com","password":null,"firstName":"cxiqlne.","lastName":null,"profileImageUrl":"https://cdn.discordapp.com/avatars/1398302382051557456/d59d9dc3ff62059f6edaf49dcdadf609.png","username":"cxiqlne","bio":"RS™ Employee","vipTier":"none","stripeCustomerId":null,"stripeSubscriptionId":null,"discordId":"1398302382051557456","discordUsername":"cxiqlne.","discordAvatar":"d59d9dc3ff62059f6edaf49dcdadf609","discordLinkedAt":"2025-11-30T22:11:14.169Z","robloxId":null,"robloxUsername":null,"robloxDisplayName":null,"robloxLinkedAt":null,"gamesPlayed":0,"totalPosts":0,"reputation":0,"clanId":null,"clanRole":null,"userRank":"company_director","createdAt":"2025-11-30T11:52:21.825Z","updatedAt":"2025-11-30T22:23:30.561Z"}
+     ==> Detected service running on port 5000
+     ==> Docs on specifying a port: https://render.com/docs/web-services#port-binding
+10:24:06 PM [express] PATCH /api/users/profile 200 in 433ms :: {"id":"192748ea-5fff-4a28-97eb-d54437658b5b","email":"isaac632165@gmail.com","password":null,"firstName":"cxiqlne.","lastName":null,"profileImageUrl":"https://cdn.discordapp.com/avatars/1398302382051557456/d59d9dc3ff62059f6edaf49dcdadf609.png","username":"cxiqlne","bio":"CEO & Founder @ RS","vipTier":"none","stripeCustomerId":null,"stripeSubscriptionId":null,"discordId":"1398302382051557456","discordUsername":"cxiqlne.","discordAvatar":"d59d9dc3ff62059f6edaf49dcdadf609","discordLinkedAt":"2025-11-30T22:11:14.169Z","robloxId":null,"robloxUsername":null,"robloxDisplayName":null,"robloxLinkedAt":null,"gamesPlayed":0,"totalPosts":0,"reputation":0,"clanId":null,"clanRole":null,"userRank":"company_director","createdAt":"2025-11-30T11:52:21.825Z","updatedAt":"2025-11-30T22:24:06.693Z"}
+🔍 Auth check - isAuth: true user: 192748ea-5fff-4a28-97eb-d54437658b5b sessionID: Ib_e3L1n9sghO6hPnHqdRUhsf4XlVphr
+10:24:08 PM [express] GET /api/auth/user 200 in 145ms :: {"id":"192748ea-5fff-4a28-97eb-d54437658b5b","email":"isaac632165@gmail.com","password":null,"firstName":"cxiqlne.","lastName":null,"profileImageUrl":"https://cdn.discordapp.com/avatars/1398302382051557456/d59d9dc3ff62059f6edaf49dcdadf609.png","username":"cxiqlne","bio":"CEO & Founder @ RS","vipTier":"none","stripeCustomerId":null,"stripeSubscriptionId":null,"discordId":"1398302382051557456","discordUsername":"cxiqlne.","discordAvatar":"d59d9dc3ff62059f6edaf49dcdadf609","discordLinkedAt":"2025-11-30T22:11:14.169Z","robloxId":null,"robloxUsername":null,"robloxDisplayName":null,"robloxLinkedAt":null,"gamesPlayed":0,"totalPosts":0,"reputation":0,"clanId":null,"clanRole":null,"userRank":"company_director","createdAt":"2025-11-30T11:52:21.825Z","updatedAt":"2025-11-30T22:24:06.693Z"}
+🔍 Auth check - isAuth: true user: 192748ea-5fff-4a28-97eb-d54437658b5b sessionID: Ib_e3L1n9sghO6hPnHqdRUhsf4XlVphr
+10:31:01 PM [express] GET /api/auth/user 304 in 148ms :: {"id":"192748ea-5fff-4a28-97eb-d54437658b5b","email":"isaac632165@gmail.com","password":null,"firstName":"cxiqlne.","lastName":null,"profileImageUrl":"https://cdn.discordapp.com/avatars/1398302382051557456/d59d9dc3ff62059f6edaf49dcdadf609.png","username":"cxiqlne","bio":"CEO & Founder @ RS","vipTier":"none","stripeCustomerId":null,"stripeSubscriptionId":null,"discordId":"1398302382051557456","discordUsername":"cxiqlne.","discordAvatar":"d59d9dc3ff62059f6edaf49dcdadf609","discordLinkedAt":"2025-11-30T22:11:14.169Z","robloxId":null,"robloxUsername":null,"robloxDisplayName":null,"robloxLinkedAt":null,"gamesPlayed":0,"totalPosts":0,"reputation":0,"clanId":null,"clanRole":null,"userRank":"company_director","createdAt":"2025-11-30T11:52:21.825Z","updatedAt":"2025-11-30T22:24:06.693Z"}
+==> Running 'npm run start'
+> rest-express@1.0.0 start
+> NODE_ENV=production node dist/index.cjs
+🔐 Discord OAuth Callback URL: https://resync-studios.onrender.com/auth/discord/callback
+✅ Discord OAuth configured with Client ID: 14286445...
+🔐 ADMIN_USER_ID at startup: 192748ea-5fff-4a28-97eb-d54437658b5b
+✅ Session store initialized with PostgreSQL
+🗄️ Initializing database schema...
+✅ Database schema initialized successfully
+✅ Discord bot logged in as resyncstudios.com#8667
+📍 CWD: /opt/render/project/src
+📍 Index.html path: /opt/render/project/src/dist/public/index.html
+📍 Index.html exists: true
+✅ PRODUCTION MODE: Serving from dist/public
+11:02:10 PM [express] serving on port 5000
+🔍 Auth check - isAuth: true user: 192748ea-5fff-4a28-97eb-d54437658b5b sessionID: Ib_e3L1n9sghO6hPnHqdRUhsf4XlVphr
+11:02:19 PM [express] GET /api/auth/user 304 in 154ms :: {"id":"192748ea-5fff-4a28-97eb-d54437658b5b","email":"isaac632165@gmail.com","password":null,"firstName":"cxiqlne.","lastName":null,"profileImageUrl":"https://cdn.discordapp.com/avatars/1398302382051557456/d59d9dc3ff62059f6edaf49dcdadf609.png","username":"cxiqlne","bio":"CEO & Founder @ RS","vipTier":"none","stripeCustomerId":null,"stripeSubscriptionId":null,"discordId":"1398302382051557456","discordUsername":"cxiqlne.","discordAvatar":"d59d9dc3ff62059f6edaf49dcdadf609","discordLinkedAt":"2025-11-30T22:11:14.169Z","robloxId":null,"robloxUsername":null,"robloxDisplayName":null,"robloxLinkedAt":null,"gamesPlayed":0,"totalPosts":0,"reputation":0,"clanId":null,"clanRole":null,"userRank":"company_director","createdAt":"2025-11-30T11:52:21.825Z","updatedAt":"2025-11-30T22:24:06.693Z"}
+11:04:17 PM [express] GET /api/forums/categories 200 in 737ms :: []
+11:06:16 PM [express] GET /api/forums/categories 200 in 731ms :: []
+11:07:09 PM [express] GET /api/forums/categories 200 in 738ms :: []
+11:07:33 PM [express] GET /api/forums/categories 200 in 724ms :: []
+✅ Session store initialized with PostgreSQL
+🗄️ Initializing database schema...
+✅ Database schema initialized successfully
+✅ Discord bot logged in as resyncstudios.com#8667
+📍 CWD: /opt/render/project/src
+📍 Index.html path: /opt/render/project/src/dist/public/index.html
+📍 Index.html exists: true
+✅ PRODUCTION MODE: Serving from dist/public
+11:48:45 PM [express] serving on port 5000
+🔍 Auth check - isAuth: false user: undefined sessionID: y2glIe0SIAiO_6DAhODyhSVRha0Nq1ka
+11:48:56 PM [express] GET /api/auth/user 401 in 145ms :: {"message":"401: Not authenticated. Unauthorized."}
+11:49:20 PM [express] GET /api/login 302 in 144ms
+❌ Failed to update Discord nickname for 1029932461024624742: DiscordAPIError[10004]: Unknown Guild
+    at handleErrors (/opt/render/project/src/dist/index.cjs:156:1780)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async ASt.runRequest (/opt/render/project/src/dist/index.cjs:159:270)
+    at async ASt.queueRequest (/opt/render/project/src/dist/index.cjs:157:1224)
+    at async rbe.request (/opt/render/project/src/dist/index.cjs:159:2273)
+    at async AK.fetch (/opt/render/project/src/dist/index.cjs:269:62657)
+    at async eT (/opt/render/project/src/dist/index.cjs:486:6083)
+    at async B0._verify (/opt/render/project/src/dist/index.cjs:486:7915) {
+  requestBody: { files: undefined, json: undefined },
+  rawError: { message: 'Unknown Guild', code: 10004 },
+  code: 10004,
+  status: 404,
+  method: 'GET',
+  url: 'https://discord.com/api/v10/guilds/1419115257753768031?with_counts=true'
+}
+🔍 Auth check - isAuth: true user: a1dce247-7757-4df8-baa5-9b625b465f10 sessionID: phfZzPfo216JASgVHG2w1fj5XZ3Chi73
+11:49:35 PM [express] GET /api/auth/user 200 in 144ms :: {"id":"a1dce247-7757-4df8-baa5-9b625b465f10","email":"sunnysushiroll@icloud.com","password":null,"firstName":"c0m3txd","lastName":null,"profileImageUrl":"https://cdn.discordapp.com/avatars/1029932461024624742/1e0bca68be4e92472059c55ac43b7061.png","username":"c0m3txd","bio":null,"vipTier":"none","stripeCustomerId":null,"stripeSubscriptionId":null,"discordId":"1029932461024624742","discordUsername":"c0m3txd","discordAvatar":"1e0bca68be4e92472059c55ac43b7061","discordLinkedAt":"2025-11-30T23:49:31.996Z","robloxId":null,"robloxUsername":null,"robloxDisplayName":null,"robloxLinkedAt":null,"gamesPlayed":0,"totalPosts":0,"reputation":0,"clanId":null,"clanRole":null,"userRank":"member","createdAt":"2025-11-30T23:49:32.069Z","updatedAt":"2025-11-30T23:49:32.069Z"}
+11:49:36 PM [express] GET /api/lfg/recent 404 in 291ms :: {"message":"LFG post not found"}
+11:49:36 PM [express] GET /api/stats 200 in 727ms :: {"totalMembers":3,"activeLfg":1,"totalClans":0,"totalBuilds":1}
+11:49:36 PM [express] GET /api/builds/recent 404 in 287ms :: {"message":"Build not found"}
+11:49:45 PM [express] GET /api/lfg/recent 404 in 287ms :: {"message":"LFG post not found"}
+11:49:45 PM [express] GET /api/builds/recent 404 in 286ms :: {"message":"Build not found"}
+> rest-express@1.0.0 start
+> NODE_ENV=production node dist/index.cjs
+🔐 Discord OAuth Callback URL: https://resync-studios.onrender.com/auth/discord/callback
+✅ Discord OAuth configured with Client ID: 14286445...
+🔐 ADMIN_USER_ID at startup: 192748ea-5fff-4a28-97eb-d54437658b5b
+✅ Session store initialized with PostgreSQL
+🗄️ Initializing database schema...
+✅ Database schema initialized successfully
+✅ Discord bot logged in as resyncstudios.com#8667
+📍 CWD: /opt/render/project/src
+📍 Index.html path: /opt/render/project/src/dist/public/index.html
+📍 Index.html exists: true
+✅ PRODUCTION MODE: Serving from dist/public
+12:31:50 AM [express] serving on port 5000
+     ==> Deploying...
+==> Running 'npm run start'
+> rest-express@1.0.0 start
+> NODE_ENV=production node dist/index.cjs
+🔐 Discord OAuth Callback URL: https://resync-studios.onrender.com/auth/discord/callback
+✅ Discord OAuth configured with Client ID: 14286445...
+🔐 ADMIN_USER_ID at startup: 192748ea-5fff-4a28-97eb-d54437658b5b
+✅ Session store initialized with PostgreSQL
+🗄️ Initializing database schema...
+✅ Database schema initialized successfully
+✅ Discord bot logged in as resyncstudios.com#8667
+📍 CWD: /opt/render/project/src
+📍 Index.html path: /opt/render/project/src/dist/public/index.html
+📍 Index.html exists: true
+✅ PRODUCTION MODE: Serving from dist/public
+12:42:41 AM [express] serving on port 5000
+     ==> Your service is live 🎉
+     ==> 
+     ==> ///////////////////////////////////////////////////////////
+     ==> 
+     ==> Available at your primary URL https://resync-studios.onrender.com
+     ==> 
+     ==> ///////////////////////////////////////////////////////////
+     ==> Detected service running on port 5000
+     ==> Docs on specifying a port: https://render.com/docs/web-services#port-binding
