@@ -179,7 +179,7 @@ export default function Dashboard() {
             <div className="text-center py-8 text-muted-foreground">
               <Target className="w-10 h-10 mx-auto mb-3 opacity-50" />
               <p>No active LFG posts</p>
-              <Button variant="link" asChild className="mt-2">
+              <Button variant="ghost" asChild className="mt-2">
                 <Link href="/lfg">Create one now</Link>
               </Button>
             </div>
@@ -203,7 +203,7 @@ export default function Dashboard() {
             <div className="text-center py-8 text-muted-foreground">
               <Swords className="w-10 h-10 mx-auto mb-3 opacity-50" />
               <p>No trending builds</p>
-              <Button variant="link" asChild className="mt-2">
+              <Button variant="ghost" asChild className="mt-2">
                 <Link href="/builds">Browse builds</Link>
               </Button>
             </div>
