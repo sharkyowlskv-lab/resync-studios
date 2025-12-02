@@ -123,6 +123,37 @@ export async function registerRoutes(
     }
   });
 
+  // Set password for accounts with no password (fake migration emails)
+  app.post("/api/auth/set-password", requireAuth, async (req, res) => {
+    try {
+      const userId = (req.user as any).id;
+      const { password } = req.body;
+
+      if (!password || password.length < 6) {
+        return res.status(400).json({ message: "Password must be at least 6 characters" });
+      }
+
+      const user = await storage.getUser(userId);
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      // Only allow setting password for users with @sharkyinteractive.com or @metrointeractive.com emails
+      if (!user.email || (!user.email.endsWith("@sharkyinteractive.com") && !user.email.endsWith("@metrointeractive.com"))) {
+        return res.status(403).json({ message: "Password setting not allowed for this account" });
+      }
+
+      const hashedPassword = hashPassword(password);
+      const updatedUser = await storage.updateUser(userId, { password: hashedPassword });
+
+      console.log(`✅ Password set for user: ${user.username}`);
+      res.json({ message: "Password set successfully", user: updatedUser });
+    } catch (error) {
+      console.error("Error setting password:", error);
+      res.status(500).json({ message: "Failed to set password" });
+    }
+  });
+
   // Email-based login
   app.post("/api/auth/email-login", async (req, res) => {
     try {

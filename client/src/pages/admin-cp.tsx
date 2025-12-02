@@ -196,6 +196,10 @@ export default function AdminCP() {
       toast({ title: "Success", description: "Announcement created" });
       queryClient.invalidateQueries({ queryKey: ["/api/announcements"] });
     },
+    onError: (error) => {
+      toast({ title: "Error", description: "Failed to create announcement", variant: "destructive" });
+      console.error("Announcement creation error:", error);
+    },
   });
 
   const deleteAnnouncementMutation = useMutation({

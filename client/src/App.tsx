@@ -40,6 +40,7 @@ import Chat from "@/pages/chat";
 import Admin from "@/pages/admin";
 import ModCP from "@/pages/modcp";
 import AdminCP from "@/pages/admin-cp";
+import Builds from "@/pages/builds";
 
 // Full layout with sidebar (authenticated users)
 function AppLayout({ children }: { children: React.ReactNode }) {
@@ -152,6 +153,8 @@ function AuthenticatedRoutes() {
         <Route path="/modcp" component={ModCP} />
         <Route path="/admin-cp" component={AdminCP} />
         <Route path="/team" component={StaffDirectory} />
+        <Route path="/staff-directory" component={StaffDirectory} />
+        <Route path="/builds" component={Builds} />
         <Route path="/guidelines" component={Guidelines} />
         <Route path="/privacy" component={Privacy} />
         <Route path="/terms" component={Terms} />
@@ -180,6 +183,8 @@ function PublicRoutes() {
         <Route path="/forums" component={Forums} />
         <Route path="/forums/thread/:id" component={ForumThread} />
         <Route path="/team" component={StaffDirectory} />
+        <Route path="/staff-directory" component={StaffDirectory} />
+        <Route path="/builds" component={Builds} />
         <Route path="/guidelines" component={Guidelines} />
         <Route path="/privacy" component={Privacy} />
         <Route path="/terms" component={Terms} />
