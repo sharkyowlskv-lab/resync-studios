@@ -64,7 +64,7 @@ export default function Announcements() {
                           ✓ LIVE
                         </Badge>
                         <CardDescription className="text-sm">
-                          {new Date(announcement.createdAt).toLocaleDateString('en-US', {
+                          {announcement.createdAt && new Date(announcement.createdAt).toLocaleDateString('en-US', {
                             year: 'numeric',
                             month: 'long',
                             day: 'numeric',

@@ -15,7 +15,7 @@ import { z } from "zod";
 
 // Auth middleware
 function requireAuth(req: Request, res: Response, next: NextFunction) {
-  if (!req.isAuthenticated() || !req.user) {
+  if (!((req as any).isAuthenticated && (req as any).isAuthenticated()) || !req.user) {
     return res.status(401).json({ message: "Unauthorized" });
   }
   next();
@@ -29,13 +29,13 @@ export async function registerRoutes(
   app.get("/api/auth/user", async (req, res) => {
     console.log(
       "🔍 Auth check - isAuth:",
-      req.isAuthenticated(),
+      (req as any).isAuthenticated?.(),
       "user:",
       req.user?.id,
       "sessionID:",
       req.sessionID,
     );
-    if (!req.isAuthenticated() || !req.user) {
+    if (!((req as any).isAuthenticated?.()) || !req.user) {
       return res
         .status(401)
         .json({ message: "401: Not authenticated. Unauthorized." });
