@@ -1,0 +1,178 @@
+==> Detected service running on port 5000
+     ==> Docs on specifying a port: https://render.com/docs/web-services#port-binding
+     ==> Deploying...
+📍 CWD: /opt/render/project/src
+📍 Index.html path: /opt/render/project/src/dist/public/index.html
+📍 Index.html exists: true
+✅ PRODUCTION MODE: Serving from dist/public
+2:03:51 AM [express] serving on port 5000
+📌 User already exists: cxiqlne
+❌ Error creating user admin: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at _0.mapToDriverValue (/opt/render/project/src/dist/index.cjs:276:68030)
+    at /opt/render/project/src/dist/index.cjs:276:45555
+    at Array.map (<anonymous>)
+    at e.buildQueryFromSourceParams (/opt/render/project/src/dist/index.cjs:276:44518)
+    at /opt/render/project/src/dist/index.cjs:276:44806
+    at Array.map (<anonymous>)
+    at e.buildQueryFromSourceParams (/opt/render/project/src/dist/index.cjs:276:44518)
+    at /opt/render/project/src/dist/index.cjs:276:44861
+    at Array.map (<anonymous>)
+❌ Error creating user Reni: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at _0.mapToDriverValue (/opt/render/project/src/dist/index.cjs:276:68030)
+    at /opt/render/project/src/dist/index.cjs:276:45555
+    at Array.map (<anonymous>)
+    at e.buildQueryFromSourceParams (/opt/render/project/src/dist/index.cjs:276:44518)
+    at /opt/render/project/src/dist/index.cjs:276:44806
+    at Array.map (<anonymous>)
+    at e.buildQueryFromSourceParams (/opt/render/project/src/dist/index.cjs:276:44518)
+    at /opt/render/project/src/dist/index.cjs:276:44861
+    at Array.map (<anonymous>)
+❌ Error creating user silentdirective.: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at _0.mapToDriverValue (/opt/render/project/src/dist/index.cjs:276:68030)
+    at /opt/render/project/src/dist/index.cjs:276:45555
+    at Array.map (<anonymous>)
+    at e.buildQueryFromSourceParams (/opt/render/project/src/dist/index.cjs:276:44518)
+    at /opt/render/project/src/dist/index.cjs:276:44806
+    at Array.map (<anonymous>)
+    at e.buildQueryFromSourceParams (/opt/render/project/src/dist/index.cjs:276:44518)
+    at /opt/render/project/src/dist/index.cjs:276:44861
+    at Array.map (<anonymous>)
+❌ Error creating user Ice: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at _0.mapToDriverValue (/opt/render/project/src/dist/index.cjs:276:68030)
+    at /opt/render/project/src/dist/index.cjs:276:45555
+    at Array.map (<anonymous>)
+    at e.buildQueryFromSourceParams (/opt/render/project/src/dist/index.cjs:276:44518)
+    at /opt/render/project/src/dist/index.cjs:276:44806
+    at Array.map (<anonymous>)
+    at e.buildQueryFromSourceParams (/opt/render/project/src/dist/index.cjs:276:44518)
+    at /opt/render/project/src/dist/index.cjs:276:44861
+    at Array.map (<anonymous>)
+❌ Error creating user E_SD010015: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at _0.mapToDriverValue (/opt/render/project/src/dist/index.cjs:276:68030)
+    at /opt/render/project/src/dist/index.cjs:276:45555
+    at Array.map (<anonymous>)
+    at e.buildQueryFromSourceParams (/opt/render/project/src/dist/index.cjs:276:44518)
+    at /opt/render/project/src/dist/index.cjs:276:44806
+    at Array.map (<anonymous>)
+    at e.buildQueryFromSourceParams (/opt/render/project/src/dist/index.cjs:276:44518)
+    at /opt/render/project/src/dist/index.cjs:276:44861
+    at Array.map (<anonymous>)
+     ==> Your service is live 🎉
+     ==> 
+     ==> ///////////////////////////////////////////////////////////
+     ==> 
+     ==> Available at your primary URL https://resync-studios.onrender.com
+     ==> 
+     ==> ///////////////////////////////////////////////////////////
+❌ Error creating user Iceberg1038: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at _0.mapToDriverValue (/opt/render/project/src/dist/index.cjs:276:68030)
+    at /opt/render/project/src/dist/index.cjs:276:45555
+    at Array.map (<anonymous>)
+    at e.buildQueryFromSourceParams (/opt/render/project/src/dist/index.cjs:276:44518)
+    at /opt/render/project/src/dist/index.cjs:276:44806
+    at Array.map (<anonymous>)
+    at e.buildQueryFromSourceParams (/opt/render/project/src/dist/index.cjs:276:44518)
+    at /opt/render/project/src/dist/index.cjs:276:44861
+    at Array.map (<anonymous>)
+❌ Error creating user maybeknockz: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at _0.mapToDriverValue (/opt/render/project/src/dist/index.cjs:276:68030)
+    at /opt/render/project/src/dist/index.cjs:276:45555
+    at Array.map (<anonymous>)
+    at e.buildQueryFromSourceParams (/opt/render/project/src/dist/index.cjs:276:44518)
+    at /opt/render/project/src/dist/index.cjs:276:44806
+    at Array.map (<anonymous>)
+    at e.buildQueryFromSourceParams (/opt/render/project/src/dist/index.cjs:276:44518)
+    at /opt/render/project/src/dist/index.cjs:276:44861
+    at Array.map (<anonymous>)
+❌ Error creating user cinder: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at _0.mapToDriverValue (/opt/render/project/src/dist/index.cjs:276:68030)
+    at /opt/render/project/src/dist/index.cjs:276:45555
+    at Array.map (<anonymous>)
+    at e.buildQueryFromSourceParams (/opt/render/project/src/dist/index.cjs:276:44518)
+    at /opt/render/project/src/dist/index.cjs:276:44806
+    at Array.map (<anonymous>)
+    at e.buildQueryFromSourceParams (/opt/render/project/src/dist/index.cjs:276:44518)
+    at /opt/render/project/src/dist/index.cjs:276:44861
+    at Array.map (<anonymous>)
+❌ Error creating user acerxtro: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at _0.mapToDriverValue (/opt/render/project/src/dist/index.cjs:276:68030)
+    at /opt/render/project/src/dist/index.cjs:276:45555
+    at Array.map (<anonymous>)
+    at e.buildQueryFromSourceParams (/opt/render/project/src/dist/index.cjs:276:44518)
+    at /opt/render/project/src/dist/index.cjs:276:44806
+    at Array.map (<anonymous>)
+    at e.buildQueryFromSourceParams (/opt/render/project/src/dist/index.cjs:276:44518)
+    at /opt/render/project/src/dist/index.cjs:276:44861
+    at Array.map (<anonymous>)
+❌ Error creating user d1vvt: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at _0.mapToDriverValue (/opt/render/project/src/dist/index.cjs:276:68030)
+    at /opt/render/project/src/dist/index.cjs:276:45555
+    at Array.map (<anonymous>)
+    at e.buildQueryFromSourceParams (/opt/render/project/src/dist/index.cjs:276:44518)
+    at /opt/render/project/src/dist/index.cjs:276:44806
+    at Array.map (<anonymous>)
+    at e.buildQueryFromSourceParams (/opt/render/project/src/dist/index.cjs:276:44518)
+    at /opt/render/project/src/dist/index.cjs:276:44861
+    at Array.map (<anonymous>)
+❌ Error creating user Ash: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at _0.mapToDriverValue (/opt/render/project/src/dist/index.cjs:276:68030)
+    at /opt/render/project/src/dist/index.cjs:276:45555
+    at Array.map (<anonymous>)
+    at e.buildQueryFromSourceParams (/opt/render/project/src/dist/index.cjs:276:44518)
+    at /opt/render/project/src/dist/index.cjs:276:44806
+    at Array.map (<anonymous>)
+    at e.buildQueryFromSourceParams (/opt/render/project/src/dist/index.cjs:276:44518)
+    at /opt/render/project/src/dist/index.cjs:276:44861
+    at Array.map (<anonymous>)
+📌 User already exists: ArielOperations
+❌ Error creating user XUSeriouslyYT: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at _0.mapToDriverValue (/opt/render/project/src/dist/index.cjs:276:68030)
+    at /opt/render/project/src/dist/index.cjs:276:45555
+    at Array.map (<anonymous>)
+✅ User import complete! Imported 0 new users from Invision
+    at e.buildQueryFromSourceParams (/opt/render/project/src/dist/index.cjs:276:44518)
+📂 Fetching Invision categories...
+    at /opt/render/project/src/dist/index.cjs:276:44806
+    at Array.map (<anonymous>)
+    at e.buildQueryFromSourceParams (/opt/render/project/src/dist/index.cjs:276:44518)
+    at /opt/render/project/src/dist/index.cjs:276:44861
+    at Array.map (<anonymous>)
+📝 Fetching Invision topics...
+⚠️ No category found for topic 4
+⚠️ No category found for topic 5
+⚠️ No category found for topic 6
+⚠️ No category found for topic 7
+⚠️ No category found for topic 8
+⚠️ No category found for topic 9
+⚠️ No category found for topic 10
+⚠️ No category found for topic 11
+⚠️ No category found for topic 12
+⚠️ No category found for topic 13
+⚠️ No category found for topic 14
+⚠️ No category found for topic 15
+⚠️ No category found for topic 16
+⚠️ No category found for topic 17
+⚠️ No category found for topic 19
+⚠️ No category found for topic 20
+⚠️ No category found for topic 21
+⚠️ No category found for topic 22
+⚠️ No category found for topic 23
+⚠️ No category found for topic 24
+⚠️ No category found for topic 25
+⚠️ No category found for topic 26
+✅ Invision migration complete! Imported 0 users and 0 threads
+⚠️ No category found for topic 27
+⚠️ No category found for topic 28
+⚠️ No category found for topic 29

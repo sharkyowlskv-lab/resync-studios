@@ -1661,7 +1661,7 @@ export async function registerRoutes(
               bio: invUser.about || undefined,
               reputation: invUser.reputation || 0,
               totalPosts: invUser.posts || 0,
-              createdAt: invUser.joined ? new Date(invUser.joined * 1000) : new Date(),
+              createdAt: invUser.joined ? new Date(typeof invUser.joined === 'number' ? invUser.joined * 1000 : invUser.joined) : new Date(),
             } as any);
             userMap.set(invUser.id, newUser.id);
             userCount++;
@@ -1679,25 +1679,30 @@ export async function registerRoutes(
       
       // STEP 2: Fetch and create forum categories
       console.log("📂 Fetching Invision categories...");
-      const categoriesRes = await fetch(`${INVISION_URL}/core/forums?key=${API_KEY}`);
+      const categoriesRes = await fetch(`${INVISION_URL}/forums/forums?key=${API_KEY}`);
       const categoriesData = await categoriesRes.json();
       const invisionCategories = categoriesData.results || [];
       
       const categoryMap = new Map();
+      const existing = await storage.getForumCategories();
+      
       for (const invCat of invisionCategories) {
-        const existing = await storage.getForumCategories();
         const alreadyExists = existing.some(c => c.name === invCat.name);
         
         if (!alreadyExists) {
-          const created = await storage.createForumCategory({
-            name: invCat.name,
-            description: invCat.description || "",
-            icon: "MessageSquare",
-            color: "#667eea",
-            order: invCat.position || 0,
-          } as any);
-          categoryMap.set(invCat.id, created.id);
-          console.log(`✅ Created category: ${invCat.name}`);
+          try {
+            const created = await storage.createForumCategory({
+              name: invCat.name,
+              description: invCat.description || "",
+              icon: "MessageSquare",
+              color: "#667eea",
+              order: invCat.position || 0,
+            } as any);
+            categoryMap.set(invCat.id, created.id);
+            console.log(`✅ Created category: ${invCat.name}`);
+          } catch (catError) {
+            console.error(`❌ Error creating category ${invCat.name}:`, catError);
+          }
         } else {
           const cat = existing.find(c => c.name === invCat.name);
           if (cat) categoryMap.set(invCat.id, cat.id);
