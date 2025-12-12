@@ -34,7 +34,7 @@ export async function initializeDatabase() {
     // Create enum types
     await db.execute(`
       DO $$ BEGIN
-        CREATE TYPE vip_tier AS ENUM ('none', 'bronze', 'sapphire', 'diamond', 'founders', 'founders_lifetime');
+        CREATE TYPE vip_tier AS ENUM ('none', 'bronze', 'sapphire', 'diamond', 'founders', 'founders_edition_lifetime');
       EXCEPTION WHEN duplicate_object THEN null;
       END $$;
     `);
@@ -117,7 +117,7 @@ export async function initializeDatabase() {
         "clan_id" varchar,
         "clan_role" varchar,
         "user_rank" user_rank DEFAULT 'member',
-        "secondary_user_rank" user_rank DEFAULT 'member',
+        "secondary_user_rank" secondary_user_rank DEFAULT 'active_member',
         "is_banned" boolean DEFAULT false,
         "ban_reason" text,
         "banned_at" timestamp,
