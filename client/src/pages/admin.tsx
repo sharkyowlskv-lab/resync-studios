@@ -20,6 +20,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { Shield } from "lucide-react";
+import { secondaryUserRankEnum } from "@shared/schema";
 
 interface User {
   id: string;
@@ -69,7 +70,7 @@ export default function AdminPanel() {
     data: users = [],
     isLoading,
     error: queryError,
-  } = useQuery<User[]>({
+  } = useQuery({
     queryKey: ["/api/admin/users"],
   });
 
@@ -86,12 +87,12 @@ export default function AdminPanel() {
   }, [queryError, toast]);
 
   const assignRankMutation = useMutation({
-    mutationFn: async ({ userId, rank }: { userId: string; rank: string }) => {
+    mutationFn: async ({ userId, rank, secondaryrank }: { userId: string; rank: string; secondaryrank: string }) => {
       console.log(`🔐 Assigning rank: user=${userId}, rank=${rank}`);
       const response = await fetch("/api/admin/assign-rank", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId, rank }),
+        body: JSON.stringify({ userId, rank, secondaryrank }),
         credentials: "include",
       });
 
