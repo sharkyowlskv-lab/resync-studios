@@ -70,7 +70,7 @@ export default function AdminPanel() {
     data: users = [],
     isLoading,
     error: queryError,
-  } = useQuery({
+  } = useQuery<User[]>({
     queryKey: ["/api/admin/users"],
   });
 
@@ -87,12 +87,20 @@ export default function AdminPanel() {
   }, [queryError, toast]);
 
   const assignRankMutation = useMutation({
-    mutationFn: async ({ userId, rank, secondaryrank }: { userId: string; rank: string; secondaryrank: string }) => {
+    mutationFn: async ({
+      userId,
+      rank,
+      secondaryrank,
+    }: {
+      userId: string;
+      rank: string;
+      secondaryrank?: string;
+    }) => {
       console.log(`🔐 Assigning rank: user=${userId}, rank=${rank}`);
       const response = await fetch("/api/admin/assign-rank", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId, rank, secondaryrank }),
+        body: JSON.stringify({ userId, rank, ...(secondaryrank && { secondaryrank }) }),
         credentials: "include",
       });
 
@@ -133,7 +141,10 @@ export default function AdminPanel() {
   const handleAssignRank = (userId: string) => {
     const newRank = selectedRanks[userId];
     if (newRank) {
-      assignRankMutation.mutate({ userId, rank: newRank });
+      assignRankMutation.mutate({
+        userId,
+        rank: newRank,
+      });
     }
   };
 
@@ -148,7 +159,7 @@ export default function AdminPanel() {
           Manage user ranks and permissions
         </p>
       </div>
-
+      
       <Card>
         <CardHeader>
           <CardTitle>Rank Assignment</CardTitle>
@@ -163,7 +174,7 @@ export default function AdminPanel() {
             onChange={(e) => setSearchTerm(e.target.value)}
             data-testid="input-search-users"
           />
-
+          
           {isLoading ? (
             <div className="text-center py-8 text-muted-foreground">
               Loading users...
@@ -228,7 +239,7 @@ export default function AdminPanel() {
                 </div>
               ))}
             </div>
-          )}
+          )} 
 
           <div className="text-sm text-muted-foreground pt-4 border-t">
             Total users: {users.length}
