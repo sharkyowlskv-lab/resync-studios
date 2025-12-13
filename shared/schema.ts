@@ -38,28 +38,57 @@ export const gameRoleEnum = pgEnum("game_role", [
   "any",
 ]);
 export const userRankEnum = pgEnum("user_rank", [
-  "member", // Default rank for all users
-  "active_member", // Users who have played games or posted in forums
-  "trusted_member", // Users who have been active for a long time
-  "community_partner", // Users who have partnered with Resync Studios
-  "company_director", // Chief Executive Officer (CEO) & Founder of Resync Studios - cxiqlne
-  "leadership_council", // Members of the Leadership Council
-  "operations_manager", // Operations Managers
-  "staff_administration_director", // RS Trust & Safety Director
-  "team_member", // Users who are part of the Resync Studios team and users who are retired/former staff HR
-  "administrator", // Users who are administrators
-  "senior_administrator", // Users who are senior administrators - Trust & Safety Director typically recieves this rank as well
-  "moderator", // Users who are moderators
-  "community_moderator", // Users who are community moderators - Volunteer Staff typically recieves this rank
-  "community_senior_moderator", // Users who are community senior moderators - Volunteer Staff typically recieves this rank upon promotion
-  "community_developer", // Users who are community developers
-  "bronze_vip", // Users who have purchased Bronze VIP
-  "sapphire_vip", // Users who have purchased Sapphire VIP
-  "diamond_vip", // Users who have purchased Diamond VIP
-  "founders_edition_vip", // Users who have purchased Founders Edition VIP
-  "founders_edition_lifetime", // Users who have purchased Founders Edition Lifetime VIP
-  "customer_relations", // Users who are part of the Customer Relations team
-  "rs_volunteer_staff", // Users who are part of the RS Volunteer Staff team - given to users upon passing the Volunteer Staff application process
+  "company_director",
+  "operations_manager",
+  "leadership_council",
+  "staff_department_director",
+  "team_member",
+  "staff_internal_affairs",
+  "community_developer",
+  "community_senior_administrator",
+  "community_administrator",
+  "community_senior_moderator",
+  "community_moderator",
+  "customer_relations",
+  "appeals_moderator",
+  "rs_volunteer_staff",
+  "rs_trust_&_safety_team",
+  "founders_edition_lifetime",
+  "founders_edition_vip",
+  "diamond_vip",
+  "sapphire_vip",
+  "bronze_vip",
+  "community_partner",
+  "trusted_member",
+  "active_member",
+  "member",
+  "banned",
+]);
+export const secondaryUserRankEnum = pgEnum("secondary_user_rank", [
+  "company_director",
+  "operations_manager",
+  "leadership_council",
+  "staff_department_director",
+  "team_member",
+  "staff_internal_affairs",
+  "community_developer",
+  "community_senior_administrator",
+  "community_administrator",
+  "community_senior_moderator",
+  "community_moderator",
+  "customer_relations",
+  "appeals_moderator",
+  "rs_volunteer_staff",
+  "rs_trust_&_safety_team",
+  "founders_edition_lifetime",
+  "founders_edition_vip",
+  "diamond_vip",
+  "sapphire_vip",
+  "bronze_vip",
+  "community_partner",
+  "trusted_member",
+  "active_member",
+  "member",
 ]);
 
 // Session storage table (mandatory for Replit Auth)
@@ -108,7 +137,7 @@ export const users = pgTable("users", {
   clanRole: varchar("clan_role"),
   // User rank/role - User rank is the primary rank of the user - User rank can be either member, active_member, trusted_member, community_partner, company_director, leadership_council, operations_manager, staff_administration_director, team_member, administrator, senior_administrator, moderator, community_moderator, community_senior_moderator, community_developer, bronze_vip, sapphire_vip, diamond_vip, founders_edition_vip, founders_edition_lifetime, customer_relations, rs_volunteer_staff
   userRank: userRankEnum("user_rank").default("member"), // Primary rank
-  secondaryUserRank: userRankEnum("secondary_user_rank").default("member"), // Secondary rank - Optional - if none provided, secondary rank will be set to member by default. If a secondary rank is provided, it will be set to that rank. If the user is a VIP, the secondary rank will be set to the VIP rank unless a secondary rank is provided, in which case it will be set to that rank. If the user is a staff member, the secondary rank will be set to the staff rank unless a secondary rank is provided, in which case it will be set to that rank. - The following ranks are available for secondary ranks: member, active_member, trusted_member, community_partner, company_director, leadership_council, operations_manager, staff_administration_director, team_member, administrator, senior_administ administrator, moderator, community_moderator, community_senior_moderator, community_developer, bronze_vip, sapphire_vip, diamond_vip, founders_edition_vip, founders_edition_lifetime - The following ranks are available for primary ranks: member, active_member, trusted_member, community_partner, company_director, leadership_council, operations_manager, staff_administration_director, team_member, administrator, senior_administrator, moderator, community_moderator, community_senior_moderator, community_developer, bronze_vip, sapphire_vip, diamond_vip, founders_edition_vip, founders_edition_lifetime, customer_relations, rs_volunteer_staff - The following ranks are available for VIP ranks: bronze_vip, sapphire_vip, diamond_vip, founders_edition_vip, founders_edition_lifetime - The following ranks are available for staff ranks: administrator, senior_administrator, moderator, community_moderator, community_senior_moderator, community_developer, rs_volunteer_staff
+  secondaryUserRank: userRankEnum("secondary_user_rank").default("member"), // Secondary rank - Optional - if none provided, secondary rank will be set to member by default. If a secondary rank is provided, it will be set to that rank. If the user is a VIP, the secondary rank will be set to the VIP rank unless a secondary rank is provided, in which case it will be set to that rank. If the user is a staff member, the primary rank will be set to the staff rank and if the user already had a primary rank set, the original primary rank will be set to the secondary rank, in which case it will be set to that rank.
   // Banning
   isBanned: boolean("is_banned").default(false),
   banReason: text("ban_reason"),

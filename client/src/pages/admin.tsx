@@ -26,10 +26,12 @@ interface User {
   username: string;
   email: string;
   userRank: string;
+  secondaryUserRank: string;
   createdAt: string;
 }
 
 const RANK_OPTIONS = [
+  { value: "banned", label: "Banned" },
   { value: "member", label: "Member" },
   { value: "active_member", label: "Active Member" },
   { value: "trusted_member", label: "Trusted Member" },
@@ -39,16 +41,18 @@ const RANK_OPTIONS = [
   { value: "diamond_vip", label: "Diamond VIP" },
   { value: "founders_edition_vip", label: "Founders Edition VIP" },
   { value: "founders_edition_lifetime", label: "Lifetime" },
-  { value: "community_developer", label: "Community Developer" },
+  { value: "rs_trust_&_safety_team", label: "RS Trust & Safety Team" },
   { value: "rs_volunteer_staff", label: "RS Volunteer Staff" },
+  { value: "appeals_moderator", label: "Appeals Moderator" },
+  { value: "customer_relations", label: "Customer Relations" },
   { value: "community_moderator", label: "Community Moderator" },
   { value: "community_senior_moderator", label: "Community Senior Moderator" },
-  { value: "moderator", label: "Moderator" },
-  { value: "administrator", label: "Administrator" },
-  { value: "senior_administrator", label: "Senior Administrator" },
-  { value: "customer_relations", label: "Customer Relations" },
+  { value: "community_administrator", label: "Community Administrator" },
+  { value: "community_senior_administrator", label: "Senior Administrator" },
+  { value: "community_developer", label: "Community Developer" },
+  { value: "staff_internal_affairs", label: "Staff Internal Affairs" },
   { value: "team_member", label: "Team Member" },
-  { value: "staff_administration_director", label: "Trust & Safety Director" },
+  { value: "staff_department_director", label: "Staff Department Director" },
   { value: "leadership_council", label: "Leadership Council" },
   { value: "operations_manager", label: "Operations Manager" },
   { value: "company_director", label: "Company Director" },
@@ -65,7 +69,7 @@ export default function AdminPanel() {
     data: users = [],
     isLoading,
     error: queryError,
-  } = useQuery({
+  } = useQuery<User[]>({
     queryKey: ["/api/admin/users"],
   });
 
