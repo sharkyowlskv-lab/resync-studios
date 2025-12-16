@@ -1,3 +1,5 @@
+import { Colors } from "discord.js";
+
 export const rankConfig = {
   // Leadership ranks (Verified badge - capitalized blue, formatted username)
   company_director: {
@@ -71,26 +73,26 @@ export const rankConfig = {
   // VIP ranks (no badge)
   bronze_vip: {
     label: "Bronze VIP",
-    color: "#6B7280",
-    badgeUrl: null,
+    color: "hsv(37, 52%, 73%)",
+    badgeUrl: "https://i.imgur.com/tyuR9Az.png",
     formatted: true,
   },
   diamond_vip: {
     label: "Diamond VIP",
     color: "#6B7280",
-    badgeUrl: null,
+    badgeUrl: "https://i.imgur.com/bfmw4KN.png",
     formatted: true,
   },
   founders_edition_vip: {
     label: "Founders Edition VIP",
     color: "#6B7280",
-    badgeUrl: null,
+    badgeUrl: "https://i.imgur.com/eeGvuLF.png",
     formatted: true,
   },
   founders_edition_lifetime: {
     label: "Founders Edition Lifetime",
     color: "#6B7280",
-    badgeUrl: null,
+    badgeUrl: "https://i.imgur.com/eeGvuLF.png",
     formatted: true,
   },
   // Sub-groups

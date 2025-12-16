@@ -20,14 +20,14 @@ const RS_PROJECTS = [
     game: "ROBLOX",
     status: "discontinued",
     location: "Perris, CA",
-    discontiuationNotice: "Merged with Los Angeles, CA",
+    reasonForDiscontinuation: "Merged with Los Angeles, CA",
   },
   {
     name: "Fort Loredo: Reimagined",
     game: "ROBLOX",
     status: "discontinued",
     location: "Western",
-    discontinuationNotice: "",
+    reasonForDiscontinuation: "",
   },
   {
     name: "Project Foxtrot",
@@ -46,21 +46,21 @@ const RS_PROJECTS = [
     game: "ROBLOX",
     status: "discontinued",
     location: "Australia",
-    discontinuationNotice: "",
+    reasonForDiscontinuation: "",
   },
   {
     name: "State of Bartow",
     game: "ROBLOX",
     status: "discontinued",
     location: "Bartow, FL",
-    discontinuationNotice: "",
+    reasonForDiscontinuation: "",
   },
   {
     name: "State of Florida, Miami Dade County",
     game: "ROBLOX",
     status: "discontinued",
     location: "Miami, FL",
-    discontinuationNotice: "",
+    reasonForDiscontinuation: "",
   },
   {
     name: "San Ramon, California",
@@ -169,11 +169,11 @@ export default function Projects() {
                         </CardTitle>
                         <CardDescription>{project.location}</CardDescription>
                       </div>
-                      <div className="flex gap-2">
-                        <Badge variant="outline">{project.game}</Badge>
-                        <Badge variant="outline">{project.discontinuationNotice}</Badge>
-                      </div>
+                      <Badge variant="outline">{project.game}</Badge>
                     </div>
+                    <Badge variant="outline">
+                      {project.reasonForDiscontinuation}
+                    </Badge>
                   </CardHeader>
                 </Card>
               ))}
