@@ -46,9 +46,9 @@ const departments: Department[] = [
         joinDate: "2025-Present",
       },
       {
-        name: "ArielOperations",
+        name: "Vacant",
         role: "Operations Manager",
-        joinDate: "2025-Present",
+        joinDate: "Unknown",
       },
       {
         name: "Kyros",
@@ -80,12 +80,12 @@ const departments: Department[] = [
         joinDate: "2025-Present",
       },
       {
-        name: "nil",
+        name: "Vacant",
         role: "Senior Customer Support Representative",
         joinDate: "Unknown",
       },
       {
-        name: "nil",
+        name: "Vacant",
         role: "Customer Support Representative",
         joinDate: "Unknown",
       },

@@ -112,10 +112,6 @@ export async function initializeDatabase() {
         "clan_id" varchar,
         "clan_role" varchar,
         "user_rank" user_rank DEFAULT 'member',
-        "is_banned" boolean DEFAULT false,
-        "ban_reason" text,
-        "banned_at" timestamp,
-        "banned_by" varchar,
         "created_at" timestamp DEFAULT now(),
         "updated_at" timestamp DEFAULT now()
       );
