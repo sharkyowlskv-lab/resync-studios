@@ -79,6 +79,7 @@ const VIP_OPTIONS = [
   { value: "bronze", label: "Bronze ($10.99)" },
   { value: "diamond", label: "Diamond ($19.99)" },
   { value: "founders", label: "Founders ($35.99)" },
+  { value: "founders_lifetime", label: "Founders Lifetime ($64.99)" },
 ];
 
 function AnnouncementForm({ initialData, onSubmit, isLoading }: any) {
