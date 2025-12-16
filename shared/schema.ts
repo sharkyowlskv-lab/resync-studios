@@ -64,32 +64,6 @@ export const userRankEnum = pgEnum("user_rank", [
   "member",
   "banned",
 ]);
-export const secondaryUserRankEnum = pgEnum("secondary_user_rank", [
-  "company_director",
-  "operations_manager",
-  "leadership_council",
-  "staff_department_director",
-  "team_member",
-  "staff_internal_affairs",
-  "community_developer",
-  "community_senior_administrator",
-  "community_administrator",
-  "community_senior_moderator",
-  "community_moderator",
-  "customer_relations",
-  "appeals_moderator",
-  "rs_volunteer_staff",
-  "rs_trust_&_safety_team",
-  "founders_edition_lifetime",
-  "founders_edition_vip",
-  "diamond_vip",
-  "sapphire_vip",
-  "bronze_vip",
-  "community_partner",
-  "trusted_member",
-  "active_member",
-  "member",
-]);
 
 // Session storage table (mandatory for Replit Auth)
 export const sessions = pgTable(
