@@ -2,7 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Crown, Gem, Diamond, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-type VipTier = "none" | "bronze" | "diamond" | "founders" | "founders_lifetime";
+type VipTier = "none" | "bronze" | "sapphire" | "diamond" | "founders";
 
 interface VipBadgeProps {
   tier: VipTier;
@@ -17,6 +17,11 @@ const tierConfig = {
     icon: Crown,
     className: "vip-bronze border-0",
   },
+  sapphire: {
+    label: "Sapphire VIP",
+    icon: Gem,
+    className: "vip-sapphire border-0",
+  },
   diamond: {
     label: "Diamond VIP",
     icon: Diamond,
@@ -24,11 +29,6 @@ const tierConfig = {
   },
   founders: {
     label: "Founders",
-    icon: Star,
-    className: "vip-founders border-0",
-  },
-  founders_lifetime: {
-    label: "Founders Lifetime",
     icon: Star,
     className: "vip-founders border-0",
   },

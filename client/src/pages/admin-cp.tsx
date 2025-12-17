@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -23,52 +24,75 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Shield, Plus, Trash2, AlertTriangle } from "lucide-react";
-import { type Announcement, type User } from "@shared/schema";
+import {
+  Shield,
+  Plus,
+  Edit2,
+  Trash2,
+  Users,
+  Settings,
+  AlertTriangle,
+} from "lucide-react";
+import { type Announcement } from "@shared/schema";
+
+interface User {
+  id: string;
+  username: string;
+  email: string;
+  userRank: string;
+  vipTier: string;
+}
 
 interface Stats {
   totalMembers: number;
 }
 
 const ADMIN_RANKS = [
-  "community_administrator",
-  "community_senior_administrator",
-  "staff_department_director",
+  "administrator",
+  "senior_administrator",
+  "staff_administration_director",
   "leadership_council",
   "operations_manager",
   "team_member",
-  "staff_internal_affairs",
   "company_director",
 ];
 
 const RANK_OPTIONS = [
-  { value: "banned", label: "Banned" },
   { value: "member", label: "Member" },
   { value: "active_member", label: "Active Member" },
   { value: "trusted_member", label: "Trusted Member" },
   { value: "community_partner", label: "Community Partner" },
   { value: "bronze_vip", label: "Bronze VIP" },
+  { value: "sapphire_vip", label: "Sapphire VIP" },
   { value: "diamond_vip", label: "Diamond VIP" },
   { value: "founders_edition_vip", label: "Founders Edition VIP" },
   { value: "founders_edition_lifetime", label: "Lifetime" },
-  { value: "rs_trust_safety_team", label: "RS Trust & Safety Team" },
+  { value: "community_developer", label: "Community Developer" },
   { value: "rs_volunteer_staff", label: "RS Volunteer Staff" },
-  { value: "appeals_moderator", label: "Appeals Moderator" },
-  { value: "customer_relations", label: "Customer Relations" },
   { value: "community_moderator", label: "Community Moderator" },
   { value: "community_senior_moderator", label: "Community Senior Moderator" },
-  { value: "community_administrator", label: "Community Administrator" },
-  { value: "community_senior_administrator", label: "Senior Administrator" },
-  { value: "community_developer", label: "Community Developer" },
-  { value: "staff_internal_affairs", label: "Staff Internal Affairs" },
+  { value: "moderator", label: "Moderator" },
+  { value: "administrator", label: "Administrator" },
+  { value: "senior_administrator", label: "Senior Administrator" },
+  { value: "customer_relations", label: "Customer Relations" },
   { value: "team_member", label: "Team Member" },
-  { value: "staff_department_director", label: "Staff Department Director" },
+  { value: "staff_administration_director", label: "Trust & Safety Director" },
   { value: "leadership_council", label: "Leadership Council" },
   { value: "operations_manager", label: "Operations Manager" },
   { value: "company_director", label: "Company Director" },
@@ -76,22 +100,31 @@ const RANK_OPTIONS = [
 
 const VIP_OPTIONS = [
   { value: "none", label: "None" },
-  { value: "bronze", label: "Bronze ($10.99)" },
-  { value: "diamond", label: "Diamond ($19.99)" },
-  { value: "founders", label: "Founders ($35.99)" },
-  { value: "founders_lifetime", label: "Founders Lifetime ($64.99)" },
+  { value: "bronze", label: "Bronze ($12.99)" },
+  { value: "sapphire", label: "Sapphire ($29.99)" },
+  { value: "diamond", label: "Diamond ($44.99)" },
+  { value: "founders", label: "Founders ($120)" },
 ];
 
 function AnnouncementForm({ initialData, onSubmit, isLoading }: any) {
   const [title, setTitle] = useState(initialData?.title || "");
   const [content, setContent] = useState(initialData?.content || "");
   const [type, setType] = useState(initialData?.type || "update");
-  const [details] = useState(
+  const [details, setDetails] = useState(
     initialData?.details ? JSON.parse(initialData.details) : [""],
   );
   const [isPublished, setIsPublished] = useState(
     initialData?.isPublished !== false,
   );
+
+  const handleAddDetail = () => setDetails([...details, ""]);
+  const handleRemoveDetail = (idx: number) =>
+    setDetails(details.filter((_: string, i: number) => i !== idx));
+  const handleDetailChange = (idx: number, value: string) => {
+    const newDetails = [...details];
+    newDetails[idx] = value;
+    setDetails(newDetails);
+  };
 
   return (
     <div className="space-y-4">
@@ -153,7 +186,7 @@ function AnnouncementForm({ initialData, onSubmit, isLoading }: any) {
 }
 
 export default function AdminCP() {
-  const { user } = useAuth() as { user?: User };
+  const { user } = useAuth();
   const { toast } = useToast();
   const [searchTerm, setSearchTerm] = useState("");
   const [subscriptionSearch, setSubscriptionSearch] = useState("");
@@ -193,7 +226,8 @@ export default function AdminCP() {
   const { data: announcements = [] } = useQuery<Announcement[]>({
     queryKey: ["/api/announcements"],
   });
-  const { data: searchResults = [] } = useQuery<User[]>({
+  const { data: siteSettings } = useQuery({ queryKey: ["/api/site-settings"] });
+  const { data: searchResults = [] } = useQuery({
     queryKey: ["/api/admin/search-users", subscriptionSearch],
     enabled: subscriptionSearch.length > 0,
   });
@@ -496,12 +530,8 @@ export default function AdminCP() {
             {users
               .filter(
                 (u) =>
-                  (u.username
-                    ?.toLowerCase()
-                    .includes(searchTerm.toLowerCase()) ??
-                    false) ||
-                  (u.email?.toLowerCase().includes(searchTerm.toLowerCase()) ??
-                    false),
+                  u.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                  u.email?.toLowerCase().includes(searchTerm.toLowerCase()),
               )
               .map((u) => (
                 <Card key={u.id}>

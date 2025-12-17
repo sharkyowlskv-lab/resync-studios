@@ -270,6 +270,7 @@ export async function registerRoutes(
           email: email as string,
           username: username as string,
           userRank: "member",
+          secondaryUserRank: "active_member",
           vipTier: "none",
         });
         req.login(user, (err) => {
@@ -817,12 +818,12 @@ export async function registerRoutes(
       const isMod =
         user?.userRank &&
         [
+          "moderator",
           "community_moderator",
           "community_senior_moderator",
-          "community_administrator",
-          "community_senior_administrator",
+          "administrator",
+          "senior_administrator",
           "staff_administration_director",
-          "staff_internal_affairs",
           "leadership_council",
           "team_member",
           "operations_manager",
@@ -852,15 +853,15 @@ export async function registerRoutes(
       const isMod =
         user?.userRank &&
         [
+          "moderator",
           "community_moderator",
           "community_senior_moderator",
-          "community_administrator",
-          "community_senior_administrator",
+          "administrator",
+          "senior_administrator",
           "staff_administration_director",
-          "staff_internal_affairs",
           "leadership_council",
-          "team_member",
           "operations_manager",
+          "team_member",
           "company_director",
         ].includes(user.userRank);
 
@@ -894,15 +895,15 @@ export async function registerRoutes(
       const isMod =
         user?.userRank &&
         [
+          "moderator",
           "community_moderator",
           "community_senior_moderator",
-          "community_administrator",
-          "community_senior_administrator",
+          "administrator",
+          "senior_administrator",
           "staff_administration_director",
-          "staff_internal_affairs",
           "leadership_council",
-          "team_member",
           "operations_manager",
+          "team_member",
           "company_director",
         ].includes(user.userRank);
 
@@ -926,15 +927,15 @@ export async function registerRoutes(
       const isMod =
         user?.userRank &&
         [
+          "moderator",
           "community_moderator",
           "community_senior_moderator",
-          "community_administrator",
-          "community_senior_administrator",
+          "administrator",
+          "senior_administrator",
           "staff_administration_director",
-          "staff_internal_affairs",
           "leadership_council",
-          "team_member",
           "operations_manager",
+          "team_member",
           "company_director",
         ].includes(user.userRank);
 
@@ -958,15 +959,15 @@ export async function registerRoutes(
       const isMod =
         user?.userRank &&
         [
+          "moderator",
           "community_moderator",
           "community_senior_moderator",
-          "community_administrator",
-          "community_senior_administrator",
+          "administrator",
+          "senior_administrator",
           "staff_administration_director",
-          "staff_internal_affairs",
           "leadership_council",
-          "team_member",
           "operations_manager",
+          "team_member",
           "company_director",
         ].includes(user.userRank);
 
@@ -997,15 +998,15 @@ export async function registerRoutes(
       const isMod =
         user?.userRank &&
         [
+          "moderator",
           "community_moderator",
           "community_senior_moderator",
-          "community_administrator",
-          "community_senior_administrator",
+          "administrator",
+          "senior_administrator",
           "staff_administration_director",
-          "staff_internal_affairs",
           "leadership_council",
-          "team_member",
           "operations_manager",
+          "team_member",
           "company_director",
         ].includes(user.userRank);
 
@@ -1059,7 +1060,7 @@ export async function registerRoutes(
           // Sync nickname to Discord
           await updateDiscordNickname(
             discordProfile.discordId,
-            updatedUser.username || "",
+            updatedUser.username || "Member",
           );
           console.log(`✅ Discord linked to user ${currentUserId}`);
           res.redirect("/?discord_linked=true");
@@ -1107,8 +1108,7 @@ export async function registerRoutes(
         [
           "operations_manager",
           "team_member",
-          "staff_department_director",
-          "staff_internal_affairs",
+          "staff_administration_director",
           "leadership_council",
           "company_director",
         ].includes(admin.userRank);
@@ -1143,16 +1143,16 @@ export async function registerRoutes(
     "leadership_council",
     "operations_manager",
     "team_member",
-    "staff_internal_affairs",
-    "staff_department_director",
-    "community_administrator",
-    "community_senior_administrator",
+    "staff_administration_director",
+    "administrator",
+    "senior_administrator",
+    "moderator",
+    "trial_moderator",
     "community_moderator",
     "community_senior_moderator",
     "community_developer",
     "customer_relations",
     "rs_volunteer_staff",
-    "rs_trust_safety_team",
   ];
 
   // TODO: Replace with actual admin check - for now requires ADMIN_USER_ID env var
@@ -1181,6 +1181,7 @@ export async function registerRoutes(
         username: user.username,
         email: user.email,
         userRank: user.userRank,
+        secondaryUserRank: user.secondaryUserRank,
         vipTier: user.vipTier,
         createdAt: user.createdAt,
       }));
@@ -1331,8 +1332,7 @@ export async function registerRoutes(
         [
           "team_member",
           "operations_manager",
-          "staff_department_director",
-          "staff_internal_affairs",
+          "staff_administration_director",
           "leadership_council",
           "company_director",
         ].includes(user.userRank);
@@ -1384,8 +1384,7 @@ export async function registerRoutes(
       const isAdmin =
         user?.userRank &&
         [
-          "staff_department_director",
-          "staff_internal_affairs",
+          "staff_administration_director",
           "leadership_council",
           "operations_manager",
           "team_member",
@@ -1416,8 +1415,7 @@ export async function registerRoutes(
       const isAdmin =
         user?.userRank &&
         [
-          "staff_department_director",
-          "staff_internal_affairs",
+          "staff_administration_director",
           "operations_manager",
           "team_member",
           "leadership_council",
@@ -1441,15 +1439,13 @@ export async function registerRoutes(
         (u) =>
           u.userRank &&
           [
-            "community_administrator",
-            "community_senior_administrator",
-            "staff_department_director",
+            "administrator",
+            "senior_administrator",
+            "staff_administration_director",
             "leadership_council",
             "company_director",
+            "moderator",
             "community_moderator",
-            "community_senior_moderator",
-            "community_developer",
-            "rs_trust_safety_team",
             "customer_relations",
             "operations_manager",
             "team_member",
@@ -1479,7 +1475,10 @@ export async function registerRoutes(
       const user = await storage.getUser(userId);
       const isAdmin =
         user?.userRank &&
-        ["operations_manager", "company_director"].includes(user.userRank);
+        [
+          "operations_manager",
+          "company_director",
+        ].includes(user.userRank);
 
       if (!isAdmin) return res.status(403).json({ message: "Unauthorized" });
 
@@ -1507,9 +1506,11 @@ export async function registerRoutes(
       const user = await storage.getUser(userId);
       const isAdmin =
         user?.userRank &&
-        ["operations_manager", "team_member", "company_director"].includes(
-          user.userRank,
-        );
+        [
+          "operations_manager",
+          "team_member",
+          "company_director",
+        ].includes(user.userRank);
 
       if (!isAdmin) return res.status(403).json({ message: "Unauthorized" });
 
@@ -1534,7 +1535,7 @@ export async function registerRoutes(
       const isAllowed =
         user?.userRank &&
         [
-          "staff_internal_affairs",
+          "customer_relations",
           "operations_manager",
           "team_member",
           "leadership_council",
@@ -1552,6 +1553,7 @@ export async function registerRoutes(
         username,
         email,
         userRank: "member",
+        secondaryUserRank: "active_member"
         vipTier: "none",
       });
       res.json({ message: "Account created successfully", user: newUser });
@@ -1569,11 +1571,10 @@ export async function registerRoutes(
       const isAdmin =
         user?.userRank &&
         [
-          "community_administrator",
-          "community_senior_administrator",
+          "administrator",
+          "senior_administrator",
           "customer_relations",
-          "staff_department_director",
-          "staff_internal_affairs",
+          "staff_administration_director",
           "leadership_council",
           "operations_manager",
           "team_member",
@@ -1624,8 +1625,9 @@ export async function registerRoutes(
 
       const tierPrices: Record<string, number> = {
         bronze: 1099,
-        diamond: 1999,
-        founders: 3599,
+        sapphire: 2099,
+        diamond: 3465,
+        founders: 4599,
       };
 
       const amount = tierPrices[vipTier];
@@ -1731,6 +1733,17 @@ export async function registerRoutes(
           price: 1099,
           priceText: "$10.99/month",
           benefits: ["Custom profile badge", "Priority support"],
+        },
+        {
+          id: "sapphire",
+          name: "Sapphire",
+          price: 1599,
+          priceText: "$15.99/month",
+          benefits: [
+            "All Bronze benefits",
+            "Exclusive cosmetics",
+            "Priority matchmaking",
+          ],
         },
         {
           id: "diamond",

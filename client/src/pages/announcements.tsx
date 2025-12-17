@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useAuth } from "@/hooks/useAuth";
 import { type Announcement } from "@shared/schema";
 import {
   Card,
@@ -23,6 +25,9 @@ const ICON_MAP: Record<string, any> = {
 };
 
 export default function Announcements() {
+  const { user } = useAuth();
+  const [isAdminExpanded, setIsAdminExpanded] = useState(false);
+
   const { data: announcements = [], isLoading } = useQuery<Announcement[]>({
     queryKey: ["/api/announcements"],
   });

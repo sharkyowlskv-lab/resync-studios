@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { AnimatedCounter } from "@/components/animated-counter";
 import {
   Users,
@@ -11,6 +12,7 @@ import {
   Star,
   ChevronRight,
 } from "lucide-react";
+import { SiDiscord, SiRoblox } from "react-icons/si";
 
 const stats = [
   { value: 69600, label: "Connected Members", suffix: "+" },

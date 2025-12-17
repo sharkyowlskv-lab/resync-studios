@@ -30,27 +30,25 @@ interface User {
 }
 
 const RANK_OPTIONS = [
-  { value: "banned", label: "Banned" },
   { value: "member", label: "Member" },
   { value: "active_member", label: "Active Member" },
   { value: "trusted_member", label: "Trusted Member" },
   { value: "community_partner", label: "Community Partner" },
   { value: "bronze_vip", label: "Bronze VIP" },
+  { value: "sapphire_vip", label: "Sapphire VIP" },
   { value: "diamond_vip", label: "Diamond VIP" },
   { value: "founders_edition_vip", label: "Founders Edition VIP" },
   { value: "founders_edition_lifetime", label: "Lifetime" },
-  { value: "rs_trust_safety_team", label: "RS Trust & Safety Team" },
+  { value: "community_developer", label: "Community Developer" },
   { value: "rs_volunteer_staff", label: "RS Volunteer Staff" },
-  { value: "appeals_moderator", label: "Appeals Moderator" },
-  { value: "customer_relations", label: "Customer Relations" },
   { value: "community_moderator", label: "Community Moderator" },
   { value: "community_senior_moderator", label: "Community Senior Moderator" },
-  { value: "community_administrator", label: "Community Administrator" },
-  { value: "community_senior_administrator", label: "Senior Administrator" },
-  { value: "community_developer", label: "Community Developer" },
-  { value: "staff_internal_affairs", label: "Staff Internal Affairs" },
+  { value: "moderator", label: "Moderator" },
+  { value: "administrator", label: "Administrator" },
+  { value: "senior_administrator", label: "Senior Administrator" },
+  { value: "customer_relations", label: "Customer Relations" },
   { value: "team_member", label: "Team Member" },
-  { value: "staff_department_director", label: "Staff Department Director" },
+  { value: "staff_administration_director", label: "Trust & Safety Director" },
   { value: "leadership_council", label: "Leadership Council" },
   { value: "operations_manager", label: "Operations Manager" },
   { value: "company_director", label: "Company Director" },
@@ -67,7 +65,7 @@ export default function AdminPanel() {
     data: users = [],
     isLoading,
     error: queryError,
-  } = useQuery<User[]>({
+  } = useQuery({
     queryKey: ["/api/admin/users"],
   });
 
@@ -89,10 +87,7 @@ export default function AdminPanel() {
       const response = await fetch("/api/admin/assign-rank", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          userId,
-          rank,
-        }),
+        body: JSON.stringify({ userId, rank }),
         credentials: "include",
       });
 
@@ -133,10 +128,7 @@ export default function AdminPanel() {
   const handleAssignRank = (userId: string) => {
     const newRank = selectedRanks[userId];
     if (newRank) {
-      assignRankMutation.mutate({
-        userId,
-        rank: newRank,
-      });
+      assignRankMutation.mutate({ userId, rank: newRank });
     }
   };
 

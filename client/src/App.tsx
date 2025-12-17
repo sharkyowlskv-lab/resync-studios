@@ -186,6 +186,7 @@ function PublicRoutes() {
         <Route path="/" component={Landing} />
         <Route path="/forums" component={Forums} />
         <Route path="/forums/thread/:id" component={ForumThread} />
+        <Route path="/chat" component={Chat} />
         <Route path="/vip" component={VIP} />
         <Route path="/team" component={StaffDirectory} />
         <Route path="/staff" component={StaffDirectory} />

@@ -12,18 +12,18 @@ Use this checklist before deploying to Render or Railway.
   - [x] dist/public/assets/ (CSS & JS)
 
 ## Discord OAuth Setup ✅
-- [x] Have Discord Client ID
-- [x] Have Discord Client Secret
-- [x] Know your deployment URL from Render/Railway
-- [x] Add OAuth Redirect URL to Discord settings:
+- [ ] Have Discord Client ID
+- [ ] Have Discord Client Secret
+- [ ] Know your deployment URL from Render/Railway
+- [ ] Add OAuth Redirect URL to Discord settings:
   ```
   https://your-deployed-app-url/auth/discord/callback
   ```
 
 ## Database Setup ✅
-- [x] Create PostgreSQL database (Neon or platform provider)
-- [x] Have DATABASE_URL connection string ready
-- [x] Format: `postgresql://user:password@host:5432/database`
+- [ ] Create PostgreSQL database (Neon or platform provider)
+- [ ] Have DATABASE_URL connection string ready
+- [ ] Format: `postgresql://user:password@host:5432/database`
 
 ## Environment Variables ✅
 Before deploying, have ready:
@@ -55,11 +55,11 @@ Before deploying, have ready:
 ## Post-Deployment Testing
 
 After deployment succeeds:
-- [x] Visit your live URL
-- [x] See Discord login page load
-- [x] Try Discord login flow
-- [x] Check browser console for errors
-- [x] Verify API responds: `/api/auth/user` should return 401 (expected)
+- [ ] Visit your live URL
+- [ ] See Discord login page load
+- [ ] Try Discord login flow
+- [ ] Check browser console for errors
+- [ ] Verify API responds: `/api/auth/user` should return 401 (expected)
 
 ## If Something Goes Wrong
 
