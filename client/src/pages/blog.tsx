@@ -17,11 +17,14 @@ import { Plus, Calendar, User } from "lucide-react";
 const blogPosts = [
   {
     id: "1",
-    title: "Introducing Our New Website - Bigger, Better, and Built for the Future",
-    excerpt: "After more than 6 months of work, we are finally ready to share our new website along with a new subscription system, new integrations, and a look at what is coming next.",
-    author: "David",
-    date: "Nov 24, 2025",
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=300&fit=crop",
+    title:
+      "Introducing Our New Website - Bigger, Better, and Built for the Future",
+    excerpt:
+      "After more than 12 months of work, we are finally ready to share our new website along with a new subscription system, new integrations, and a look at what is coming next.",
+    author: "cxiqlne",
+    date: "Dec 19, 2025",
+    image:
+      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=300&fit=crop",
     featured: true,
     readTime: 10,
     views: 156,
@@ -52,7 +55,9 @@ export default function Blog() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl sm:text-4xl font-bold">Blog</h1>
-            <p className="text-muted-foreground mt-2">Browse our latest blog posts and articles</p>
+            <p className="text-muted-foreground mt-2">
+              Browse our latest blog posts and articles
+            </p>
           </div>
           {isAdmin && (
             <Dialog open={isCreateOpen} onOpenChange={setIsCreateOpen}>
@@ -93,7 +98,10 @@ export default function Blog() {
                     >
                       Cancel
                     </Button>
-                    <Button onClick={handleCreatePost} data-testid="button-publish">
+                    <Button
+                      onClick={handleCreatePost}
+                      data-testid="button-publish"
+                    >
                       Publish
                     </Button>
                   </div>
@@ -118,7 +126,9 @@ export default function Blog() {
             <CardContent className="md:col-span-2 p-6">
               <Badge className="mb-3">Featured</Badge>
               <h2 className="text-2xl font-bold mb-3">{blogPosts[0].title}</h2>
-              <p className="text-muted-foreground mb-4">{blogPosts[0].excerpt}</p>
+              <p className="text-muted-foreground mb-4">
+                {blogPosts[0].excerpt}
+              </p>
               <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
                 <div className="flex items-center gap-1">
                   <User className="w-4 h-4" />
@@ -140,10 +150,15 @@ export default function Blog() {
         <h3 className="text-xl font-bold mb-4">Latest Articles</h3>
         <div className="space-y-3">
           {blogPosts.map((post) => (
-            <Card key={post.id} className="hover:bg-card/80 transition-colors cursor-pointer">
+            <Card
+              key={post.id}
+              className="hover:bg-card/80 transition-colors cursor-pointer"
+            >
               <CardContent className="p-4">
                 <h4 className="font-semibold mb-2">{post.title}</h4>
-                <p className="text-sm text-muted-foreground mb-3">{post.excerpt}</p>
+                <p className="text-sm text-muted-foreground mb-3">
+                  {post.excerpt}
+                </p>
                 <div className="flex flex-wrap gap-4 text-xs text-muted-foreground">
                   <div className="flex items-center gap-1">
                     <User className="w-3 h-3" />

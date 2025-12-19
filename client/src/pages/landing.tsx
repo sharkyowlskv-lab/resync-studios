@@ -74,7 +74,9 @@ export default function Landing() {
             The number one online gaming community platform
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            RESYNC Studios™ creates an open gaming environment accessible to everyone, delivering high-fidelity games through our exceptional game development expertise and building online communities.
+            RESYNC Studios™ creates an open gaming environment accessible to
+            everyone, delivering high-fidelity games through our exceptional
+            game development expertise and building online communities.
           </p>
         </div>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -84,7 +86,12 @@ export default function Landing() {
               <ArrowRight className="w-4 h-4 ml-2" />
             </Link>
           </Button>
-          <Button size="lg" variant="outline" asChild data-testid="button-browse-store">
+          <Button
+            size="lg"
+            variant="outline"
+            asChild
+            data-testid="button-browse-store"
+          >
             <Link href="/store">Browse Store</Link>
           </Button>
         </div>
@@ -113,7 +120,8 @@ export default function Landing() {
             Everything you need for thriving communities
           </h2>
           <p className="text-lg text-muted-foreground">
-            Our gaming platform provides all the essential tools needed to build thriving communities and deliver exceptional gaming experiences.
+            Our gaming platform provides all the essential tools needed to build
+            thriving communities and deliver exceptional gaming experiences.
           </p>
         </div>
 
@@ -121,7 +129,10 @@ export default function Landing() {
           {features.map((feature) => {
             const Icon = feature.icon;
             return (
-              <Card key={feature.title} className="hover:border-primary/50 transition-colors">
+              <Card
+                key={feature.title}
+                className="hover:border-primary/50 transition-colors"
+              >
                 <CardContent className="p-6 space-y-3">
                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
                     <Icon className="w-6 h-6 text-primary" />
@@ -141,10 +152,10 @@ export default function Landing() {
       <section className="bg-card border border-border/50 rounded-lg p-8 sm:p-12 text-center space-y-6">
         <div className="space-y-2">
           <h2 className="text-3xl sm:text-4xl font-bold">
-            Ready to build your community?
+            Ready to join our community?
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Join thousands of community creators using RESYNC Studios™ to build and grow their online communities today.
+            Join thousands of community members at RESYNC Studios™ experience never.
           </p>
         </div>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
