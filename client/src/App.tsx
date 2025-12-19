@@ -4,9 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/app-sidebar";
+import { MainHeader } from "@/components/main-header";
 import { useAuth } from "@/hooks/useAuth";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -41,82 +39,58 @@ import Admin from "@/pages/admin";
 import ModCP from "@/pages/modcp";
 import AdminCP from "@/pages/admin-cp";
 import Builds from "@/pages/builds";
+import Blog from "@/pages/blog";
 
-// Full layout with sidebar (authenticated users)
-function AppLayout({ children }: { children: React.ReactNode }) {
-  const [, setLocation] = useLocation();
-  const style = {
-    "--sidebar-width": "16rem",
-    "--sidebar-width-icon": "3rem",
-  };
-
-  const handleLogout = async () => {
-    try {
-      const response = await fetch("/api/auth/logout", {
-        method: "POST",
-        credentials: "include",
-      });
-      if (response.ok) {
-        setLocation("/login");
-      }
-    } catch (error) {
-      console.error("Logout failed:", error);
-    }
-  };
-
-  return (
-    <SidebarProvider style={style as React.CSSProperties}>
-      <div className="flex h-screen w-full">
-        <AppSidebar />
-        <div className="flex flex-col flex-1 overflow-hidden">
-          <header className="flex items-center justify-between h-14 px-4 border-b shrink-0">
-            <SidebarTrigger data-testid="button-sidebar-toggle" />
-            <div className="flex items-center gap-2">
-              <button
-                onClick={handleLogout}
-                data-testid="button-logout"
-                className="text-sm px-3 py-1 rounded hover:bg-muted transition-colors"
-              >
-                Logout
-              </button>
-              <ThemeToggle />
-            </div>
-          </header>
-          <main className="flex-1 overflow-auto p-4 sm:p-6">{children}</main>
-        </div>
-      </div>
-    </SidebarProvider>
-  );
-}
-
-// Simple layout for public pages (unauthenticated users)
 function PublicLayout({ children }: { children: React.ReactNode }) {
-  const { user } = useAuth();
-
   return (
-    <div className="flex flex-col h-screen w-full">
-      <header className="flex items-center justify-between h-14 px-4 border-b shrink-0">
-        <div className="font-display font-bold text-lg">RESYNC Studios</div>
-        <div className="flex gap-2">
-          {!user ? (
-            <>
-              <a href="/login" className="text-sm hover:underline">
-                Login
-              </a>
-              <a href="/signup" className="text-sm hover:underline">
-                Sign Up
-              </a>
-            </>
-          ) : null}
-          <ThemeToggle />
+    <div className="flex flex-col min-h-screen">
+      <MainHeader />
+      <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
+        {children}
+      </main>
+      <footer className="bg-card border-t border-border/50 mt-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <h3 className="font-bold mb-4">RESYNC Studios™</h3>
+              <p className="text-sm text-muted-foreground">Building the future of digital experiences with innovative solutions and community-driven development.</p>
+            </div>
+            <div>
+              <h4 className="font-semibold text-sm mb-4">Navigation</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><a href="/" className="hover:text-foreground transition-colors">Home</a></li>
+                <li><a href="/blog" className="hover:text-foreground transition-colors">Blog</a></li>
+                <li><a href="/forums" className="hover:text-foreground transition-colors">Forums</a></li>
+                <li><a href="/vip" className="hover:text-foreground transition-colors">Subscriptions</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold text-sm mb-4">Support & Resources</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><a href="/support" className="hover:text-foreground transition-colors">Support</a></li>
+                <li><a href="/policies" className="hover:text-foreground transition-colors">Policies</a></li>
+                <li><a href="/guidelines" className="hover:text-foreground transition-colors">Guidelines</a></li>
+                <li><a href="/privacy" className="hover:text-foreground transition-colors">Privacy</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold text-sm mb-4">Other</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><a href="/team" className="hover:text-foreground transition-colors">Team</a></li>
+                <li><a href="/announcements" className="hover:text-foreground transition-colors">Announcements</a></li>
+                <li><a href="/projects" className="hover:text-foreground transition-colors">Projects</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-border/50 pt-8">
+            <p className="text-xs text-muted-foreground text-center">© 2025 RESYNC Studios™. All rights reserved.</p>
+          </div>
         </div>
-      </header>
-      <main className="flex-1 overflow-auto p-4 sm:p-6">{children}</main>
+      </footer>
     </div>
   );
 }
 
-// Protected route component - redirects to login if not authenticated
 function ProtectedRoute({ component: Component }: { component: any }) {
   const { isAuthenticated, isLoading } = useAuth();
   const [location, setLocation] = useLocation();
@@ -126,7 +100,6 @@ function ProtectedRoute({ component: Component }: { component: any }) {
   }
 
   if (!isAuthenticated) {
-    // Use replace to prevent back button issues
     if (location !== "/login") {
       setLocation("/login");
     }
@@ -134,87 +107,6 @@ function ProtectedRoute({ component: Component }: { component: any }) {
   }
 
   return <Component />;
-}
-
-function AuthenticatedRoutes() {
-  return (
-    <AppLayout>
-      <Switch>
-        <Route path="/" component={Dashboard} />
-        <Route path="/landing" component={Landing} />
-        <Route path="/clans" component={Clans} />
-        <Route path="/forums" component={Forums} />
-        <Route path="/forums/thread/:id" component={ForumThread} />
-        <Route path="/chat" component={Chat} />
-        <Route path="/vip" component={VIP} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/settings" component={Settings} />
-        <Route path="/admin" component={Admin} />
-        <Route path="/modcp" component={ModCP} />
-        <Route path="/admin-cp" component={AdminCP} />
-        <Route path="/team" component={StaffDirectory} />
-        <Route path="/staff" component={StaffDirectory} />
-        <Route path="/staff-directory" component={StaffDirectory} />
-        <Route path="/builds" component={Builds} />
-        <Route path="/guidelines" component={Guidelines} />
-        <Route path="/privacy" component={Privacy} />
-        <Route path="/terms" component={Terms} />
-        <Route path="/announcements" component={Announcements} />
-        <Route path="/projects" component={Projects} />
-        <Route path="/support" component={Support} />
-        <Route path="/volunteer" component={VolunteerModeration} />
-        <Route path="/dmca" component={DMCA} />
-        <Route path="/project-foxtrot-rules" component={ProjectFoxtrotrules} />
-        <Route
-          path="/volunteer-agreement"
-          component={VolunteerStaffAgreement}
-        />
-        <Route path="/leo-guidelines" component={LEOGuidelines} />
-        <Route path="/community-rules" component={CommunityRules} />
-        <Route path="/about" component={AboutMetro} />
-        <Route path="/fort-loredo" component={FortLoredo} />
-        <Route component={NotFound} />
-      </Switch>
-    </AppLayout>
-  );
-}
-
-function PublicRoutes() {
-  return (
-    <PublicLayout>
-      <Switch>
-        <Route path="/" component={Landing} />
-        <Route path="/forums" component={Forums} />
-        <Route path="/forums/thread/:id" component={ForumThread} />
-        <Route path="/chat" component={Chat} />
-        <Route path="/vip" component={VIP} />
-        <Route path="/team" component={StaffDirectory} />
-        <Route path="/staff" component={StaffDirectory} />
-        <Route path="/staff-directory" component={StaffDirectory} />
-        <Route path="/builds" component={Builds} />
-        <Route path="/guidelines" component={Guidelines} />
-        <Route path="/privacy" component={Privacy} />
-        <Route path="/terms" component={Terms} />
-        <Route path="/announcements" component={Announcements} />
-        <Route path="/projects" component={Projects} />
-        <Route path="/support" component={Support} />
-        <Route path="/volunteer" component={VolunteerModeration} />
-        <Route path="/dmca" component={DMCA} />
-        <Route path="/project-foxtrot-rules" component={ProjectFoxtrotrules} />
-        <Route
-          path="/volunteer-agreement"
-          component={VolunteerStaffAgreement}
-        />
-        <Route path="/leo-guidelines" component={LEOGuidelines} />
-        <Route path="/community-rules" component={CommunityRules} />
-        <Route path="/about" component={AboutMetro} />
-        <Route path="/fort-loredo" component={FortLoredo} />
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
-        <Route component={NotFound} />
-      </Switch>
-    </PublicLayout>
-  );
 }
 
 function Router() {
@@ -232,17 +124,51 @@ function Router() {
     );
   }
 
-  if (!isAuthenticated) {
-    return <PublicRoutes />;
-  }
-
-  return <AuthenticatedRoutes />;
+  return (
+    <PublicLayout>
+      <Switch>
+        <Route path="/" component={Landing} />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
+        <Route path="/blog" component={Blog} />
+        <Route path="/forums" component={Forums} />
+        <Route path="/forums/thread/:id" component={ForumThread} />
+        <Route path="/vip" component={VIP} />
+        <Route path="/profile" component={Profile} />
+        <Route path="/settings" component={Settings} />
+        <Route path="/team" component={StaffDirectory} />
+        <Route path="/staff" component={StaffDirectory} />
+        <Route path="/staff-directory" component={StaffDirectory} />
+        <Route path="/builds" component={Builds} />
+        <Route path="/chat" component={Chat} />
+        <Route path="/clans" component={Clans} />
+        <Route path="/admin" component={Admin} />
+        <Route path="/modcp" component={ModCP} />
+        <Route path="/admin-cp" component={AdminCP} />
+        <Route path="/guidelines" component={Guidelines} />
+        <Route path="/privacy" component={Privacy} />
+        <Route path="/terms" component={Terms} />
+        <Route path="/announcements" component={Announcements} />
+        <Route path="/projects" component={Projects} />
+        <Route path="/support" component={Support} />
+        <Route path="/volunteer" component={VolunteerModeration} />
+        <Route path="/dmca" component={DMCA} />
+        <Route path="/project-foxtrot-rules" component={ProjectFoxtrotrules} />
+        <Route path="/volunteer-agreement" component={VolunteerStaffAgreement} />
+        <Route path="/leo-guidelines" component={LEOGuidelines} />
+        <Route path="/community-rules" component={CommunityRules} />
+        <Route path="/about" component={AboutMetro} />
+        <Route path="/fort-loredo" component={FortLoredo} />
+        <Route component={NotFound} />
+      </Switch>
+    </PublicLayout>
+  );
 }
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider defaultTheme="dark" storageKey="resync-studios-theme">
+      <ThemeProvider defaultTheme="light" storageKey="resync-studios-theme">
         <TooltipProvider>
           <Router />
           <Toaster />

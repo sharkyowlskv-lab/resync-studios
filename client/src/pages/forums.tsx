@@ -3,13 +3,12 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import { queryClient, apiRequest } from "@/lib/queryClient";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Skeleton } from "@/components/ui/skeleton";
-import { VipBadge } from "@/components/vip-badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Dialog,
@@ -42,12 +41,7 @@ import {
   MessageSquare,
   Plus,
   Search,
-  Eye,
-  MessagesSquare,
-  Pin,
-  Lock,
-  ThumbsUp,
-  Clock,
+  MessageCircle,
 } from "lucide-react";
 import type { ForumCategory, ForumThread, User } from "@shared/schema";
 
@@ -125,138 +119,155 @@ export default function Forums() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h1 className="font-display text-2xl sm:text-3xl font-bold">Community Forums</h1>
-          <p className="text-muted-foreground mt-1">Discuss, share, and connect</p>
-        </div>
-        <Dialog open={isCreateOpen} onOpenChange={setIsCreateOpen}>
-          <DialogTrigger asChild>
-            <Button data-testid="button-create-thread">
-              <Plus className="w-4 h-4 mr-2" />
-              New Thread
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="max-w-2xl">
-            <DialogHeader>
-              <DialogTitle>Create New Thread</DialogTitle>
-              <DialogDescription>Start a new discussion</DialogDescription>
-            </DialogHeader>
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                <FormField
-                  control={form.control}
-                  name="categoryId"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Category</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl sm:text-4xl font-bold">Forums</h1>
+            <p className="text-muted-foreground mt-2">Connect with our community and get support</p>
+          </div>
+          <Dialog open={isCreateOpen} onOpenChange={setIsCreateOpen}>
+            <DialogTrigger asChild>
+              <Button data-testid="button-create-thread">
+                <Plus className="w-4 h-4 mr-2" />
+                New Thread
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-2xl">
+              <DialogHeader>
+                <DialogTitle>Create Discussion Thread</DialogTitle>
+                <DialogDescription>Start a new discussion with the community</DialogDescription>
+              </DialogHeader>
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                  <FormField
+                    control={form.control}
+                    name="categoryId"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Category</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select a category" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            {categories?.map((cat) => (
+                              <SelectItem key={cat.id} value={cat.id}>
+                                {cat.name}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="title"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Title</FormLabel>
                         <FormControl>
-                          <SelectTrigger data-testid="select-thread-category">
-                            <SelectValue placeholder="Select a category" />
-                          </SelectTrigger>
+                          <Input placeholder="Thread title..." {...field} data-testid="input-thread-title" />
                         </FormControl>
-                        <SelectContent>
-                          {categories?.map((category) => (
-                            <SelectItem key={category.id} value={category.id}>
-                              {category.name}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="content"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Content</FormLabel>
+                        <FormControl>
+                          <Textarea placeholder="Write your message..." rows={6} {...field} data-testid="textarea-thread-content" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <div className="flex justify-end gap-2">
+                    <Button type="button" variant="outline" onClick={() => setIsCreateOpen(false)}>
+                      Cancel
+                    </Button>
+                    <Button type="submit" disabled={createMutation.isPending} data-testid="button-post-thread">
+                      {createMutation.isPending ? "Posting..." : "Post Thread"}
+                    </Button>
+                  </div>
+                </form>
+              </Form>
+            </DialogContent>
+          </Dialog>
+        </div>
 
-                <FormField
-                  control={form.control}
-                  name="title"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Title</FormLabel>
-                      <FormControl>
-                        <Input placeholder="What's your discussion about?" {...field} data-testid="input-thread-title" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="content"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Content</FormLabel>
-                      <FormControl>
-                        <Textarea 
-                          placeholder="Write your post here..."
-                          className="min-h-[200px]"
-                          {...field}
-                          data-testid="input-thread-content"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <Button 
-                  type="submit" 
-                  className="w-full" 
-                  disabled={createMutation.isPending}
-                  data-testid="button-submit-thread"
-                >
-                  {createMutation.isPending ? "Creating..." : "Create Thread"}
-                </Button>
-              </form>
-            </Form>
-          </DialogContent>
-        </Dialog>
+        {/* Search & Filter */}
+        <div className="flex gap-2">
+          <div className="flex-1 relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Input
+              placeholder="Search discussions..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10"
+              data-testid="input-forum-search"
+            />
+          </div>
+          <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+            <SelectTrigger className="w-48">
+              <SelectValue placeholder="All Categories" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="">All Categories</SelectItem>
+              {categories?.map((cat) => (
+                <SelectItem key={cat.id} value={cat.id}>
+                  {cat.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
       </div>
 
+      {/* Forums Grid */}
       <div className="grid lg:grid-cols-4 gap-6">
-        {/* Categories Sidebar */}
-        <div className="lg:col-span-1 space-y-4">
+        {/* Sidebar - Categories */}
+        <div className="lg:col-span-1">
           <Card>
             <CardHeader className="pb-3">
               <CardTitle className="text-base">Categories</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-1">
+            <CardContent className="space-y-2">
               <Button
-                variant={selectedCategory === "" ? "secondary" : "ghost"}
-                className="w-full justify-start"
+                variant={selectedCategory === "" ? "default" : "ghost"}
+                className="w-full justify-start text-sm"
                 onClick={() => setSelectedCategory("")}
-                data-testid="button-category-all"
+                data-testid="filter-all-categories"
               >
-                <MessageSquare className="w-4 h-4 mr-2" />
-                All Discussions
+                All Categories
               </Button>
               {categoriesLoading ? (
                 <>
-                  <Skeleton className="h-9 w-full" />
-                  <Skeleton className="h-9 w-full" />
-                  <Skeleton className="h-9 w-full" />
+                  <Skeleton className="h-8 w-full" />
+                  <Skeleton className="h-8 w-full" />
                 </>
               ) : (
-                categories?.map((category) => (
+                categories?.map((cat) => (
                   <Button
-                    key={category.id}
-                    variant={selectedCategory === category.id ? "secondary" : "ghost"}
-                    className="w-full justify-start"
-                    onClick={() => setSelectedCategory(category.id)}
-                    data-testid={`button-category-${category.id}`}
+                    key={cat.id}
+                    variant={selectedCategory === cat.id ? "default" : "ghost"}
+                    className="w-full justify-start text-sm"
+                    onClick={() => setSelectedCategory(cat.id)}
+                    data-testid={`filter-category-${cat.id}`}
                   >
-                    <MessageSquare className="w-4 h-4 mr-2" />
-                    {category.name}
-                    {category.threadCount > 0 && (
-                      <Badge variant="outline" className="ml-auto">
-                        {category.threadCount}
-                      </Badge>
-                    )}
+                    {cat.name}
+                    <span className="ml-auto text-xs text-muted-foreground">
+                      {threads?.filter((t) => t.categoryId === cat.id).length || 0}
+                    </span>
                   </Button>
                 ))
               )}
@@ -264,116 +275,63 @@ export default function Forums() {
           </Card>
         </div>
 
-        {/* Threads List */}
-        <div className="lg:col-span-3 space-y-4">
-          {/* Search */}
-          <Card>
-            <CardContent className="p-4">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <Input
-                  placeholder="Search threads..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-9"
-                  data-testid="input-thread-search"
-                />
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Threads */}
+        {/* Main Content - Threads */}
+        <div className="lg:col-span-3 space-y-3">
           {threadsLoading ? (
-            <div className="space-y-3">
-              <Skeleton className="h-24" />
-              <Skeleton className="h-24" />
-              <Skeleton className="h-24" />
-            </div>
-          ) : filteredThreads && filteredThreads.length > 0 ? (
-            <div className="space-y-3">
-              {filteredThreads.map((thread) => (
-                <Card key={thread.id} className="hover-elevate" data-testid={`card-thread-${thread.id}`}>
-                  <CardContent className="p-4">
-                    <div className="flex items-start gap-4">
-                      <Avatar className="w-10 h-10 hidden sm:flex">
-                        <AvatarImage src={thread.author?.profileImageUrl || undefined} />
-                        <AvatarFallback>
-                          {thread.author?.username?.[0]?.toUpperCase() || 'U'}
-                        </AvatarFallback>
-                      </Avatar>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 flex-wrap mb-1">
-                          {thread.isPinned && (
-                            <Badge variant="secondary" className="gap-1">
-                              <Pin className="w-3 h-3" />
-                              Pinned
-                            </Badge>
-                          )}
-                          {thread.isLocked && (
-                            <Badge variant="outline" className="gap-1">
-                              <Lock className="w-3 h-3" />
-                              Locked
-                            </Badge>
-                          )}
-                          {thread.category && (
-                            <Badge variant="outline">{thread.category.name}</Badge>
-                          )}
-                        </div>
-                        <Link href={`/forums/thread/${thread.id}`}>
-                          <h3 className="font-semibold text-base hover:text-primary transition-colors line-clamp-1">
-                            {thread.title}
-                          </h3>
-                        </Link>
-                        <div className="flex items-center gap-3 mt-2 text-sm text-muted-foreground flex-wrap">
-                          <div className="flex items-center gap-1">
-                            <Avatar className="w-5 h-5 sm:hidden">
-                              <AvatarImage src={thread.author?.profileImageUrl || undefined} />
-                              <AvatarFallback className="text-[10px]">
-                                {thread.author?.username?.[0]?.toUpperCase() || 'U'}
-                              </AvatarFallback>
-                            </Avatar>
-                            <span>{thread.author?.username || 'Anonymous'}</span>
-                            {thread.author?.vipTier && thread.author.vipTier !== 'none' && (
-                              <VipBadge tier={thread.author.vipTier as any} size="sm" showLabel={false} />
-                            )}
-                          </div>
-                          <span className="flex items-center gap-1">
-                            <Eye className="w-4 h-4" />
-                            {thread.viewCount}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <MessagesSquare className="w-4 h-4" />
-                            {thread.replyCount}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <ThumbsUp className="w-4 h-4" />
-                            {thread.upvotes}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <Clock className="w-4 h-4" />
-                            {formatTimeAgo(thread.createdAt!)}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          ) : (
-            <Card className="border-dashed">
-              <CardContent className="p-12 text-center">
-                <MessageSquare className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
-                <h3 className="font-semibold mb-2">No Threads Found</h3>
-                <p className="text-muted-foreground mb-4">
-                  {searchQuery ? "Try adjusting your search" : "Start the first discussion!"}
-                </p>
-                <Button onClick={() => setIsCreateOpen(true)}>
-                  <Plus className="w-4 h-4 mr-2" />
-                  New Thread
+            <>
+              <Skeleton className="h-20 w-full" />
+              <Skeleton className="h-20 w-full" />
+              <Skeleton className="h-20 w-full" />
+            </>
+          ) : filteredThreads?.length === 0 ? (
+            <Card>
+              <CardContent className="p-8 text-center">
+                <MessageCircle className="w-12 h-12 text-muted-foreground mx-auto mb-3 opacity-50" />
+                <p className="text-muted-foreground">No discussions yet. Be the first to start one!</p>
+                <Button className="mt-4" onClick={() => setIsCreateOpen(true)}>
+                  Create Thread
                 </Button>
               </CardContent>
             </Card>
+          ) : (
+            filteredThreads?.map((thread) => (
+              <Card
+                key={thread.id}
+                className="hover:border-primary/50 transition-colors cursor-pointer overflow-hidden"
+              >
+                <Link href={`/forums/thread/${thread.id}`} className="block">
+                  <CardContent className="p-4 space-y-3">
+                    <div className="flex gap-3">
+                      <Avatar className="w-10 h-10 shrink-0">
+                        <AvatarImage src={thread.author?.profileImageUrl || undefined} />
+                        <AvatarFallback>
+                          {thread.author?.username?.[0]?.toUpperCase() || "U"}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-start gap-2 mb-1">
+                          <h3 className="font-semibold truncate text-sm">{thread.title}</h3>
+                          {thread.pinned && <Badge variant="secondary" className="text-xs">Pinned</Badge>}
+                          {thread.locked && <Badge variant="secondary" className="text-xs">Locked</Badge>}
+                        </div>
+                        <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
+                          <span>Started by {thread.author?.username || "Anonymous"}</span>
+                          <span>•</span>
+                          <span>{formatTimeAgo(new Date(thread.createdAt))}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between text-xs text-muted-foreground ml-13">
+                      <span className="font-medium">{thread.content?.substring(0, 100)}...</span>
+                      <div className="flex items-center gap-1">
+                        <MessageSquare className="w-3.5 h-3.5" />
+                        {thread.replyCount || 0}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Link>
+              </Card>
+            ))
           )}
         </div>
       </div>
