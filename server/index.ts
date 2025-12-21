@@ -31,6 +31,7 @@ declare global {
       username?: string;
       discordId?: string;
       userRank?: string;
+      isBanned?: boolean;
       vipTier?: string;
     }
   }

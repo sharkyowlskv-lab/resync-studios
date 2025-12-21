@@ -21,6 +21,7 @@ export const vipTierEnum = pgEnum("vip_tier", [
   "diamond",
   "founders",
   "founders_lifetime",
+  "lifetime",
 ]);
 export const skillLevelEnum = pgEnum("skill_level", [
   "beginner",
@@ -38,29 +39,36 @@ export const gameRoleEnum = pgEnum("game_role", [
   "any",
 ]);
 export const userRankEnum = pgEnum("user_rank", [
-  "member", // Default rank for all users
-  "active_member", // Users who have played games or posted in forums
-  "trusted_member", // Users who have been active for a long time
-  "community_partner", // Users who have partnered with Resync Studios
-  "lifetime", // Users who have purchased Founders Edition Lifetime - grants lifetime access
-  "company_director", // Chief Executive Officer (CEO) & Founder of Resync Studios - cxiqlne
-  "leadership_council", // Members of the Leadership Council
-  "operations_manager", // Operations Managers
-  "staff_administration_director", // RS Trust & Safety Director
-  "team_member", // Users who are part of the Resync Studios team and users who are retired/former staff HR
-  "administrator", // Users who are administrators
-  "senior_administrator", // Users who are senior administrators - Trust & Safety Director typically recieves this rank as well
-  "moderator", // Users who are moderators
-  "community_moderator", // Users who are community moderators - Volunteer Staff typically recieves this rank
-  "community_senior_moderator", // Users who are community senior moderators - Volunteer Staff typically recieves this rank upon promotion
-  "community_developer", // Users who are community developers
-  "bronze_vip", // Users who have purchased Bronze VIP
-  "sapphire_vip", // Users who have purchased Sapphire VIP
-  "diamond_vip", // Users who have purchased Diamond VIP
-  "founders_edition_vip", // Users who have purchased Founders Edition VIP
-  "founders_edition_lifetime", // Users who have purchased Founders Edition Lifetime VIP
-  "customer_relations", // Users who are part of the Customer Relations team
-  "rs_volunteer_staff", // Users who are part of the RS Volunteer Staff team - given to users upon passing the Volunteer Staff application process
+  "banned",
+  "member",
+  "active_member",
+  "trusted_member",
+  "retired_team_member",
+  "community_partner",
+  "company_director",
+  "leadership_council",
+  "operations_manager",
+  "mi_trust_safety_director",
+  "staff_department_director",
+  "team_member",
+  "community_administrator",
+  "community_senior_administrator",
+  "community_moderator",
+  "community_senior_moderator",
+  "community_developer",
+  "bronze_vip",
+  "sapphire_vip",
+  "diamond_vip",
+  "founders_edition_vip",
+  "founders_edition_lifetime",
+  "lifetime",
+  "customer_relations",
+  "rs_volunteer_staff",
+  "rs_trust_safety_team",
+  "staff_internal_affairs",
+  "administrator",
+  "senior_administrator",
+  "moderator",
 ]);
 
 // Session storage table (mandatory for Replit Auth)
@@ -107,10 +115,28 @@ export const users = pgTable("users", {
   // Clan membership
   clanId: varchar("clan_id"),
   clanRole: varchar("clan_role"),
-  // User rank/role - Support for multiple ranks (up to 3)
+  // User rank/role - Support for multiple ranks (up to 20)
   userRank: userRankEnum("user_rank").default("member"), // Primary rank
   secondaryUserRank: userRankEnum("secondary_user_rank").default("member"), // Secondary rank
-  tertiaryUserRank: userRankEnum("tertiary_user_rank").default("member"), // Tertiary rank - automatically assigned to lifetime members
+  thirdUserRank: userRankEnum("third_user_rank").default("member"), // Third rank - Disabled by default until a user has been assigned 3 ranks
+  fourthUserRank: userRankEnum("fourth_user_rank").default("member"), // Fourth rank
+  fifthUserRank: userRankEnum("fifth_user_rank").default("member"), // Fifth rank - Disabled by default until a user has been assigned 5 ranks
+  sixthUserRank: userRankEnum("sixth_user_rank").default("member"), // Sixth rank - Disabled by default until a user has been assigned 6 ranks
+  seventhUserRank: userRankEnum("seventh_user_rank").default("member"), // Seventh rank - Disabled by default until a user has been assigned 7 ranks
+  eighthUserRank: userRankEnum("eighth_user_rank").default("member"), // Eighth rank - Disabled by default until a user has been assigned 8 ranks
+  ninthUserRank: userRankEnum("ninth_user_rank").default("member"), // Ninth rank - Disabled by default until a user has been assigned 9 ranks
+  tenthUserRank: userRankEnum("tenth_user_rank").default("member"), // Tenth rank - Disabled by default until a user has been assigned 10 ranks
+  eleventhUserRank: userRankEnum("eleventh_user_rank").default("member"), // Eleventh rank - Disabled by default until a user has been assigned 11 ranks
+  twelfthUserRank: userRankEnum("twelfth_user_rank").default("member"), // Twelfth rank - Disabled by default until a user has been assigned 12 ranks
+  thirteenthUserRank: userRankEnum("thirteenth_user_rank").default("member"), // Thirteenth rank - Disabled by default until a user has been assigned 13 ranks
+  fourteenthUserRank: userRankEnum("fourteenth_user_rank").default("member"), // Fourteenth rank - Disabled by default until a user has been assigned 14 ranks
+  fifteenthUserRank: userRankEnum("fifteenth_user_rank").default("member"), // Fifteenth rank - Disabled by default until a user has been assigned 15 ranks
+  sixteenthUserRank: userRankEnum("sixteenth_user_rank").default("member"), // Sixteenth rank - Disabled by default until a user has been assigned 16 ranks
+  seventeenthUserRank: userRankEnum("seventeenth_user_rank").default("member"), // Seventeenth rank - Disabled by default until a user has been assigned 17 ranks
+  eighteenthUserRank: userRankEnum("eighteenth_user_rank").default("member"), // Eighteenth rank - Disabled by default until a user has been assigned 18 ranks
+  nineteenthUserRank: userRankEnum("nineteenth_user_rank").default("member"), // Nineteenth rank - Disabled by default until a user has been assigned 19 ranks
+  twentiethUserRank: userRankEnum("twentieth_user_rank").default("member"), // Twentieth rank - Disabled by default until a user has been assigned 20 ranks
+  tertiaryUserRank: userRankEnum("tertiary_user_rank").default("lifetime"), // Tertiary rank - automatically assigned to lifetime members - Does not count towards the 20 rank limit
   // Banning
   isBanned: boolean("is_banned").default(false),
   banReason: text("ban_reason"),

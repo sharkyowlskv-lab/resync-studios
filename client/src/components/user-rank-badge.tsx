@@ -1,45 +1,45 @@
 export const rankConfig = {
   // Lifetime rank (automatic for Founders Edition Lifetime purchase)
   lifetime: {
-    label: "LIFETIME",
+    label: "Lifetime",
     color: "#F59E0B", // Amber/Gold for premium
     badgeUrl: null,
     formatted: true,
   },
-  // Leadership ranks (Verified badge - capitalized blue, formatted username)
+  // Leadership ranks (Verified badge - blue, formatted username)
   company_director: {
-    label: "COMPANY DIRECTOR",
+    label: "Company Director",
     color: "#4B7DF7", // Capitalized blue
     badgeUrl: "https://i.imgur.com/Rqbqq9B.png",
     formatted: true,
   },
   leadership_council: {
-    label: "LEADERSHIP COUNCIL",
+    label: "Leadership Council",
     color: "#4B7DF7",
     badgeUrl: "https://i.imgur.com/Rqbqq9B.png",
     formatted: true,
   },
   operations_manager: {
-    label: "OPERATIONS MANAGER",
+    label: "Operations Manager",
     color: "#4B7DF7",
     badgeUrl: "https://i.imgur.com/Rqbqq9B.png",
     formatted: true,
   },
-  rs_trust_safety_director: {
-    label: "RS TRUST & SAFETY DIRECTOR™",
+  mi_trust_safety_director: {
+    label: "MI Trust & Safety Director™",
     color: "#4B7DF7",
     badgeUrl: "https://i.imgur.com/Rqbqq9B.png",
     formatted: true,
   },
-  // Team ranks (Team badge - capitalized blue, formatted username)
+  // Team ranks (Team badge - blue, formatted username)
   team_member: {
-    label: "TEAM MEMBER",
+    label: "Team Member",
     color: "#4B7DF7",
     badgeUrl: "https://i.imgur.com/rTNSCQt.png",
     formatted: true,
   },
   rs_trust_safety_team: {
-    label: "RS TRUST & SAFETY TEAM",
+    label: "RS Trust & Safety Team",
     color: "#EF4444", // Red for trust & safety
     badgeUrl: "https://i.imgur.com/rTNSCQt.png",
     formatted: true,
@@ -112,7 +112,7 @@ export const rankConfig = {
     badgeUrl: null,
     formatted: true,
   },
-  // VIP ranks (no badge)
+  // VIP ranks (tier-corresponding VIP badge)
   bronze_vip: {
     label: "Bronze VIP",
     color: "#6B7280",
@@ -157,7 +157,7 @@ export const rankConfig = {
     formatted: true,
   },
   banned: {
-    label: "BANNED",
+    label: "Banned",
     color: "#EF4444", // Red for banned
     badgeUrl: null,
     formatted: false,

@@ -34,32 +34,28 @@ export async function initializeDatabase() {
     // Create enum types
     await db.execute(`
       DO $$ BEGIN
-        CREATE TYPE vip_tier AS ENUM ('none', 'bronze', 'sapphire', 'diamond', 'founders', 'founders_edition_lifetime');
+        CREATE TYPE vip_tier AS ENUM ('none', 'bronze', 'sapphire', 'diamond', 'founders', 'founders_edition_lifetime', 'lifetime');
       EXCEPTION WHEN duplicate_object THEN null;
       END $$;
     `);
-    // Update the user_rank enum type to include all the new ranks
-    // All users can be given more than one rank, so we need to update the user_rank enum type to include all the new ranks
-    // We can do this by adding the new ranks to the existing enum type using the ALTER TYPE command
-    // We can also add the new ranks to the existing enum type using the CREATE TYPE command, but this will create a new enum type with the same name, which will cause an error if the enum type already exists
-    // We can use the DO $$ BEGIN ... EXCEPTION WHEN duplicate_object THEN null; END $$; block to prevent this error
-    // Since all users can receive more than one rank, there will be 2 rank options when updating a user rank. This will be as follows: Primary Rank, Secondary Rank (Secondary Rank is Optional - if none provided, secondary rank will be set to member by default. If a secondary rank is provided, it will be set to that rank. If the user is a VIP, the secondary rank will be set to the VIP rank unless a secondary rank is provided, in which case it will be set to that rank. If the user is a staff member, the secondary rank will be set to the staff rank unless a secondary rank is provided, in which case it will be set to that rank.) - The following ranks are available for secondary ranks: member, active_member, trusted_member, community_partner, company_director, leadership_council, operations_manager, staff_administration_director, team_member, administrator, senior_administrator, moderator, community_moderator, community_senior_moderator, community_developer, bronze_vip, sapphire_vip, diamond_vip, founders_edition_vip, founders_edition_lifetime, customer_relations, rs_volunteer_staff - The following ranks are available for primary ranks: member, active_member, trusted_member, community_partner, company_director, leadership_council, operations_manager, staff_administration_director, team_member, administrator, senior_administrator, moderator, community_moderator, community_senior_moderator, community_developer, bronze_vip, sapphire_vip, diamond_vip, founders_edition_vip, founders_edition_lifetime, customer_relations, rs_volunteer_staff - The following ranks are available for VIP ranks: bronze_vip, sapphire_vip, diamond_vip, founders_edition_vip, founders_edition_lifetime - The following ranks are available for staff ranks: administrator, senior_administrator, moderator, community_moderator, community_senior_moderator, community_developer, rs_volunteer_staff - The following ranks are available for community ranks: member, active_member, trusted_member, community_partner, company_director, leadership_council, operations_manager, staff_administration_director, team_member, customer_relations, rs_volunteer_staff
 
     await db.execute(`
       DO $$ BEGIN
         CREATE TYPE user_rank AS ENUM (
+    'banned',
     'member',
     'active_member',
     'trusted_member',
+    'retired_team_member',
     'community_partner',
     'company_director',
     'leadership_council',
     'operations_manager',
-    'staff_administration_director',
+    'mi_trust_safety_director',
+    'staff_department_director',
     'team_member',
-    'administrator',
-    'senior_administrator',
-    'moderator',
+    'community_administrator',
+    'community_senior_administrator',
     'community_moderator',
     'community_senior_moderator',
     'community_developer',
@@ -68,8 +64,14 @@ export async function initializeDatabase() {
     'diamond_vip',
     'founders_edition_vip',
     'founders_edition_lifetime',
+    'lifetime',
     'customer_relations',
-    'rs_volunteer_staff'
+    'rs_volunteer_staff',
+    'rs_trust_safety_team',
+    'staff_internal_affairs',
+    'administrator',
+    'senior_administrator',
+    'moderator'
         );
       EXCEPTION WHEN duplicate_object THEN null;
       END $$;
@@ -117,7 +119,25 @@ export async function initializeDatabase() {
         "clan_id" varchar,
         "clan_role" varchar,
         "user_rank" user_rank DEFAULT 'member',
-        "secondary_user_rank" secondary_user_rank DEFAULT 'active_member',
+        "secondary_user_rank" user_rank DEFAULT 'active_member',
+        "third_user_rank" user_rank DEFAULT 'member',
+        "fourth_user_rank" user_rank DEFAULT 'member',
+        "fifth_user_rank" user_rank DEFAULT 'member',
+        "sixth_user_rank" user_rank DEFAULT 'member',
+        "seventh_user_rank" user_rank DEFAULT 'member',
+        "eighth_user_rank" user_rank DEFAULT 'member',
+        "ninth_user_rank" user_rank DEFAULT 'member',
+        "tenth_user_rank" user_rank DEFAULT 'member',
+        "eleventh_user_rank" user_rank DEFAULT 'member',
+        "twelfth_user_rank" user_rank DEFAULT 'member',
+        "thirteenth_user_rank" user_rank DEFAULT 'member',
+        "fourteenth_user_rank" user_rank DEFAULT 'member',
+        "fifteenth_user_rank" user_rank DEFAULT 'member',
+        "sixteenth_user_rank" user_rank DEFAULT 'member',
+        "seventeenth_user_rank" user_rank DEFAULT 'member',
+        "eighteenth_user_rank" user_rank DEFAULT 'member',
+        "nineteenth_user_rank" user_rank DEFAULT 'member',
+        "twentieth_user_rank" user_rank DEFAULT 'member',
         "is_banned" boolean DEFAULT false,
         "ban_reason" text,
         "banned_at" timestamp,
@@ -273,25 +293,27 @@ export async function initializeDatabase() {
 
     // Chat Messages table
     await db.execute(`
-      CREATE TABLE IF NOT EXISTS "chat_messages" (
-        "id" varchar PRIMARY KEY DEFAULT gen_random_uuid(),
-        "sender_id" varchar NOT NULL,
-        "recipient_id" varchar,
-        "clan_id" varchar,
-        "content" text NOT NULL,
-        "is_read" boolean DEFAULT false,
-        "created_at" timestamp DEFAULT now()
-      CREATE TABLE IF NOT EXISTS "announcements" (
-        "id" varchar PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
-        "title" varchar NOT NULL,
-        "content" text NOT NULL,
-        "type" varchar DEFAULT 'update' NOT NULL,
-        "details" text,
-        "is_published" boolean DEFAULT true,
-        "created_at" timestamp DEFAULT now(),
-        "updated_at" timestamp DEFAULT now()
-      );
-    `);
+    CREATE TABLE IF NOT EXISTS "chat_messages" (
+      "id" varchar PRIMARY KEY DEFAULT gen_random_uuid(),
+      "sender_id" varchar NOT NULL,
+      "recipient_id" varchar,
+      "clan_id" varchar,
+      "content" text NOT NULL,
+      "is_read" boolean DEFAULT false,
+      "created_at" timestamp DEFAULT now()
+    );
+
+    CREATE TABLE IF NOT EXISTS "announcements" (
+      "id" varchar PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+      "title" varchar NOT NULL,
+      "content" text NOT NULL,
+      "type" varchar DEFAULT 'update' NOT NULL,
+      "details" text,
+      "is_published" boolean DEFAULT true,
+      "created_at" timestamp DEFAULT now(),
+      "updated_at" timestamp DEFAULT now()
+    );
+  `);
 
     console.log("✅ Database schema initialized successfully");
   } catch (error) {
