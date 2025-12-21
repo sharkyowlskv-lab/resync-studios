@@ -1,55 +1,135 @@
 # RESYNC Studios Platform - Development Notes
 
 ## Project Overview
-Full-featured gaming community platform for RESYNC Studios with Discord/email authentication, VIP subscriptions, forums, announcements, projects showcase, and admin management.
+Full-featured gaming community platform for RESYNC Studios with Discord/email authentication, VIP subscriptions, forums, blog, store, user profiles, and comprehensive rank system.
 
-## Current Status (December 1, 2025)
+## Current Status (December 21, 2025)
 - ✅ Core authentication (Discord, Email/Password, Roblox linking)
-- ✅ Comprehensive AdminCP with 7 management tabs
+- ✅ Comprehensive user rank system (40+ ranks including staff, leadership, VIP, member types)
+- ✅ Landing page with hero, stats counter, and features grid
+- ✅ Blog functionality (admin-only posting)
+- ✅ Forums with categories and threading
+- ✅ User profiles with redesigned layout and badges
+- ✅ VIP subscription system with 4 tiers
+- ✅ Store page with product catalog and cart
+- ✅ Policies hub aggregating all legal documents
+- ✅ Settings page with account, connections, and billing
+- ✅ Professional navigation header with search
+- ✅ AdminCP with 7 management tabs
 - ✅ Live announcement management system
-- ✅ Manual Payment System (MPS) for VIP with automatic card charging
 - ✅ Support page with FAQ and contact form
-- ✅ Projects showcase page (10 RESYNC Studios projects)
-- ✅ Site offline mode with custom messaging
-- ✅ 16-tier user rank system with badges
-- ✅ Public browsing (unauthenticated) for forums, projects, staff, announcements
-- ✅ Removed LFG and Build features per user request
+- ✅ Projects showcase page
+- ✅ Site offline mode
+- ✅ Staff Directory
+- ✅ Chat system
 
-## Important Notes
-- **Stripe Integration**: Dismissed but needed for payment processing
-  - User needs to complete Stripe integration setup via Replit to enable automatic card charging
-  - Alternative: Provide Stripe API key via environment variable for manual setup
-  - Payment form collects card data (number, expiry, CVC, billing address)
-  - Backend ready to process charges - awaiting Stripe connection
+## Recent Additions (Turn 3-4)
+
+### New Pages Created:
+- **Store Page** (`/store`) - Product catalog with search, filters, cart functionality, 9 sample items
+- **Policies Hub** (`/policies`) - Aggregated policies linking to Privacy, Terms, Guidelines, Community Rules, DMCA, Project Foxtrot Rules
+
+### Profile Redesign:
+- New React Studios-inspired layout
+- Cleaner header with avatar, name, badges, join date
+- Member info card with status, posts, reputation
+- Linked accounts section (Discord/Roblox)
+- About section with bio details
+- Activity stats grid
+
+### Rank System Expansion:
+Added 13+ new ranks to match workflow & position entitlement:
+- **Leadership**: RS Trust & Safety Director (existing)
+- **Team**: RS Trust & Safety Team (new)
+- **Staff**: 
+  - Staff Internal Affairs (new)
+  - Staff Department Director (new)
+  - Appeals Moderator (new)
+  - Community Senior Administrator (new)
+  - Community Administrator (new)
+  - Community Moderator (existing)
+  - Community Senior Moderator (existing)
+  - Community Developer (existing)
+- **Member Types**:
+  - Trusted Member (new - green)
+  - Active Member (new - blue)
+  - Community Partner (new - purple)
+  - Banned (new - red)
+
+### Bug Fixes:
+- Fixed AnimatedCounter prop type mismatch (value → end)
 
 ## Database Schema
-- Users (with VIP tier, Discord/Roblox linking)
+- Users (with VIP tier, Discord/Roblox linking, user ranks)
 - Announcements (live-edited by admins)
-- Payments (tracks card charges with status: processing/success/failed)
+- Payments (tracks card charges with status)
 - Projects (RESYNC Studios projects list)
 - Site Settings (offline mode, custom message)
 - Forums, Clans, Chat, and other community features
+
+## Design System
+- **Color Scheme**: Professional slate (#4B5563) as primary
+- **Theme**: Light mode by default (with dark mode toggle)
+- **Font**: Instrument Sans
+- **Components**: Shadcn UI with Tailwind CSS
+- **Responsiveness**: Mobile-first, responsive across all devices
 
 ## Environment Variables Configured
 - DATABASE_URL
 - DISCORD_CLIENT_ID, DISCORD_CLIENT_SECRET, DISCORD_BOT_TOKEN
 - SESSION_SECRET
-- Stripe integration: PENDING (user dismissed initial setup)
-
-## Next Steps if Continuing
-1. Complete Stripe integration in Replit dashboard OR provide API key
-2. Implement actual Stripe card processing in payment endpoint
-3. Add admin payment management dashboard
-4. Set up webhook handlers for payment confirmation
-5. Clean up old LFG/Builds files from codebase
-
-## Removed Features
-- LFG (Looking for Group) matchmaking
-- Build meta sharing/voting
-- "Project Ventura" → renamed to "Project Foxtrot" everywhere
+- Node environment configured for production
 
 ## User Preferences
-- Manual payment system with direct card charging (not third-party redirects)
+- Light theme as default experience
+- Professional slate color scheme throughout
+- Instrument Sans typography
+- Manual payment system with direct card charging
 - Admin-approved subscription changes only after payment success
 - RS-themed UI throughout
 - Public platform with auth required only for interactive features
+
+## Navigation Structure
+
+### Public Pages (No Auth Required):
+- Landing (`/`)
+- Blog (`/blog`)
+- Forums (`/forums`)
+- Store (`/store`)
+- Policies (`/policies`)
+- Support (`/support`)
+- Projects (`/projects`)
+- Announcements (`/announcements`)
+- Staff Directory (`/team`)
+- Community Rules (`/community-rules`)
+
+### Authenticated Pages:
+- Profile (`/profile`)
+- Settings (`/settings`)
+- VIP (`/vip`)
+- Chat (`/chat`)
+- Clans (`/clans`)
+- Admin (`/admin`)
+- ModCP (`/modcp`)
+- AdminCP (`/admin-cp`)
+
+### Legal/Policy Pages:
+- Privacy (`/privacy`)
+- Terms (`/terms`)
+- Guidelines (`/guidelines`)
+- DMCA (`/dmca`)
+- Project Foxtrot Rules (`/project-foxtrot-rules`)
+- Volunteer Agreement (`/volunteer-agreement`)
+- LEO Guidelines (`/leo-guidelines`)
+
+## Deployment
+- Render-deployed via git integration
+- Production builds from main branch
+- Automatic deployments on git push
+
+## Next Steps if Continuing
+1. Customize store items with real products
+2. Implement actual checkout/payment integration
+3. Add more user profile customization options
+4. Enhance forum features (search, tagging, reputation)
+5. Analytics and user engagement tracking

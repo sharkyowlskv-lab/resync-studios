@@ -24,28 +24,46 @@ export const rankConfig = {
     badgeUrl: "https://i.imgur.com/Rqbqq9B.png",
     formatted: true,
   },
-  // Team rank (Team badge - capitalized blue, formatted username)
+  // Team ranks (Team badge - capitalized blue, formatted username)
   team_member: {
     label: "TEAM MEMBER",
     color: "#4B7DF7",
     badgeUrl: "https://i.imgur.com/rTNSCQt.png",
     formatted: true,
   },
-  // Staff ranks (no badge)
-  administrator: {
-    label: "Administrator",
+  rs_trust_safety_team: {
+    label: "RS TRUST & SAFETY TEAM",
+    color: "#4B7DF7",
+    badgeUrl: "https://i.imgur.com/rTNSCQt.png",
+    formatted: true,
+  },
+  // Staff ranks (no badge, formatted)
+  staff_internal_affairs: {
+    label: "Staff Internal Affairs",
     color: "#6B7280",
     badgeUrl: null,
     formatted: true,
   },
-  senior_administrator: {
-    label: "Senior Administrator",
+  staff_department_director: {
+    label: "Staff Department Director",
     color: "#6B7280",
     badgeUrl: null,
     formatted: true,
   },
-  moderator: {
-    label: "Moderator",
+  appeals_moderator: {
+    label: "Appeals Moderator",
+    color: "#6B7280",
+    badgeUrl: null,
+    formatted: true,
+  },
+  community_senior_administrator: {
+    label: "Community Senior Administrator",
+    color: "#6B7280",
+    badgeUrl: null,
+    formatted: true,
+  },
+  community_administrator: {
+    label: "Community Administrator",
     color: "#6B7280",
     badgeUrl: null,
     formatted: true,
@@ -64,6 +82,25 @@ export const rankConfig = {
   },
   community_developer: {
     label: "Community Developer",
+    color: "#6B7280",
+    badgeUrl: null,
+    formatted: true,
+  },
+  // Legacy staff ranks (kept for backward compatibility)
+  administrator: {
+    label: "Administrator",
+    color: "#6B7280",
+    badgeUrl: null,
+    formatted: true,
+  },
+  senior_administrator: {
+    label: "Senior Administrator",
+    color: "#6B7280",
+    badgeUrl: null,
+    formatted: true,
+  },
+  moderator: {
+    label: "Moderator",
     color: "#6B7280",
     badgeUrl: null,
     formatted: true,
@@ -92,6 +129,31 @@ export const rankConfig = {
     color: "#6B7280",
     badgeUrl: null,
     formatted: true,
+  },
+  // Member types & statuses
+  trusted_member: {
+    label: "Trusted Member",
+    color: "#10B981", // Green for trusted
+    badgeUrl: null,
+    formatted: true,
+  },
+  active_member: {
+    label: "Active Member",
+    color: "#3B82F6", // Blue for active
+    badgeUrl: null,
+    formatted: false,
+  },
+  community_partner: {
+    label: "Community Partner",
+    color: "#8B5CF6", // Purple for partner
+    badgeUrl: null,
+    formatted: true,
+  },
+  banned: {
+    label: "BANNED",
+    color: "#EF4444", // Red for banned
+    badgeUrl: null,
+    formatted: false,
   },
   // Sub-groups
   customer_relations: {
