@@ -40,7 +40,7 @@ export const rankConfig = {
   },
   rs_trust_safety_team: {
     label: "RS TRUST & SAFETY TEAM",
-    color: "#4B7DF7",
+    color: "#EF4444", // Red for trust & safety
     badgeUrl: "https://i.imgur.com/rTNSCQt.png",
     formatted: true,
   },
@@ -53,37 +53,37 @@ export const rankConfig = {
   },
   staff_department_director: {
     label: "Staff Department Director",
-    color: "#6B7280",
+    color: "#A855F7", // Purple for department director
     badgeUrl: null,
     formatted: true,
   },
   appeals_moderator: {
     label: "Appeals Moderator",
-    color: "#6B7280",
+    color: "#06B6D4", // Light cyan for appeals moderator
     badgeUrl: null,
     formatted: true,
   },
   community_senior_administrator: {
     label: "Community Senior Administrator",
-    color: "#6B7280",
+    color: "#EF4444", // Red for community admin
     badgeUrl: null,
     formatted: true,
   },
   community_administrator: {
     label: "Community Administrator",
-    color: "#6B7280",
+    color: "#EF4444", // Red for community admin
     badgeUrl: null,
     formatted: true,
   },
   community_moderator: {
     label: "Community Moderator",
-    color: "#6B7280",
+    color: "#0D9488", // Dark teal-green for moderators
     badgeUrl: null,
     formatted: true,
   },
   community_senior_moderator: {
     label: "Community Senior Moderator",
-    color: "#6B7280",
+    color: "#0D9488", // Dark teal-green for senior moderators
     badgeUrl: null,
     formatted: true,
   },
