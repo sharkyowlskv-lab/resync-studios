@@ -10,12 +10,7 @@ import { VipBadge } from "@/components/vip-badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { UserRankBadge, FormattedUsername } from "@/components/user-rank-badge";
 import { Link } from "wouter";
-import {
-  Calendar,
-  Edit,
-  CheckCircle,
-  Lock,
-} from "lucide-react";
+import { Calendar, Edit, CheckCircle, Lock } from "lucide-react";
 import { SiDiscord, SiRoblox } from "react-icons/si";
 import type { User } from "@shared/schema";
 
@@ -27,15 +22,16 @@ export default function Profile() {
   const { user: currentUser, isLoading: currentUserLoading } = useAuth();
   const [params] = useState<ProfileParams>({});
   const location = useLocation()[0];
-  
+
   // Extract user ID from URL if viewing another user's profile
   const userId = params.id || currentUser?.id;
-  
+
   // If viewing own profile, use current user data
   // In a real app, you'd fetch the profile data from an API endpoint
-  const user = currentUser && (!params.id || params.id === currentUser.id) 
-    ? currentUser 
-    : null;
+  const user =
+    currentUser && (!params.id || params.id === currentUser.id)
+      ? currentUser
+      : null;
 
   const isLoading = currentUserLoading;
 
@@ -56,7 +52,10 @@ export default function Profile() {
     return (
       <div className="text-center py-12 space-y-4">
         <h1 className="text-2xl font-bold">User Not Found</h1>
-        <p className="text-muted-foreground">The user you're looking for doesn't exist or you don't have permission to view their profile.</p>
+        <p className="text-muted-foreground">
+          The user you're looking for doesn't exist or you don't have permission
+          to view their profile.
+        </p>
         <Button asChild>
           <Link href="/forums">Back to Forums</Link>
         </Button>
@@ -90,25 +89,28 @@ export default function Profile() {
             {/* Avatar and Basic Info */}
             <div className="flex gap-6">
               <Avatar className="w-24 h-24 border-2 border-primary shrink-0">
-                <AvatarImage 
-                  src={user.profileImageUrl || undefined} 
+                <AvatarImage
+                  src={user.profileImageUrl || undefined}
                   alt={getDisplayName()}
                   className="object-cover"
                 />
-                <AvatarFallback className="text-2xl font-bold">{getInitials()}</AvatarFallback>
+                <AvatarFallback className="text-2xl font-bold">
+                  {getInitials()}
+                </AvatarFallback>
               </Avatar>
               <div className="flex-1">
                 <h1 className="text-3xl font-bold mb-2">{getDisplayName()}</h1>
-                
+
                 {/* Badges Row */}
                 <div className="flex flex-wrap gap-2 mb-3">
-                  {user.userRank && user.userRank !== 'member' && (
+                  {user.userRank && user.userRank !== "member" && (
                     <UserRankBadge rank={user.userRank} size="sm" />
                   )}
-                  {user.secondaryUserRank && user.secondaryUserRank !== 'member' && (
-                    <UserRankBadge rank={user.secondaryUserRank} size="sm" />
-                  )}
-                  {user.vipTier && user.vipTier !== 'none' && (
+                  {user.secondaryUserRank &&
+                    user.secondaryUserRank !== "member" && (
+                      <UserRankBadge rank={user.secondaryUserRank} size="sm" />
+                    )}
+                  {user.vipTier && user.vipTier !== "none" && (
                     <div className="flex items-center">
                       <VipBadge tier={user.vipTier as any} />
                     </div>
@@ -119,18 +121,24 @@ export default function Profile() {
                 <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
                   <div className="flex items-center gap-1">
                     <Calendar className="w-4 h-4" />
-                    Member since {user.createdAt ? new Date(user.createdAt).toLocaleDateString('en-US', { 
-                      month: 'short',
-                      day: 'numeric',
-                      year: 'numeric'
-                    }) : 'Unknown'}
+                    Member since{" "}
+                    {user.createdAt
+                      ? new Date(user.createdAt).toLocaleDateString("en-US", {
+                          month: "short",
+                          day: "numeric",
+                          year: "numeric",
+                        })
+                      : "Unknown"}
                   </div>
                   <div>
-                    Joined {user.createdAt ? new Date(user.createdAt).toLocaleDateString('en-US', { 
-                      month: 'long',
-                      day: 'numeric',
-                      year: 'numeric'
-                    }) : 'Unknown'}
+                    Joined{" "}
+                    {user.createdAt
+                      ? new Date(user.createdAt).toLocaleDateString("en-US", {
+                          month: "long",
+                          day: "numeric",
+                          year: "numeric",
+                        })
+                      : "Unknown"}
                   </div>
                 </div>
 
@@ -157,7 +165,9 @@ export default function Profile() {
           </CardHeader>
           <CardContent className="space-y-4">
             {user.bio && (
-              <p className="text-sm text-muted-foreground whitespace-pre-wrap">{user.bio}</p>
+              <p className="text-sm text-muted-foreground whitespace-pre-wrap">
+                {user.bio}
+              </p>
             )}
             {user.discordUsername && (
               <div className="text-sm">
@@ -179,28 +189,38 @@ export default function Profile() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <p className="text-xs font-semibold text-muted-foreground uppercase mb-1">Status</p>
+                <p className="text-xs font-semibold text-muted-foreground uppercase mb-1">
+                  Status
+                </p>
                 <Badge variant="outline" className="gap-1">
                   <span className="inline-block w-2 h-2 rounded-full bg-green-500"></span>
                   Online
                 </Badge>
               </div>
               <div>
-                <p className="text-xs font-semibold text-muted-foreground uppercase mb-1">Member since</p>
+                <p className="text-xs font-semibold text-muted-foreground uppercase mb-1">
+                  Member since
+                </p>
                 <p className="text-sm">
-                  {user.createdAt ? new Date(user.createdAt).toLocaleDateString('en-US', { 
-                    month: 'short', 
-                    day: 'numeric',
-                    year: 'numeric'
-                  }) : 'Unknown'}
+                  {user.createdAt
+                    ? new Date(user.createdAt).toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric",
+                      })
+                    : "Unknown"}
                 </p>
               </div>
               <div>
-                <p className="text-xs font-semibold text-muted-foreground uppercase mb-1">Posts</p>
+                <p className="text-xs font-semibold text-muted-foreground uppercase mb-1">
+                  Posts
+                </p>
                 <p className="text-sm">{user.totalPosts || 0}</p>
               </div>
               <div>
-                <p className="text-xs font-semibold text-muted-foreground uppercase mb-1">Reputation</p>
+                <p className="text-xs font-semibold text-muted-foreground uppercase mb-1">
+                  Reputation
+                </p>
                 <p className="text-sm">{user.reputation || 0}</p>
               </div>
             </CardContent>
@@ -221,7 +241,12 @@ export default function Profile() {
                   <CheckCircle className="w-4 h-4 text-green-500" />
                 ) : (
                   !params.id && (
-                    <Button variant="ghost" size="sm" asChild className="h-auto p-0 text-xs">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      asChild
+                      className="h-auto p-0 text-xs"
+                    >
                       <Link href="/settings?tab=connections">Link</Link>
                     </Button>
                   )
@@ -236,7 +261,12 @@ export default function Profile() {
                   <CheckCircle className="w-4 h-4 text-green-500" />
                 ) : (
                   !params.id && (
-                    <Button variant="ghost" size="sm" asChild className="h-auto p-0 text-xs">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      asChild
+                      className="h-auto p-0 text-xs"
+                    >
                       <Link href="/settings?tab=connections">Link</Link>
                     </Button>
                   )
@@ -259,7 +289,9 @@ export default function Profile() {
             <Card className="text-center">
               <CardContent className="p-4">
                 <p className="text-2xl font-bold">{user.gamesPlayed || 0}</p>
-                <p className="text-xs text-muted-foreground mt-1">Games Played</p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Games Played
+                </p>
               </CardContent>
             </Card>
             <Card className="text-center">
@@ -277,17 +309,25 @@ export default function Profile() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <p className="text-xs font-semibold text-muted-foreground uppercase mb-2">Username</p>
-                <p className="text-sm font-medium">@{user.username || 'unknown'}</p>
+                <p className="text-xs font-semibold text-muted-foreground uppercase mb-2">
+                  Username
+                </p>
+                <p className="text-sm font-medium">
+                  @{user.username || "unknown"}
+                </p>
               </div>
               {user.bio && (
                 <div>
-                  <p className="text-xs font-semibold text-muted-foreground uppercase mb-2">Bio</p>
+                  <p className="text-xs font-semibold text-muted-foreground uppercase mb-2">
+                    Bio
+                  </p>
                   <p className="text-sm text-muted-foreground">{user.bio}</p>
                 </div>
               )}
               <div>
-                <p className="text-xs font-semibold text-muted-foreground uppercase mb-2">Member Status</p>
+                <p className="text-xs font-semibold text-muted-foreground uppercase mb-2">
+                  Member Status
+                </p>
                 <div className="flex items-center gap-2">
                   <span className="inline-block w-2 h-2 rounded-full bg-green-500"></span>
                   <span className="text-sm">Active Member</span>

@@ -103,7 +103,7 @@ export default function Landing() {
           <div key={stat.label} className="text-center">
             <div className="text-3xl sm:text-4xl font-bold mb-2">
               <AnimatedCounter
-                value={stat.value}
+                end={stat.value}
                 suffix={stat.suffix}
                 duration={2000}
               />
@@ -155,7 +155,8 @@ export default function Landing() {
             Ready to join our community?
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Join thousands of community members at RESYNC Studios™ experience never.
+            Join thousands of community members at RESYNC Studios™ to
+            experience roleplay & realism like never before!
           </p>
         </div>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
