@@ -770,9 +770,14 @@ export async function registerRoutes(
       })(req, res, next);
     },
     (req, res) => {
-      // In production, we might need to handle the domain differently
-      // but for now, we redirect to /dashboard
-      res.redirect("/dashboard");
+      // Establish session explicitly
+      req.login(req.user, (err) => {
+        if (err) {
+          console.error("❌ Passport login error:", err);
+          return res.redirect("/login?error=session_error");
+        }
+        res.redirect("/dashboard");
+      });
     },
   );
 
