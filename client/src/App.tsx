@@ -130,6 +130,12 @@ function Router() {
     <PublicLayout>
       <Switch>
         <Route path="/" component={Landing} />
+        <Route path="/api/auth/discord/callback" component={() => {
+          // This route should be handled by the backend, but we add it to the frontend
+          // to prevent 404s if the browser tries to render it before the redirect
+          window.location.href = "/dashboard";
+          return null;
+        }} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />

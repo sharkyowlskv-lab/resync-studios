@@ -7,7 +7,9 @@ const DISCORD_CLIENT_ID = process.env.DISCORD_CLIENT_ID;
 const DISCORD_CLIENT_SECRET = process.env.DISCORD_CLIENT_SECRET;
 const CALLBACK_URL =
   process.env.DISCORD_CALLBACK_URL ||
-  "https://resyncstudios.com/api/auth/discord/callback";
+  (process.env.NODE_ENV === "production" 
+    ? "https://resyncstudios.com/api/auth/discord/callback"
+    : "http://0.0.0.0:5000/api/auth/discord/callback");
 
 console.log(`🔐 Discord OAuth Callback URL: ${CALLBACK_URL}`);
 

@@ -770,6 +770,8 @@ export async function registerRoutes(
       })(req, res, next);
     },
     (req, res) => {
+      // In production, we might need to handle the domain differently
+      // but for now, we redirect to /dashboard
       res.redirect("/dashboard");
     },
   );
