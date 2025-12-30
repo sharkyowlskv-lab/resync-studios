@@ -1,0 +1,84 @@
+==> Your service is live 🎉
+==> 
+==> ///////////////////////////////////////////////////////////
+==> 
+==> Available at your primary URL https://resyncstudios.com + 2 more domains
+==> 
+==> ///////////////////////////////////////////////////////////
+🔍 Auth check - isAuth: false user: undefined sessionID: vy0VPWkithb2gSBP1g9EWH5hn1BKRkfL
+3:33:27 AM [express] GET /api/auth/user 401 in 147ms :: {"message":"401: Not authenticated. Unauthorized."}
+3:33:32 AM [express] GET /api/login 302 in 146ms
+error: column "tertiary_user_rank" does not exist
+    at /opt/render/project/src/dist/index.cjs:283:46463
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async kV.execute (/opt/render/project/src/dist/index.cjs:283:71449)
+    at async cj.getUserByDiscordId (/opt/render/project/src/dist/index.cjs:532:453)
+    at async pQ._verify (/opt/render/project/src/dist/index.cjs:532:8804)
+🔍 Auth check - isAuth: false user: undefined sessionID: LCEL-onCRHT8DIPYgLxHsgmm8bM3zScu
+3:34:04 AM [express] GET /api/auth/user 401 in 145ms :: {"message":"401: Not authenticated. Unauthorized."}
+🔑 Login request received for email: isaac632165@gmail.com
+❌ Error in login: column "tertiary_user_rank" does not exist
+Full error: error: column "tertiary_user_rank" does not exist
+    at /opt/render/project/src/dist/index.cjs:283:46463
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async kV.execute (/opt/render/project/src/dist/index.cjs:283:71449)
+    at async cj.getUserByEmail (/opt/render/project/src/dist/index.cjs:532:265)
+    at async /opt/render/project/src/dist/index.cjs:532:13006 {
+  length: 119,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '392',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3716',
+  routine: 'errorMissingColumn'
+}
+3:34:22 AM [express] POST /api/auth/email-login 500 in 727ms :: {"message":"Failed to login"}
+🔍 Auth check - isAuth: false user: undefined sessionID: LCEL-onCRHT8DIPYgLxHsgmm8bM3zScu
+3:34:39 AM [express] GET /api/auth/user 401 in 152ms :: {"message":"401: Not authenticated. Unauthorized."}
+📝 Signup request received for email: cxiqlne@resyncstudios.com
+❌ Error in signup: column "tertiary_user_rank" does not exist
+3:35:03 AM [express] POST /api/auth/signup 500 in 733ms :: {"message":"Failed to create account"}
+🔍 Auth check - isAuth: false user: undefined sessionID: vy0VPWkithb2gSBP1g9EWH5hn1BKRkfL
+3:35:25 AM [express] GET /api/auth/user 401 in 146ms :: {"message":"401: Not authenticated. Unauthorized."}
+📝 Signup request received for email: cxiqlne@resyncstudios.com
+❌ Error in signup: column "tertiary_user_rank" does not exist
+3:35:43 AM [express] POST /api/auth/signup 500 in 725ms :: {"message":"Failed to create account"}
+🔍 Auth check - isAuth: false user: undefined sessionID: VFz5eZFtkNyxD5dqNh5qIm7gA6sSzRXj
+3:36:04 AM [express] GET /api/auth/user 401 in 144ms :: {"message":"401: Not authenticated. Unauthorized."}
+🔑 Login request received for email: cxiqlne@resyncstudios.com
+❌ Error in login: column "tertiary_user_rank" does not exist
+Full error: error: column "tertiary_user_rank" does not exist
+    at /opt/render/project/src/dist/index.cjs:283:46463
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async kV.execute (/opt/render/project/src/dist/index.cjs:283:71449)
+    at async cj.getUserByEmail (/opt/render/project/src/dist/index.cjs:532:265)
+    at async /opt/render/project/src/dist/index.cjs:532:13006 {
+  length: 119,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '392',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3716',
+  routine: 'errorMissingColumn'
+}
+3:36:08 AM [express] POST /api/auth/email-login 500 in 290ms :: {"message":"Failed to login"}
