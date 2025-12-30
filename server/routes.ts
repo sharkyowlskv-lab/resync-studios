@@ -173,11 +173,10 @@ export async function registerRoutes(
         return res.status(404).json({ message: "User not found" });
       }
 
-      // Only allow setting password for users with @sharkyinteractive.com or @metrointeractive.com emails
+      // Only allow setting password for users with @resyncstudios.com emails
       if (
         !user.email ||
-        (!user.email.endsWith("@sharkyinteractive.com") &&
-          !user.email.endsWith("@metrointeractive.com"))
+        !user.email.endsWith("@resyncstudios.com")
       ) {
         return res
           .status(403)

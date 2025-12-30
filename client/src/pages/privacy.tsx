@@ -215,7 +215,7 @@ export default function PrivacyPolicy() {
               <CardTitle className="text-base">How to Exercise Your Rights</CardTitle>
             </CardHeader>
             <CardContent className="text-sm text-muted-foreground">
-              Contact us at support@metrointeractive.com. We may verify your identity before processing requests 
+              Contact us at support@resyncstudios.com. We may verify your identity before processing requests 
               to protect your information from fraudulent requests.
             </CardContent>
           </Card>
@@ -309,8 +309,8 @@ export default function PrivacyPolicy() {
             </CardHeader>
             <CardContent className="text-sm text-muted-foreground space-y-2">
               <p>If you have questions or concerns about this Privacy Policy, contact us at:</p>
-              <p className="font-mono text-xs">support@metrointeractive.com</p>
-              <p className="text-xs">Metro Interactive, PO Box 515381 PMB 238696, Los Angeles, California, 90051-6681</p>
+              <p className="font-mono text-xs">support@resyncstudios.com</p>
+              <p className="text-xs">RESYNC Studios, Los Angeles, California</p>
             </CardContent>
           </Card>
         </div>

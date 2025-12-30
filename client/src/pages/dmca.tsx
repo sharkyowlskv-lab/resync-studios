@@ -108,7 +108,7 @@ export default function DMCAPolicy() {
               <div>
                 <p className="font-semibold text-foreground mb-1">Direct Contact with Metro Interactive</p>
                 <p>
-                  Contact us at <span className="font-mono text-primary">support@metrointeractive.com</span> or by visiting the admin profile with details about:
+                  Contact us at <span className="font-mono text-primary">support@resyncstudios.com</span> or by visiting the admin profile with details about:
                 </p>
                 <ul className="list-disc list-inside space-y-1 ml-2 mt-2">
                   <li>Your game details</li>
@@ -222,7 +222,7 @@ export default function DMCAPolicy() {
                 If you have questions about our DMCA policy or need assistance:
               </p>
               <p className="text-sm">
-                <span className="font-semibold">Email:</span> <span className="font-mono">support@metrointeractive.com</span>
+                <span className="font-semibold">Email:</span> <span className="font-mono">support@resyncstudios.com</span>
               </p>
               <p className="text-sm mt-2">
                 <span className="font-semibold">Admin Contact:</span> Visit the admin profile and send a message with your inquiry
