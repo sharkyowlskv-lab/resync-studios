@@ -21,7 +21,7 @@ export default function Login() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/auth/user"] });
-      navigate("/");
+      navigate("/dashboard");
     },
     onError: (err: any) => {
       setError(err.message || "Invalid email or password. Please try again.");

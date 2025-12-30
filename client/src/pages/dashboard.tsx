@@ -16,7 +16,15 @@ import {
 import { SiDiscord, SiRoblox } from "react-icons/si";
 
 export default function Dashboard() {
-  const { user } = useAuth();
+  const { user, isLoading } = useAuth();
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
 
   const quickActions = [
     { icon: Target, label: "Find Group", href: "/lfg", color: "text-chart-1" },

@@ -130,6 +130,7 @@ function Router() {
     <PublicLayout>
       <Switch>
         <Route path="/" component={Landing} />
+        <Route path="/dashboard" component={Dashboard} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/blog" component={Blog} />

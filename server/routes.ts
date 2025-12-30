@@ -31,7 +31,7 @@ export async function registerRoutes(
   // Seed default forum categories if none exist
   try {
     const existingCategories = await storage.getForumCategories();
-    if (existingCategories.length === 0) {
+    if (!existingCategories || existingCategories.length === 0) {
       console.log("📂 Creating default forum categories...");
       const defaultCategories = [
         {
@@ -763,14 +763,14 @@ export async function registerRoutes(
   });
 
   app.get(
-    "/auth/discord/callback",
+    "/api/auth/discord/callback",
     (req, res, next) => {
       passport.authenticate("discord", {
-        failureRedirect: "/?error=discord_auth_failed",
+        failureRedirect: "/login?error=discord_auth_failed",
       })(req, res, next);
     },
     (req, res) => {
-      res.redirect("/");
+      res.redirect("/dashboard");
     },
   );
 
