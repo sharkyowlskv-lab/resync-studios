@@ -117,26 +117,8 @@ export const users = pgTable("users", {
   clanRole: varchar("clan_role"),
   // User rank/role - Support for multiple ranks (up to 20)
   userRank: userRankEnum("user_rank").default("member"), // Primary rank
-  secondaryUserRank: userRankEnum("secondary_user_rank").default("member"), // Secondary rank
-  thirdUserRank: userRankEnum("third_user_rank").default("member"), // Third rank - Disabled by default until a user has been assigned 3 ranks
-  fourthUserRank: userRankEnum("fourth_user_rank").default("member"), // Fourth rank
-  fifthUserRank: userRankEnum("fifth_user_rank").default("member"), // Fifth rank - Disabled by default until a user has been assigned 5 ranks
-  sixthUserRank: userRankEnum("sixth_user_rank").default("member"), // Sixth rank - Disabled by default until a user has been assigned 6 ranks
-  seventhUserRank: userRankEnum("seventh_user_rank").default("member"), // Seventh rank - Disabled by default until a user has been assigned 7 ranks
-  eighthUserRank: userRankEnum("eighth_user_rank").default("member"), // Eighth rank - Disabled by default until a user has been assigned 8 ranks
-  ninthUserRank: userRankEnum("ninth_user_rank").default("member"), // Ninth rank - Disabled by default until a user has been assigned 9 ranks
-  tenthUserRank: userRankEnum("tenth_user_rank").default("member"), // Tenth rank - Disabled by default until a user has been assigned 10 ranks
-  eleventhUserRank: userRankEnum("eleventh_user_rank").default("member"), // Eleventh rank - Disabled by default until a user has been assigned 11 ranks
-  twelfthUserRank: userRankEnum("twelfth_user_rank").default("member"), // Twelfth rank - Disabled by default until a user has been assigned 12 ranks
-  thirteenthUserRank: userRankEnum("thirteenth_user_rank").default("member"), // Thirteenth rank - Disabled by default until a user has been assigned 13 ranks
-  fourteenthUserRank: userRankEnum("fourteenth_user_rank").default("member"), // Fourteenth rank - Disabled by default until a user has been assigned 14 ranks
-  fifteenthUserRank: userRankEnum("fifteenth_user_rank").default("member"), // Fifteenth rank - Disabled by default until a user has been assigned 15 ranks
-  sixteenthUserRank: userRankEnum("sixteenth_user_rank").default("member"), // Sixteenth rank - Disabled by default until a user has been assigned 16 ranks
-  seventeenthUserRank: userRankEnum("seventeenth_user_rank").default("member"), // Seventeenth rank - Disabled by default until a user has been assigned 17 ranks
-  eighteenthUserRank: userRankEnum("eighteenth_user_rank").default("member"), // Eighteenth rank - Disabled by default until a user has been assigned 18 ranks
-  nineteenthUserRank: userRankEnum("nineteenth_user_rank").default("member"), // Nineteenth rank - Disabled by default until a user has been assigned 19 ranks
-  twentiethUserRank: userRankEnum("twentieth_user_rank").default("member"), // Twentieth rank - Disabled by default until a user has been assigned 20 ranks
-  tertiaryUserRank: userRankEnum("tertiary_user_rank").default("lifetime"), // Tertiary rank - automatically assigned to lifetime members - Does not count towards the 20 rank limit
+
+  tertiaryUserRank: userRankEnum("tertiary_user_rank").default("lifetime"), // Tertiary rank - automatically assigned to lifetime members
   // Banning
   isBanned: boolean("is_banned").default(false),
   banReason: text("ban_reason"),
