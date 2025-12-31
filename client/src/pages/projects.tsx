@@ -11,81 +11,88 @@ import { Gamepad2 } from "lucide-react";
 const RS_PROJECTS = [
   {
     name: "Los Angeles, California: Reimagined",
-    projectManager: "cxiqlne",
+    projectManager: "Project Manager: cxiqlne",
     game: "ROBLOX",
     status: "active",
     location: "Los Angeles, CA",
   },
   {
+    name: "Sandy Shores",
+    projectManager: "Project Manager: cxiqlne, silentdirective.",
+    game: "ROBLOX",
+    status: "active",
+    location: "San Andreas",
+  },
+  {
     name: "Perris, California: Reimagined",
-    projectManager: "cxiqlne, silentdirective.",
+    projectManager: "Project Manager: cxiqlne, silentdirective.",
     game: "ROBLOX",
     status: "discontinued",
     location: "Perris, CA",
     reasonfordiscontinuation:
-      "The project was discontinued after multiple development complications and unsupported systems.",
+      "Reason for Discontinuation: The project was discontinued after multiple development complications and unsupported systems.",
   },
   {
     name: "Fort Loredo: Reimagined",
-    projectManager: "cxiqlne",
+    projectManager: "Project Manager: cxiqlne",
     game: "ROBLOX",
     status: "development",
     location: "Loredo, TX",
   },
   {
     name: "Project Foxtrot",
-    projectManager: "cxiqlne, silentdirective.",
+    projectManager: "Project Manager: cxiqlne, silentdirective.",
     game: "ROBLOX",
     status: "development",
     location: "Rosewood County, State of Foxtrot",
   },
   {
     name: "The Highville Project",
-    projectOverseer: "cxiqlne",
-    projectManager: "Reni",
+    projectOverseer: "Project Overseer: cxiqlne",
+    projectManager: "Project Manager: Reni",
     game: "ROBLOX",
     status: "active",
     location: "Highfield",
     reasonfordiscontinuation:
-      "The project is no longer supported under Resync Studios ― formal ownership taken over by Reni",
+      "Reason for Discontinuation: The project is no longer supported under Resync Studios ― formal ownership taken over by Reni",
   },
   {
     name: "Australian Defence Force Academy",
-    projectManager: "cxiqlne, Reni",
+    projectManager: "Project Manager: cxiqlne, Reni",
     game: "ROBLOX",
     status: "discontinued",
     location: "Australia",
     reasonfordiscontinuation:
-      "While ADFA was intended to be successful, it proved unreliable overtime due to many factors.",
+      "Reason for Discontinuation: While ADFA was intended to be successful, it proved unreliable overtime due to many factors.",
   },
   {
     name: "State of Bartow",
-    projectManager: "cxiqlne, LA5TIC",
+    projectManager: "Project Manager: cxiqlne, LA5TIC",
     game: "ROBLOX",
     status: "discontinued",
     location: "Bartow, FL",
     reasonfordiscontinuation:
-      "State of Bartow was discontinued after former leadership was found in violation of local law and the project was proving to be a liability to Resync Studios.",
+      "Reason for Discontinuation: State of Bartow was discontinued after former leadership was found in violation of local law and the project was proving to be a liability to Resync Studios.",
   },
   {
     name: "State of Florida, Miami Dade County",
-    projectManager: "cxiqlne, LA5TIC",
+    projectManager: "Project Manager: cxiqlne, LA5TIC",
     game: "ROBLOX",
     status: "discontinued",
     location: "Miami, FL",
     reasonfordiscontinuation:
-      "The project was taken down permanently due to leadership complications.",
+      "Reason for Discontinuation: The project was taken down permanently due to leadership complications.",
   },
   {
     name: "San Ramon, California",
-    projectManager: "cxiqlne",
+    projectManager: "Project Manager: cxiqlne",
     game: "ROBLOX",
     status: "development",
     location: "San Ramon, CA",
   },
   {
     name: "DarkModRP Systems",
-    projectManager: "cxiqlne",
+    projectManager: "Project Manager: cxiqlne",
     game: "FiveM",
     status: "development",
     location: "Experimental",
@@ -202,11 +209,11 @@ export default function Projects() {
                           {project.projectManager}
                         </CardTitle>
                         <CardDescription>{project.location}</CardDescription>
+                        <CardDescription>
+                          {project.reasonfordiscontinuation}
+                        </CardDescription>
                       </div>
                       <Badge variant="outline">{project.game}</Badge>
-                      <Badge variant="outline">
-                        {project.reasonfordiscontinuation}
-                      </Badge>
                     </div>
                   </CardHeader>
                 </Card>
