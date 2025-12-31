@@ -150,7 +150,7 @@ const FAQ_ITEMS = [
 
 // Support page migrated to Freshdesk redirect
 export default function Support() {
-  const categories = [...new Set(FAQ_ITEMS.map((item) => item.category))];
+  const categories = Array.from(new Set(FAQ_ITEMS.map((item) => item.category)));
   const [activeCategory, setActiveCategory] = useState("Account");
   const filtered = FAQ_ITEMS.filter((item) => item.category === activeCategory);
 
