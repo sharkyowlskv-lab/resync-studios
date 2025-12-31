@@ -167,7 +167,7 @@ export default function Landing() {
             </Link>
           </Button>
           <Button size="lg" variant="outline" asChild>
-            <Link href="/support">Contact Support</Link>
+            <a href="https://support.resyncstudios.com" target="_blank" rel="noopener noreferrer">Contact Support</a>
           </Button>
         </div>
       </section>
