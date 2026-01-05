@@ -52,8 +52,8 @@ app.use(
   session({
     store: sessionStore,
     secret: process.env.SESSION_SECRET || "your-secret-key",
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
     cookie: {
       secure: false, // Changed back to false for Replit proxy compatibility
       httpOnly: true,

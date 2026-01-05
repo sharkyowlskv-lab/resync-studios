@@ -82,28 +82,18 @@ export async function registerRoutes(
 
   // Auth routes
   app.get("/api/auth/user", async (req, res) => {
-    console.log(
-      "🔍 Auth check - isAuth:",
-      (req as any).isAuthenticated?.(),
-      "user:",
-      req.user?.id,
-      "sessionID:",
-      req.sessionID,
-    );
     if (!(req as any).isAuthenticated?.() || !req.user) {
       return res
         .status(401)
         .json({ message: "401: Not authenticated. Unauthorized." });
     }
     try {
-      // Fetch fresh user data from database instead of using session cache
       const freshUser = await storage.getUser((req.user as any).id);
       if (!freshUser) {
         return res.status(401).json({ message: "User not found" });
       }
       res.json(freshUser);
     } catch (error) {
-      console.error("Error fetching user data:", error);
       res.status(500).json({ message: "Failed to fetch user data" });
     }
   });
