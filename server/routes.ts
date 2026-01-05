@@ -207,25 +207,14 @@ export async function registerRoutes(
         return res.status(401).json({ message: "Invalid email or password" });
       }
 
-      // Use passport's req.login() to properly establish session
-      req.login(user, (err) => {
-        if (err) {
-          console.error("❌ Failed to establish session:", err);
-          console.error(
-            "❌ Session Error Stack:",
-            err instanceof Error ? err.stack : err,
-          );
-          console.error(
-            "❌ Session Info - userId:",
-            user.id,
-            "sessionID:",
-            req.sessionID,
-          );
-          return res.status(500).json({ message: "Failed to login" });
-        }
-        console.log("✅ User logged in:", user.id, "SessionID:", req.sessionID);
-        res.json({ message: "Logged in successfully", user });
-      });
+        req.login(user as any, (err) => {
+          if (err) {
+            console.error("❌ Failed to establish session:", err);
+            return res.status(500).json({ message: "Failed to login" });
+          }
+          console.log("✅ User logged in:", user.id, "SessionID:", req.sessionID);
+          res.json({ message: "Logged in successfully", user });
+        });
     } catch (error) {
       console.error(
         "❌ Error in login:",
@@ -262,7 +251,7 @@ export async function registerRoutes(
           secondaryUserRank: "active_member",
           vipTier: "none",
         });
-        req.login(user, (err) => {
+        req.login(user as any, (err) => {
           if (err) {
             return res.status(500).json({ message: "Login failed" });
           }
@@ -274,7 +263,7 @@ export async function registerRoutes(
         if (!user) {
           return res.status(400).json({ message: "User not found" });
         }
-        req.login(user, (err) => {
+        req.login(user as any, (err) => {
           if (err) {
             return res.status(500).json({ message: "Login failed" });
           }
@@ -523,7 +512,7 @@ export async function registerRoutes(
   app.get("/api/builds", async (req, res) => {
     try {
       const buildsList = await storage.getBuilds();
-      const userId = req.isAuthenticated() ? (req.user as any).id : null;
+      const userId = req.isAuthenticated?.() ? (req.user as any).id : null;
 
       const buildsWithAuthors = await Promise.all(
         buildsList.map(async (build) => {
@@ -547,7 +536,7 @@ export async function registerRoutes(
     try {
       const builds = await storage.getBuilds();
       const recentBuilds = builds.slice(0, 5).reverse();
-      const userId = req.isAuthenticated() ? (req.user as any).id : null;
+      const userId = req.isAuthenticated?.() ? (req.user as any).id : null;
 
       const buildsWithAuthors = await Promise.all(
         recentBuilds.map(async (build) => {
@@ -1810,197 +1799,6 @@ export async function registerRoutes(
       res.status(500).json({ message: "Failed to submit support request" });
     }
   });
-
-  // Invision Migration: Fetch and import forum data
-  async function migrateInvisionData() {
-    const INVISION_URL = "https://e335519.invisionservice.com/api";
-    const API_KEY = "fdbe9fd2d0834d0870a79b5c99bbdabf";
-    const userMap = new Map(); // Map Invision user IDs to RESYNC user IDs
-
-    try {
-      console.log("🔄 Starting Invision forum migration...");
-
-      // STEP 1: Fetch and import ALL users
-      console.log("👥 Fetching all Invision users...");
-      const usersRes = await fetch(
-        `${INVISION_URL}/core/members?key=${API_KEY}&limit=10000`,
-      );
-      const usersData = await usersRes.json();
-      const invisionUsers = usersData.results || [];
-
-      let userCount = 0;
-      for (const invUser of invisionUsers) {
-        try {
-          // Check if user already exists by email or username
-          let existingUser = null;
-          if (invUser.email) {
-            existingUser = await storage.getUserByEmail(invUser.email);
-          }
-          if (!existingUser && invUser.name) {
-            existingUser = await storage.getUserByUsername(invUser.name);
-          }
-
-          if (!existingUser) {
-            // Create new user with Invision data
-            const newUser = await storage.upsertUser({
-              username: invUser.name || `user_${invUser.id}`,
-              email: invUser.email || `user_${invUser.id}@invision.local`,
-              firstName: invUser.name?.split(" ")[0] || invUser.name,
-              lastName: invUser.name?.split(" ").slice(1).join(" ") || "",
-              profileImageUrl: invUser.photo?.url || undefined,
-              bio: invUser.about || undefined,
-              reputation: invUser.reputation || 0,
-              totalPosts: invUser.posts || 0,
-              createdAt: invUser.joined
-                ? new Date(
-                    typeof invUser.joined === "number"
-                      ? invUser.joined * 1000
-                      : invUser.joined,
-                  )
-                : new Date(),
-            } as any);
-            userMap.set(invUser.id, newUser.id);
-            userCount++;
-            console.log(`✅ Created user: ${invUser.name}`);
-          } else {
-            // User exists, just map their ID
-            userMap.set(invUser.id, existingUser.id);
-            console.log(`📌 User already exists: ${invUser.name}`);
-          }
-        } catch (userError) {
-          console.error(`❌ Error creating user ${invUser.name}:`, userError);
-        }
-      }
-      console.log(
-        `✅ User import complete! Imported ${userCount} new users from Invision`,
-      );
-
-      // STEP 2: Fetch and create forum categories
-      console.log("📂 Fetching Invision categories...");
-      const categoriesRes = await fetch(
-        `${INVISION_URL}/forums/forums?key=${API_KEY}`,
-      );
-      const categoriesData = await categoriesRes.json();
-      const invisionCategories = categoriesData.results || [];
-
-      const categoryMap = new Map();
-      const existing = await storage.getForumCategories();
-
-      for (const invCat of invisionCategories) {
-        const alreadyExists = existing.some((c) => c.name === invCat.name);
-
-        if (!alreadyExists) {
-          try {
-            const created = await storage.createForumCategory({
-              name: invCat.name,
-              description: invCat.description || "",
-              icon: "MessageSquare",
-              color: "#667eea",
-              order: invCat.position || 0,
-            } as any);
-            categoryMap.set(invCat.id, created.id);
-            console.log(`✅ Created category: ${invCat.name}`);
-          } catch (catError) {
-            console.error(
-              `❌ Error creating category ${invCat.name}:`,
-              catError,
-            );
-          }
-        } else {
-          const cat = existing.find((c) => c.name === invCat.name);
-          if (cat) categoryMap.set(invCat.id, cat.id);
-        }
-      }
-
-      // STEP 3: Fetch topics/threads and create with mapped user IDs
-      console.log("📝 Fetching Invision topics...");
-      const topicsRes = await fetch(
-        `${INVISION_URL}/forums/topics?key=${API_KEY}&limit=10000`,
-      );
-      const topicsData = await topicsRes.json();
-      const invisionTopics = topicsData.results || [];
-
-      let threadCount = 0;
-      for (const topic of invisionTopics) {
-        try {
-          const categoryId =
-            categoryMap.get(topic.forum) || categoryMap.values().next().value;
-          if (!categoryId) {
-            console.warn(`⚠️ No category found for topic ${topic.id}`);
-            continue;
-          }
-
-          // Use mapped user ID if available
-          let authorId = null;
-          if (topic.author?.id && userMap.has(topic.author.id)) {
-            authorId = userMap.get(topic.author.id);
-          }
-
-          if (!authorId) continue;
-
-          const thread = await storage.createForumThread({
-            categoryId,
-            authorId,
-            title: topic.title,
-            content: topic.posts?.[0]?.post || topic.title,
-            isPinned: topic.pinned || false,
-            isLocked: topic.locked || false,
-            viewCount: topic.views || 0,
-            replyCount: topic.posts?.length || 0,
-            upvotes: 0,
-            createdAt: new Date(topic.created),
-            updatedAt: new Date(topic.updated || topic.created),
-          } as any);
-          threadCount++;
-
-          // Create replies/posts using mapped user IDs
-          if (topic.posts && topic.posts.length > 1) {
-            for (const post of topic.posts.slice(1)) {
-              try {
-                let postAuthorId = null;
-                if (post.author?.id && userMap.has(post.author.id)) {
-                  postAuthorId = userMap.get(post.author.id);
-                }
-
-                if (postAuthorId) {
-                  await storage.createForumReply({
-                    threadId: thread.id,
-                    authorId: postAuthorId,
-                    content: post.post || "",
-                    upvotes: 0,
-                    createdAt: new Date(post.created),
-                    updatedAt: new Date(post.updated || post.created),
-                  } as any);
-                }
-              } catch (replyError) {
-                console.error(
-                  `❌ Error creating reply for post ${post.id}:`,
-                  replyError,
-                );
-              }
-            }
-          }
-        } catch (threadError) {
-          console.error(`❌ Error creating thread ${topic.id}:`, threadError);
-        }
-      }
-
-      console.log(
-        `✅ Invision migration complete! Imported ${userCount} users and ${threadCount} threads`,
-      );
-    } catch (error) {
-      console.error("❌ Invision migration failed:", error);
-    }
-  }
-
-  // Run migration once at startup if not already done
-  const migrationLock = new Map();
-  if (!migrationLock.has("invision")) {
-    migrationLock.set("invision", true);
-    migrateInvisionData().catch((error) => {
-      console.error("❌ Migration error (continuing anyway):", error.message);
-    });
-  }
 
   return httpServer;
 }
