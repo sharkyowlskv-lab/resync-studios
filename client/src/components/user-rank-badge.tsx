@@ -1,4 +1,11 @@
-export const rankConfig = {
+export const rankConfig: Record<string, {
+  label: string;
+  color: string;
+  badgeUrl: string | null;
+  formatted: boolean;
+  isGradient?: boolean;
+  gradient?: string;
+}> = {
   // Lifetime rank (automatic for Founders Edition Lifetime purchase)
   lifetime: {
     label: "Lifetime",
