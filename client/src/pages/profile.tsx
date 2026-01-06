@@ -1,18 +1,18 @@
 import { useState } from "react";
 import { useLocation } from "wouter";
 import { useAuth } from "@/hooks/useAuth";
-import { useQuery } from "@tanstack/react-query";
+import * as reactQuery from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { VipBadge } from "@/components/vip-badge";
 import { Skeleton } from "@/components/ui/skeleton";
-import { UserRankBadge, FormattedUsername } from "@/components/user-rank-badge";
+import * as userRankBadge from "@/components/user-rank-badge";
 import { Link } from "wouter";
 import { Calendar, Edit, CheckCircle, Lock } from "lucide-react";
 import { SiDiscord, SiRoblox } from "react-icons/si";
-import type { User } from "@shared/schema";
+import type * as schema from "@shared/schema";
 
 interface ProfileParams {
   id?: string;
@@ -104,15 +104,24 @@ export default function Profile() {
                 {/* Badges Row - Display multiple ranks */}
                 <div className="flex flex-wrap gap-2 mb-3">
                   {user.userRank && user.userRank !== "member" && (
-                    <UserRankBadge rank={user.userRank} size="sm" />
+                    <userRankBadge.UserRankBadge
+                      rank={user.userRank}
+                      size="sm"
+                    />
                   )}
                   {user.secondaryUserRank &&
                     user.secondaryUserRank !== "member" && (
-                      <UserRankBadge rank={user.secondaryUserRank} size="sm" />
+                      <userRankBadge.UserRankBadge
+                        rank={user.secondaryUserRank}
+                        size="sm"
+                      />
                     )}
                   {user.tertiaryUserRank &&
                     user.tertiaryUserRank !== "member" && (
-                      <UserRankBadge rank={user.tertiaryUserRank} size="sm" />
+                      <userRankBadge.UserRankBadge
+                        rank={user.tertiaryUserRank}
+                        size="sm"
+                      />
                     )}
                   {user.vipTier && user.vipTier !== "none" && (
                     <div className="flex items-center">

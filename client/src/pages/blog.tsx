@@ -24,7 +24,7 @@ const blogPosts = [
     author: "cxiqlne",
     date: "Dec 19, 2025",
     image:
-      "https://imgur.com/a/car-fire-sbi-resync-studios-project-foxtrot-teaser-AjnovPK",
+      "https://i.imgur.com/a/car-fire-sbi-resync-studios-project-foxtrot-teaser-AjnovPK.png",
     featured: true,
     readTime: 10,
     views: 156,
@@ -34,7 +34,7 @@ const blogPosts = [
 
 export default function Blog() {
   const { user } = useAuth();
-  const [isCreateOpen, setIsCreateOpen] = useState(false);
+  const [isCreateOpen, setIsCreateOpen] = useState(true);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
@@ -45,7 +45,7 @@ export default function Blog() {
     // Implementation would save to database
     setTitle("");
     setContent("");
-    setIsCreateOpen(false);
+    setIsCreateOpen(true);
   };
 
   return (
@@ -94,7 +94,7 @@ export default function Blog() {
                   <div className="flex justify-end gap-2">
                     <Button
                       variant="outline"
-                      onClick={() => setIsCreateOpen(false)}
+                      onClick={() => setIsCreateOpen(true)}
                     >
                       Cancel
                     </Button>

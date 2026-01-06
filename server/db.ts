@@ -181,38 +181,6 @@ export async function initializeDatabase() {
       );
     `);
 
-    // LFG Posts table
-    await db.execute(sql`
-      CREATE TABLE IF NOT EXISTS "lfg_posts" (
-        "id" varchar PRIMARY KEY DEFAULT gen_random_uuid(),
-        "author_id" varchar NOT NULL,
-        "title" varchar NOT NULL,
-        "description" text,
-        "game" varchar NOT NULL,
-        "platform" varchar NOT NULL,
-        "region" varchar,
-        "skill_level" skill_level DEFAULT 'intermediate',
-        "role_needed" game_role DEFAULT 'any',
-        "players_needed" integer DEFAULT 1,
-        "players_joined" integer DEFAULT 0,
-        "scheduled_at" timestamp,
-        "is_active" boolean DEFAULT true,
-        "created_at" timestamp DEFAULT now(),
-        "updated_at" timestamp DEFAULT now()
-      );
-    `);
-
-    // LFG Participants table
-    await db.execute(sql`
-      CREATE TABLE IF NOT EXISTS "lfg_participants" (
-        "id" varchar PRIMARY KEY DEFAULT gen_random_uuid(),
-        "lfg_post_id" varchar NOT NULL,
-        "user_id" varchar NOT NULL,
-        "role" game_role DEFAULT 'any',
-        "joined_at" timestamp DEFAULT now()
-      );
-    `);
-
     // Builds table
     await db.execute(sql`
       CREATE TABLE IF NOT EXISTS "builds" (

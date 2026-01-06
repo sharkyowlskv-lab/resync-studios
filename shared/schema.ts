@@ -324,38 +324,6 @@ export const clans = pgTable("clans", {
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
-// LFG Posts table
-export const lfgPosts = pgTable("lfg_posts", {
-  id: varchar("id")
-    .primaryKey()
-    .default(sql`gen_random_uuid()`),
-  authorId: varchar("author_id").notNull(),
-  title: varchar("title").notNull(),
-  description: text("description"),
-  game: varchar("game").notNull(),
-  platform: varchar("platform").notNull(),
-  region: varchar("region"),
-  skillLevel: skillLevelEnum("skill_level").default("intermediate"),
-  roleNeeded: gameRoleEnum("role_needed").default("any"),
-  playersNeeded: integer("players_needed").default(1),
-  playersJoined: integer("players_joined").default(0), // Does not include the author
-  scheduledAt: timestamp("scheduled_at"),
-  isActive: boolean("is_active").default(true),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
-});
-
-// LFG Participants
-export const lfgParticipants = pgTable("lfg_participants", {
-  id: varchar("id")
-    .primaryKey()
-    .default(sql`gen_random_uuid()`),
-  lfgPostId: varchar("lfg_post_id").notNull(),
-  userId: varchar("user_id").notNull(),
-  role: gameRoleEnum("role").default("any"),
-  joinedAt: timestamp("joined_at").defaultNow(),
-});
-
 // Build/Meta Guides
 export const builds = pgTable("builds", {
   id: varchar("id")
@@ -716,7 +684,6 @@ export const payments = pgTable("payments", {
 // Relations
 export const usersRelations = relations(users, ({ one, many }) => ({
   clan: one(clans, { fields: [users.clanId], references: [clans.id] }),
-  lfgPosts: many(lfgPosts),
   builds: many(builds),
   forumThreads: many(forumThreads),
   sentMessages: many(chatMessages),
@@ -726,11 +693,6 @@ export const clansRelations = relations(clans, ({ one, many }) => ({
   owner: one(users, { fields: [clans.ownerId], references: [users.id] }),
   members: many(users),
   messages: many(chatMessages),
-}));
-
-export const lfgPostsRelations = relations(lfgPosts, ({ one, many }) => ({
-  author: one(users, { fields: [lfgPosts.authorId], references: [users.id] }),
-  participants: many(lfgParticipants),
 }));
 
 export const buildsRelations = relations(builds, ({ one, many }) => ({
@@ -764,13 +726,6 @@ export const insertClanSchema = createInsertSchema(clans).omit({
   createdAt: true,
   updatedAt: true,
   memberCount: true,
-});
-export const insertLfgPostSchema = createInsertSchema(lfgPosts).omit({
-  id: true,
-  createdAt: true,
-  updatedAt: true,
-  playersJoined: true,
-  isActive: true,
 });
 export const insertBuildSchema = createInsertSchema(builds).omit({
   id: true,
@@ -917,11 +872,6 @@ export type InsertUser = z.infer<typeof insertUserSchema>;
 
 export type Clan = typeof clans.$inferSelect;
 export type InsertClan = z.infer<typeof insertClanSchema>;
-
-export type LfgPost = typeof lfgPosts.$inferSelect;
-export type InsertLfgPost = z.infer<typeof insertLfgPostSchema>;
-
-export type LfgParticipant = typeof lfgParticipants.$inferSelect;
 
 export type Build = typeof builds.$inferSelect;
 export type InsertBuild = z.infer<typeof insertBuildSchema>;
