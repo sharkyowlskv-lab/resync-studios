@@ -55,37 +55,121 @@ function PublicLayout({ children }: { children: React.ReactNode }) {
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <h3 className="font-bold mb-4">RESYNC Studios™</h3>
-              <p className="text-sm text-muted-foreground">Building the future of digital experiences with innovative solutions and community-driven development.</p>
+              <p className="text-sm text-muted-foreground">
+                Building the future of digital experiences with innovative
+                solutions and community-driven development.
+              </p>
             </div>
             <div>
               <h4 className="font-semibold text-sm mb-4">Navigation</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="/" className="hover:text-foreground transition-colors">Home</a></li>
-                <li><a href="/blog" className="hover:text-foreground transition-colors">Blog</a></li>
-                <li><a href="/forums" className="hover:text-foreground transition-colors">Forums</a></li>
-                <li><a href="/vip" className="hover:text-foreground transition-colors">Subscriptions</a></li>
+                <li>
+                  <a
+                    href="/"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/blog"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    Blog
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/forums"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    Forums
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/vip"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    Subscriptions
+                  </a>
+                </li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold text-sm mb-4">Support & Resources</h4>
+              <h4 className="font-semibold text-sm mb-4">
+                Support & Resources
+              </h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="/support" className="hover:text-foreground transition-colors">Support</a></li>
-                <li><a href="/policies" className="hover:text-foreground transition-colors">Policies</a></li>
-                <li><a href="/guidelines" className="hover:text-foreground transition-colors">Guidelines</a></li>
-                <li><a href="/privacy" className="hover:text-foreground transition-colors">Privacy</a></li>
+                <li>
+                  <a
+                    href="/support"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    Support
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/policies"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    Policies
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/guidelines"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    Guidelines
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/privacy"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    Privacy
+                  </a>
+                </li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold text-sm mb-4">Other</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="/team" className="hover:text-foreground transition-colors">Team</a></li>
-                <li><a href="/announcements" className="hover:text-foreground transition-colors">Announcements</a></li>
-                <li><a href="/projects" className="hover:text-foreground transition-colors">Projects</a></li>
+                <li>
+                  <a
+                    href="/team"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    Team
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/announcements"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    Announcements
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/projects"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    Projects
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
           <div className="border-t border-border/50 pt-8">
-            <p className="text-xs text-muted-foreground text-center">© 2025 RESYNC Studios™. All rights reserved.</p>
+            <p className="text-xs text-muted-foreground text-center">
+              © 2025 RESYNC Studios™. All rights reserved.
+            </p>
           </div>
         </div>
       </footer>
@@ -130,12 +214,15 @@ function Router() {
     <PublicLayout>
       <Switch>
         <Route path="/" component={Landing} />
-        <Route path="/api/auth/discord/callback" component={() => {
-          // This route should be handled by the backend, but we add it to the frontend
-          // to prevent 404s if the browser tries to render it before the redirect
-          window.location.href = "/dashboard";
-          return null;
-        }} />
+        <Route
+          path="/api/auth/discord"
+          component={() => {
+            // This route should be handled by the backend, but we add it to the frontend
+            // to prevent 404s if the browser tries to render it before the redirect
+            window.location.href = "/dashboard";
+            return null;
+          }}
+        />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
@@ -165,7 +252,10 @@ function Router() {
         <Route path="/volunteer" component={VolunteerModeration} />
         <Route path="/dmca" component={DMCA} />
         <Route path="/project-foxtrot-rules" component={ProjectFoxtrotrules} />
-        <Route path="/volunteer-agreement" component={VolunteerStaffAgreement} />
+        <Route
+          path="/volunteer-agreement"
+          component={VolunteerStaffAgreement}
+        />
         <Route path="/leo-guidelines" component={LEOGuidelines} />
         <Route path="/community-rules" component={CommunityRules} />
         <Route path="/about" component={AboutMetro} />
