@@ -1,0 +1,46 @@
+January 6, 2026 at 12:53 PM
+failed
+42a0178
+fix: move vite to production dependencies and sync lockfile
+
+Rollback
+Exited with status 1 while building your code.
+Read our docs for common ways to troubleshoot your deploy.
+
+All logs
+Search
+Search
+
+Jan 6, 12:52 PM - 12:55 PM
+GMT+11
+
+
+
+==> Downloading cache...
+==> Cloning from https://github.com/sharkyowlskv-lab/resync-studios
+==> Checking out commit 42a0178247336c85a117d6d62fc7783e13ee33c1 in branch main
+==> Downloaded 64MB in 7s. Extraction took 1s.
+==> Using Node.js version 22.16.0 (default)
+==> Docs on specifying a Node.js version: https://render.com/docs/node-version
+==> Running build command 'npm run build && npm run db:push'...
+> rest-express@1.0.0 build
+> npx tsx script/build.ts && npm run db:push
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'esbuild' imported from /opt/render/project/src/script/build.ts
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:256:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:854:18)
+    at defaultResolve (node:internal/modules/esm/resolve:984:11)
+    at nextResolve (node:internal/modules/esm/hooks:748:28)
+    at resolveBase (file:///opt/render/.cache/_npx/fd45a72a545557e9/node_modules/tsx/dist/esm/index.mjs?1767664453654:2:3744)
+    at resolveDirectory (file:///opt/render/.cache/_npx/fd45a72a545557e9/node_modules/tsx/dist/esm/index.mjs?1767664453654:2:4243)
+    at resolveTsPaths (file:///opt/render/.cache/_npx/fd45a72a545557e9/node_modules/tsx/dist/esm/index.mjs?1767664453654:2:4984)
+    at async resolve (file:///opt/render/.cache/_npx/fd45a72a545557e9/node_modules/tsx/dist/esm/index.mjs?1767664453654:2:5355)
+    at async nextResolve (node:internal/modules/esm/hooks:748:22) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+Node.js v22.16.0
+==> Build failed 😞
+==> Common ways to troubleshoot your deploy: https://render.com/docs/troubleshooting-deploys
