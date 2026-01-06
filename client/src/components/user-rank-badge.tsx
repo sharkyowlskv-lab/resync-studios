@@ -115,7 +115,7 @@ export const rankConfig = {
   // VIP ranks (tier-corresponding VIP badge)
   bronze_vip: {
     label: "Bronze VIP",
-    color: "#6B7280",
+    color: "#6B7280", // Bronze color Gradient
     badgeUrl: null,
     formatted: true,
   },
@@ -127,13 +127,13 @@ export const rankConfig = {
   },
   diamond_vip: {
     label: "Diamond VIP",
-    color: "#6B7280",
+    color: "#6B7280", // Diamond or Sapphire Color Gradient
     badgeUrl: null,
     formatted: true,
   },
   founders_edition_vip: {
     label: "Founders Edition VIP",
-    color: "#6B7280",
+    color: "#6B7280", // Amber/Gold/Blue Color Gradient
     badgeUrl: null,
     formatted: true,
   },
