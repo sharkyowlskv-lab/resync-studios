@@ -31,6 +31,12 @@ export const rankConfig = {
     badgeUrl: "https://i.imgur.com/Rqbqq9B.png",
     formatted: true,
   },
+  mi_trust_safety_director_trademark: {
+    label: "MI Trust & Safety Director™",
+    color: "#4B7DF7",
+    badgeUrl: "https://i.imgur.com/Rqbqq9B.png",
+    formatted: true,
+  },
   // Team ranks (Team badge - blue, formatted username)
   team_member: {
     label: "Team Member",
@@ -115,27 +121,27 @@ export const rankConfig = {
   // VIP ranks (tier-corresponding VIP badge)
   bronze_vip: {
     label: "Bronze VIP",
-    color: "#6B7280", // Bronze color Gradient
-    badgeUrl: null,
+    color: "#CD7F32",
+    badgeUrl: "https://i.imgur.com/G7B9P5N.png",
     formatted: true,
-  },
-  sapphire_vip: {
-    label: "Sapphire VIP",
-    color: "#6B7280",
-    badgeUrl: null,
-    formatted: true,
+    isGradient: true,
+    gradient: "linear-gradient(to right, #CD7F32, #A0522D)",
   },
   diamond_vip: {
     label: "Diamond VIP",
-    color: "#6B7280", // Diamond or Sapphire Color Gradient
-    badgeUrl: null,
+    color: "#B9F2FF",
+    badgeUrl: "https://i.imgur.com/vH3m3YV.png",
     formatted: true,
+    isGradient: true,
+    gradient: "linear-gradient(to right, #B9F2FF, #00BFFF)",
   },
   founders_edition_vip: {
     label: "Founders Edition VIP",
-    color: "#6B7280", // Amber/Gold/Blue Color Gradient
-    badgeUrl: null,
+    color: "#FFBF00",
+    badgeUrl: "https://i.imgur.com/Y3v1X7X.png",
     formatted: true,
+    isGradient: true,
+    gradient: "linear-gradient(to right, #FFBF00, #FFD700, #00BFFF)",
   },
   // Member types & statuses
   trusted_member: {
@@ -219,7 +225,15 @@ export function UserRankBadge({
           className="w-4 h-4"
         />
       )}
-      <span className="font-bold" style={{ color: config.color }}>
+      <span 
+        className="font-bold" 
+        style={ { 
+          color: config.isGradient ? 'transparent' : config.color,
+          backgroundImage: config.isGradient ? config.gradient : 'none',
+          WebkitBackgroundClip: config.isGradient ? 'text' : 'border-box',
+          backgroundClip: config.isGradient ? 'text' : 'border-box',
+        } }
+      >
         {config.label}
       </span>
     </strong>
@@ -251,7 +265,15 @@ export function FormattedUsername({
           className="w-4 h-4"
         />
       )}
-      <span className="font-bold uppercase" style={{ color: config.color }}>
+      <span 
+        className="font-bold uppercase" 
+        style={ { 
+          color: config.isGradient ? 'transparent' : config.color,
+          backgroundImage: config.isGradient ? config.gradient : 'none',
+          WebkitBackgroundClip: config.isGradient ? 'text' : 'border-box',
+          backgroundClip: config.isGradient ? 'text' : 'border-box',
+        } }
+      >
         {username}
       </span>
     </div>
