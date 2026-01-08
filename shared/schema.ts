@@ -13,6 +13,35 @@ import {
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
+export const reportStatusEnum = pgEnum("report_status", [
+  "pending",
+  "reviewed",
+  "dismissed",
+  "action_taken",
+]);
+
+export const reports = pgTable("reports", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  reporterId: varchar("reporter_id").notNull(),
+  targetId: varchar("target_id").notNull(), // User or post ID
+  targetType: varchar("target_type").notNull(), // 'user', 'forum_post', 'forum_topic', 'comment'
+  reason: text("reason").notNull(),
+  details: text("details"),
+  status: reportStatusEnum("status").default("pending"),
+  moderatorNotes: text("moderator_notes"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const insertReportSchema = createInsertSchema(reports).omit({
+  id: true,
+  status: true,
+  moderatorNotes: true,
+  createdAt: true,
+});
+
+export type Report = typeof reports.$inferSelect;
+export type InsertReport = z.infer<typeof insertReportSchema>;
+
 // Enums
 export const vipTierEnum = pgEnum("vip_tier", [
   "none",

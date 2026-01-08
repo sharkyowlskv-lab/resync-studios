@@ -10,6 +10,7 @@ import {
   insertBuildSchema,
   insertForumThreadSchema,
   insertForumReplySchema,
+  insertReportSchema,
 } from "@shared/schema";
 import { z } from "zod";
 
@@ -687,6 +688,44 @@ export async function registerRoutes(
       console.error("Error linking Discord:", error);
       res.status(500).json({ message: "Failed to start Discord linking" });
     }
+  });
+
+  app.get("/api/users/:id", async (req, res) => {
+    try {
+      const user = await storage.getUser(req.params.id);
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+      res.json(user);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch user" });
+    }
+  });
+
+  // Reporting Routes
+  app.post("/api/reports", requireAuth, async (req, res) => {
+    try {
+      const data = insertReportSchema.parse({
+        ...req.body,
+        reporterId: (req.user as any).id,
+      });
+      const report = await storage.createReport(data);
+      res.status(201).json(report);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: "Invalid data", errors: error.errors });
+      }
+      res.status(500).json({ message: "Failed to create report" });
+    }
+  });
+
+  app.get("/api/reports", requireAuth, async (req, res) => {
+    const user = req.user as any;
+    if (!user.isModerator && !user.isAdmin) {
+      return res.status(403).json({ message: "Forbidden" });
+    }
+    const reports = await storage.getReports();
+    res.json(reports);
   });
 
   // ModCP Routes

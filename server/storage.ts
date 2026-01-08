@@ -23,6 +23,9 @@ import {
   type InsertSiteSettings,
   type Payment,
   type InsertPayment,
+  reports,
+  type Report,
+  type InsertReport,
   users,
   clans,
   builds,
@@ -299,6 +302,11 @@ export interface IStorage {
     status: string,
     adminNotes?: string,
   ): Promise<Payment | undefined>;
+
+  // Reports
+  createReport(report: InsertReport): Promise<Report>;
+  getReports(): Promise<Report[]>;
+  updateReportStatus(id: string, status: string, notes?: string): Promise<Report | undefined>;
 
   // Stats
   getStats(): Promise<{
@@ -773,6 +781,25 @@ export class DatabaseStorage implements IStorage {
       .where(eq(payments.id, id))
       .returning();
     return payment;
+  }
+
+  // Reports
+  async createReport(reportData: InsertReport): Promise<Report> {
+    const [report] = await db.insert(reports).values(reportData).returning();
+    return report;
+  }
+
+  async getReports(): Promise<Report[]> {
+    return db.select().from(reports).orderBy(desc(reports.createdAt));
+  }
+
+  async updateReportStatus(id: string, status: any, notes?: string): Promise<Report | undefined> {
+    const [report] = await db
+      .update(reports)
+      .set({ status, moderatorNotes: notes })
+      .where(eq(reports.id, id))
+      .returning();
+    return report;
   }
 
   // Stats
