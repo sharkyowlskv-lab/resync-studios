@@ -162,7 +162,8 @@ export default function CommunityRules() {
             </CardHeader>
             <CardContent className="text-sm text-muted-foreground">
               Contact staff privately or through Internal Affairs. Public staff
-              complaints will be removed.
+              complaints will be removed. Use the designated staff report forums
+              to report our moderators.
             </CardContent>
           </Card>
 
@@ -184,8 +185,8 @@ export default function CommunityRules() {
               </CardTitle>
             </CardHeader>
             <CardContent className="text-sm text-muted-foreground">
-              Take complaints to staff privately. Don't stir up public
-              conflicts.
+              Take complaints to staff privately or report users in the
+              designated report forum. Don't stir up public conflicts.
             </CardContent>
           </Card>
 
@@ -208,7 +209,8 @@ export default function CommunityRules() {
             </CardHeader>
             <CardContent className="text-sm text-muted-foreground">
               Only post in threads you started, were tagged in, or have evidence
-              for.
+              for. You may reply to posts, topics, or threads posted in the
+              community section.
             </CardContent>
           </Card>
 
@@ -240,7 +242,10 @@ export default function CommunityRules() {
               <CardTitle className="text-base">18. No Impersonation</CardTitle>
             </CardHeader>
             <CardContent className="text-sm text-muted-foreground">
-              Don't pretend to be staff or misrepresent your role.
+              Don't pretend to be staff or misrepresent your role. Accounts
+              caught impersonating will be promptly removed from the community.
+              You can verify a staff member by checking their profile or discord
+              roles.
             </CardContent>
           </Card>
         </div>
@@ -508,8 +513,8 @@ export default function CommunityRules() {
               Harassing, stalking, or bullying players outside the platform is
               strictly forbidden. This includes creating or sharing content that
               targets or mocks other community members. Penalties for
-              off-platform harassment involves an account termination & law
-              enforcement involvement.
+              off-platform harassment involves an account termination & report
+              to the eSafety Commissioner.
             </CardContent>
           </Card>
 

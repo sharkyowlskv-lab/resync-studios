@@ -51,10 +51,10 @@ const RS_PROJECTS = [
     projectOverseer: "Project Overseer: cxiqlne",
     projectManager: "Project Manager: Reni",
     game: "ROBLOX",
-    status: "active",
+    status: "discontinued",
     location: "Highfield",
     reasonfordiscontinuation:
-      "Reason for Discontinuation: The project is no longer supported under Resync Studios ― formal ownership taken over by Reni",
+      "Reason for Discontinuation: The project did not receive enough player interest and was ultimately replaced with a new project.",
   },
   {
     name: "Australian Defence Force Academy",
@@ -99,7 +99,7 @@ const RS_PROJECTS = [
   },
   {
     name: "Victoria State Roleplay, Australia",
-    projectManager: "Project Manager: cxiqlne, Reni",
+    projectManager: "Project Manager: cxiqlne, Reni, silentdirective.",
     game: "ROBLOX",
     status: "development",
     location: "Victoria, AU",

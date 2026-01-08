@@ -56,7 +56,18 @@ interface ThreadWithAuthor extends ForumThread {
 }
 
 export default function Forums() {
-  const { user } = useAuth();
+  const { user, isLoading } = useAuth();
+
+  if (isLoading) {
+    return (
+      <div className="space-y-4">
+        <Skeleton className="h-10 w-1/3" />
+        <Skeleton className="h-24 w-full" />
+        <Skeleton className="h-24 w-full" />
+      </div>
+    );
+  }
+
   const { toast } = useToast();
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -85,29 +96,16 @@ export default function Forums() {
 
   const createMutation = useMutation({
     mutationFn: async (data: CreateThreadForm) => {
+      if (!user) {
+        throw new Error("Not authenticated");
+      }
       const response = await apiRequest("POST", "/api/forums/threads", data);
       return response.json();
-    },
-    onSuccess: () => {
-      toast({
-        title: "Thread created!",
-        description: "Your discussion has been posted.",
-      });
-      queryClient.invalidateQueries({ queryKey: ["/api/forums/threads"] });
-      setIsCreateOpen(false);
-      form.reset();
-    },
-    onError: () => {
-      toast({
-        title: "Error",
-        description: "Failed to create thread.",
-        variant: "destructive",
-      });
     },
   });
 
   const filteredThreads = threads?.filter((thread) =>
-    thread.title.toLowerCase().includes(searchQuery.toLowerCase()),
+    thread.title?.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
   const onSubmit = (data: CreateThreadForm) => {
@@ -138,12 +136,29 @@ export default function Forums() {
             </p>
           </div>
           <Dialog open={isCreateOpen} onOpenChange={setIsCreateOpen}>
-            <DialogTrigger asChild>
-              <Button data-testid="button-create-thread">
+            {user ? (
+              <DialogTrigger asChild>
+                <Button data-testid="button-create-thread">
+                  <Plus className="w-4 h-4 mr-2" />
+                  New Thread
+                </Button>
+              </DialogTrigger>
+            ) : (
+              <Button
+                data-testid="button-create-thread"
+                onClick={() =>
+                  toast({
+                    title: "Login required",
+                    description: "You must be logged in to create a thread.",
+                    variant: "destructive",
+                  })
+                }
+              >
                 <Plus className="w-4 h-4 mr-2" />
                 New Thread
               </Button>
-            </DialogTrigger>
+            )}
+
             <DialogContent className="max-w-2xl">
               <DialogHeader>
                 <DialogTitle>Create Discussion Thread</DialogTitle>
@@ -370,14 +385,16 @@ export default function Forums() {
                           </span>
                           <span>•</span>
                           <span>
-                            {formatTimeAgo(new Date(thread.createdAt))}
+                            {formatTimeAgo(new Date(newFunction(thread)))}
                           </span>
                         </div>
                       </div>
                     </div>
                     <div className="flex items-center justify-between text-xs text-muted-foreground ml-13">
                       <span className="font-medium">
-                        {thread.content ? `${thread.content.substring(0, 100)}...` : ""}
+                        {thread.content
+                          ? `${thread.content.substring(0, 100)}...`
+                          : ""}
                       </span>
                       <div className="flex items-center gap-1">
                         <MessageSquare className="w-3.5 h-3.5" />
@@ -393,4 +410,8 @@ export default function Forums() {
       </div>
     </div>
   );
+
+  function newFunction(thread: ThreadWithAuthor): string | number | Date {
+    return newFunction(thread);
+  }
 }
