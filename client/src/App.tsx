@@ -16,14 +16,14 @@ import Dashboard from "@/pages/dashboard";
 import Clans from "@/pages/clans";
 import Forums from "@/pages/forums";
 import ForumThread from "@/pages/forums/thread";
-import VIP from "@/pages/vip";
-import Profile from "@/pages/profile";
+import Subscriptions from "@/pages/subscriptions";
+import User from "@/pages/user";
 import Settings from "@/pages/settings";
 import Guidelines from "@/pages/guidelines";
 import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
 import StaffDirectory from "@/pages/staff-directory";
-import Announcements from "@/pages/announcements";
+import News from "@/pages/news";
 import Projects from "@/pages/projects";
 import Support from "@/pages/support";
 import VolunteerModeration from "@/pages/volunteer-moderation";
@@ -32,12 +32,12 @@ import ProjectFoxtrotrules from "@/pages/project-foxtrot-rules";
 import VolunteerStaffAgreement from "@/pages/volunteer-staff-agreement";
 import LEOGuidelines from "@/pages/leo-guidelines";
 import CommunityRules from "@/pages/community-rules";
-import AboutMetro from "@/pages/about-metro";
+import AboutRS from "@/pages/about-rs";
 import FortLoredo from "@/pages/fort-loredo";
 import Chat from "@/pages/chat";
 import Admin from "@/pages/admin";
 import ModCP from "@/pages/modcp";
-import AdminCP from "@/pages/admin-cp";
+import AdminCP from "@/pages/admincp";
 import Builds from "@/pages/builds";
 import Blog from "@/pages/blog";
 import Store from "@/pages/store";
@@ -89,7 +89,7 @@ function PublicLayout({ children }: { children: React.ReactNode }) {
                 </li>
                 <li>
                   <a
-                    href="/vip"
+                    href="/subscriptions"
                     className="hover:text-foreground transition-colors"
                   >
                     Subscriptions
@@ -149,10 +149,10 @@ function PublicLayout({ children }: { children: React.ReactNode }) {
                 </li>
                 <li>
                   <a
-                    href="/announcements"
+                    href="/news"
                     className="hover:text-foreground transition-colors"
                   >
-                    Announcements
+                    News
                   </a>
                 </li>
                 <li>
@@ -177,26 +177,8 @@ function PublicLayout({ children }: { children: React.ReactNode }) {
   );
 }
 
-function ProtectedRoute({ component: Component }: { component: any }) {
-  const { isAuthenticated, isLoading } = useAuth();
-  const [location, setLocation] = useLocation();
-
-  if (isLoading) {
-    return <Skeleton className="h-screen w-full" />;
-  }
-
-  if (!isAuthenticated) {
-    if (location !== "/login") {
-      setLocation("/login");
-    }
-    return null;
-  }
-
-  return <Component />;
-}
-
 function Router() {
-  const { isAuthenticated, isLoading } = useAuth();
+  const { isLoading } = useAuth();
 
   if (isLoading) {
     return (
@@ -231,8 +213,8 @@ function Router() {
         <Route path="/policies" component={Policies} />
         <Route path="/forums" component={Forums} />
         <Route path="/forums/thread/:id" component={ForumThread} />
-        <Route path="/vip" component={VIP} />
-        <Route path="/profile" component={Profile} />
+        <Route path="/subscriptions" component={Subscriptions} />
+        <Route path="/user" component={User} />
         <Route path="/settings" component={Settings} />
         <Route path="/team" component={StaffDirectory} />
         <Route path="/staff" component={StaffDirectory} />
@@ -242,11 +224,11 @@ function Router() {
         <Route path="/clans" component={Clans} />
         <Route path="/admin" component={Admin} />
         <Route path="/modcp" component={ModCP} />
-        <Route path="/admin-cp" component={AdminCP} />
+        <Route path="/admincp" component={AdminCP} />
         <Route path="/guidelines" component={Guidelines} />
         <Route path="/privacy" component={Privacy} />
         <Route path="/terms" component={Terms} />
-        <Route path="/announcements" component={Announcements} />
+        <Route path="/news" component={News} />
         <Route path="/projects" component={Projects} />
         <Route path="/support" component={Support} />
         <Route path="/volunteer" component={VolunteerModeration} />
@@ -258,7 +240,7 @@ function Router() {
         />
         <Route path="/leo-guidelines" component={LEOGuidelines} />
         <Route path="/community-rules" component={CommunityRules} />
-        <Route path="/about" component={AboutMetro} />
+        <Route path="/about" component={AboutRS} />
         <Route path="/fort-loredo" component={FortLoredo} />
         <Route component={NotFound} />
       </Switch>
@@ -269,7 +251,7 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider defaultTheme="light" storageKey="resync-studios-theme">
+      <ThemeProvider defaultTheme="dark" storageKey="resync-studios-theme">
         <TooltipProvider>
           <Router />
           <Toaster />

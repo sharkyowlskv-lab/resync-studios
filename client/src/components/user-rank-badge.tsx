@@ -1,11 +1,14 @@
-export const rankConfig: Record<string, {
-  label: string;
-  color: string;
-  badgeUrl: string | null;
-  formatted: boolean;
-  isGradient?: boolean;
-  gradient?: string;
-}> = {
+export const rankConfig: Record<
+  string,
+  {
+    label: string;
+    color: string;
+    badgeUrl: string | null;
+    formatted: boolean;
+    isGradient?: boolean;
+    gradient?: string;
+  }
+> = {
   // Lifetime rank (automatic for Founders Edition Lifetime purchase)
   lifetime: {
     label: "Lifetime",
@@ -17,43 +20,31 @@ export const rankConfig: Record<string, {
   company_director: {
     label: "Company Director",
     color: "#4B7DF7", // Capitalized blue
-    badgeUrl: "https://i.imgur.com/Rqbqq9B.png",
+    badgeUrl: null,
     formatted: true,
   },
   leadership_council: {
     label: "Leadership Council",
     color: "#4B7DF7",
-    badgeUrl: "https://i.imgur.com/Rqbqq9B.png",
+    badgeUrl: null,
     formatted: true,
   },
   operations_manager: {
     label: "Operations Manager",
     color: "#4B7DF7",
-    badgeUrl: "https://i.imgur.com/Rqbqq9B.png",
+    badgeUrl: null,
     formatted: true,
   },
   mi_trust_safety_director: {
     label: "MI Trust & Safety Director™",
     color: "#4B7DF7",
-    badgeUrl: "https://i.imgur.com/Rqbqq9B.png",
-    formatted: true,
-  },
-  mi_trust_safety_director_trademark: {
-    label: "MI Trust & Safety Director™",
-    color: "#4B7DF7",
-    badgeUrl: "https://i.imgur.com/Rqbqq9B.png",
+    badgeUrl: null,
     formatted: true,
   },
   // Team ranks (Team badge - blue, formatted username)
   team_member: {
     label: "Team Member",
     color: "#4B7DF7",
-    badgeUrl: "https://i.imgur.com/rTNSCQt.png",
-    formatted: true,
-  },
-  rs_trust_safety_team: {
-    label: "RS Trust & Safety Team",
-    color: "#EF4444", // Red for trust & safety
     badgeUrl: "https://i.imgur.com/rTNSCQt.png",
     formatted: true,
   },
@@ -142,7 +133,7 @@ export const rankConfig: Record<string, {
     isGradient: true,
     gradient: "linear-gradient(to right, #B9F2FF, #00BFFF)",
   },
-  founders_edition_vip: {
+  founders_vip: {
     label: "Founders Edition VIP",
     color: "#FFBF00",
     badgeUrl: "https://i.imgur.com/Y3v1X7X.png",
@@ -232,14 +223,14 @@ export function UserRankBadge({
           className="w-4 h-4"
         />
       )}
-      <span 
-        className="font-bold" 
-        style={ { 
-          color: config.isGradient ? 'transparent' : config.color,
-          backgroundImage: config.isGradient ? config.gradient : 'none',
-          WebkitBackgroundClip: config.isGradient ? 'text' : 'border-box',
-          backgroundClip: config.isGradient ? 'text' : 'border-box',
-        } }
+      <span
+        className="font-bold"
+        style={{
+          color: config.isGradient ? "transparent" : config.color,
+          backgroundImage: config.isGradient ? config.gradient : "none",
+          WebkitBackgroundClip: config.isGradient ? "text" : "border-box",
+          backgroundClip: config.isGradient ? "text" : "border-box",
+        }}
       >
         {config.label}
       </span>
@@ -272,14 +263,14 @@ export function FormattedUsername({
           className="w-4 h-4"
         />
       )}
-      <span 
-        className="font-bold uppercase" 
-        style={ { 
-          color: config.isGradient ? 'transparent' : config.color,
-          backgroundImage: config.isGradient ? config.gradient : 'none',
-          WebkitBackgroundClip: config.isGradient ? 'text' : 'border-box',
-          backgroundClip: config.isGradient ? 'text' : 'border-box',
-        } }
+      <span
+        className="font-bold uppercase"
+        style={{
+          color: config.isGradient ? "transparent" : config.color,
+          backgroundImage: config.isGradient ? config.gradient : "none",
+          WebkitBackgroundClip: config.isGradient ? "text" : "border-box",
+          backgroundClip: config.isGradient ? "text" : "border-box",
+        }}
       >
         {username}
       </span>

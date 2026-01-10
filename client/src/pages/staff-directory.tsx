@@ -46,6 +46,11 @@ const departments: Department[] = [
         joinDate: "2024-Present",
       },
       {
+        name: "ArielOperations",
+        role: "Company Representative, Team Member",
+        joinDate: "2024-Present",
+      },
+      {
         name: "Kyros",
         role: "Operations Manager",
         joinDate: "2024-Present",

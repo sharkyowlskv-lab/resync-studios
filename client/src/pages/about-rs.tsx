@@ -8,7 +8,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Sparkles, Zap, Users, Target, Rocket } from "lucide-react";
 
-export default function AboutMetro() {
+export default function AboutRS() {
   return (
     <div className="space-y-8 max-w-4xl">
       <div className="text-center space-y-4">
@@ -235,7 +235,7 @@ export default function AboutMetro() {
       <Card className="border-chart-2/30 bg-chart-2/5">
         <CardContent className="p-6 text-center">
           <p className="text-lg font-semibold mb-2">
-            Welcome to RESYNC Studios and Metro Interactive™
+            Welcome to RESYNC Studios (formally Metro Interactive™)
           </p>
           <p className="text-muted-foreground">
             Join thousands of members crafting immersive stories in the most

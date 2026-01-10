@@ -74,15 +74,13 @@ export default function ModCP() {
   const isMod =
     user?.userRank &&
     [
-      "moderator",
-      "community_moderator",
-      "community_senior_moderator",
-      "community_administrator",
-      "community_senior_administrator",
-      "rs_trust_safety_director",
-      "leadership_council",
-      "team_member",
-      "company_director",
+      'community_moderator',
+      'community_senior_moderator',
+      'community_administrator',
+      'community_senior_administrator',
+      'team_member',
+      'operations_manager',
+      'company_director',
     ].includes(user.userRank);
 
   if (!isMod) {

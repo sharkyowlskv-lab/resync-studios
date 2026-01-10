@@ -2,7 +2,6 @@
 import { sql } from "drizzle-orm";
 import { Pool, neonConfig } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-serverless";
-import { migrate } from "drizzle-orm/neon-serverless/migrator";
 import ws from "ws";
 import * as schema from "@shared/schema";
 
@@ -35,7 +34,7 @@ export async function initializeDatabase() {
     // Create enum types
     await db.execute(sql`
       DO $$ BEGIN
-        CREATE TYPE vip_tier AS ENUM ('none', 'bronze', 'sapphire', 'diamond', 'founders', 'founders_edition_lifetime', 'lifetime');
+        CREATE TYPE vip_tier AS ENUM ('none', 'bronze_vip', 'diamond_vip', 'founders_vip', 'founders_lifetime', 'lifetime');
       EXCEPTION WHEN duplicate_object THEN null;
       END $$;
     `);
@@ -47,7 +46,6 @@ export async function initializeDatabase() {
     'member',
     'active_member',
     'trusted_member',
-    'retired_team_member',
     'community_partner',
     'company_director',
     'leadership_council',
@@ -61,14 +59,12 @@ export async function initializeDatabase() {
     'community_senior_moderator',
     'community_developer',
     'bronze_vip',
-    'sapphire_vip',
     'diamond_vip',
-    'founders_edition_vip',
-    'founders_edition_lifetime',
+    'founders_vip',
+    'founders_lifetime',
     'lifetime',
     'customer_relations',
     'rs_volunteer_staff',
-    'rs_trust_safety_team',
     'staff_internal_affairs',
     'administrator',
     'senior_administrator',
@@ -103,6 +99,7 @@ export async function initializeDatabase() {
         "profile_image_url" varchar,
         "username" varchar UNIQUE,
         "bio" text,
+        "signature" text,
         "vip_tier" vip_tier DEFAULT 'none',
         "stripe_customer_id" varchar,
         "stripe_subscription_id" varchar,
@@ -116,29 +113,29 @@ export async function initializeDatabase() {
         "roblox_linked_at" timestamp,
         "games_played" integer DEFAULT 0,
         "total_posts" integer DEFAULT 0,
-        "reputation" integer DEFAULT 0,
+        "reputation" integer DEFAULT 1,
         "clan_id" varchar,
         "clan_role" varchar,
         "user_rank" user_rank DEFAULT 'member',
         "secondary_user_rank" user_rank DEFAULT 'active_member',
-        "third_user_rank" user_rank DEFAULT 'member',
-        "fourth_user_rank" user_rank DEFAULT 'member',
-        "fifth_user_rank" user_rank DEFAULT 'member',
-        "sixth_user_rank" user_rank DEFAULT 'member',
-        "seventh_user_rank" user_rank DEFAULT 'member',
-        "eighth_user_rank" user_rank DEFAULT 'member',
-        "ninth_user_rank" user_rank DEFAULT 'member',
-        "tenth_user_rank" user_rank DEFAULT 'member',
-        "eleventh_user_rank" user_rank DEFAULT 'member',
-        "twelfth_user_rank" user_rank DEFAULT 'member',
-        "thirteenth_user_rank" user_rank DEFAULT 'member',
-        "fourteenth_user_rank" user_rank DEFAULT 'member',
-        "fifteenth_user_rank" user_rank DEFAULT 'member',
-        "sixteenth_user_rank" user_rank DEFAULT 'member',
-        "seventeenth_user_rank" user_rank DEFAULT 'member',
-        "eighteenth_user_rank" user_rank DEFAULT 'member',
-        "nineteenth_user_rank" user_rank DEFAULT 'member',
-        "twentieth_user_rank" user_rank DEFAULT 'member',
+        "third_user_rank" user_rank DEFAULT 'none',
+        "fourth_user_rank" user_rank DEFAULT 'none',
+        "fifth_user_rank" user_rank DEFAULT 'none',
+        "sixth_user_rank" user_rank DEFAULT 'none',
+        "seventh_user_rank" user_rank DEFAULT 'none',
+        "eighth_user_rank" user_rank DEFAULT 'none',
+        "ninth_user_rank" user_rank DEFAULT 'none',
+        "tenth_user_rank" user_rank DEFAULT 'none',
+        "eleventh_user_rank" user_rank DEFAULT 'none',
+        "twelfth_user_rank" user_rank DEFAULT 'none',
+        "thirteenth_user_rank" user_rank DEFAULT 'none',
+        "fourteenth_user_rank" user_rank DEFAULT 'none',
+        "fifteenth_user_rank" user_rank DEFAULT 'none',
+        "sixteenth_user_rank" user_rank DEFAULT 'none',
+        "seventeenth_user_rank" user_rank DEFAULT 'none',
+        "eighteenth_user_rank" user_rank DEFAULT 'none',
+        "nineteenth_user_rank" user_rank DEFAULT 'none',
+        "twentieth_user_rank" user_rank DEFAULT 'none',
         "is_banned" boolean DEFAULT false,
         "ban_reason" text,
         "banned_at" timestamp,

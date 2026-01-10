@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { Shield } from "lucide-react";
+import { Shield, Users } from "lucide-react";
 
 interface User {
   id: string;
@@ -30,6 +30,7 @@ interface User {
 }
 
 const RANK_OPTIONS = [
+  { value: "Banned", label: "Banned" },
   { value: "member", label: "Member" },
   { value: "active_member", label: "Active Member" },
   { value: "trusted_member", label: "Trusted Member" },
@@ -37,18 +38,23 @@ const RANK_OPTIONS = [
   { value: "bronze_vip", label: "Bronze VIP" },
   { value: "sapphire_vip", label: "Sapphire VIP" },
   { value: "diamond_vip", label: "Diamond VIP" },
-  { value: "founders_edition_vip", label: "Founders Edition VIP" },
-  { value: "founders_edition_lifetime", label: "Lifetime" },
+  { value: "founders_vip", label: "Founders Edition VIP" },
+  { value: "founders_lifetime", label: "Lifetime" },
   { value: "community_developer", label: "Community Developer" },
+  { value: "staff_internal_affairs", label: "Staff Internal Affairs" },
+  { value: "appeals_moderator", label: "Appeals Moderator" },
   { value: "rs_volunteer_staff", label: "RS Volunteer Staff" },
   { value: "community_moderator", label: "Community Moderator" },
   { value: "community_senior_moderator", label: "Community Senior Moderator" },
+  { value: "community_administrator", label: "Community Administrator" },
+  { value: "community_senior_administrator", label: "Community Senior Administrator" },
   { value: "moderator", label: "Moderator" },
   { value: "administrator", label: "Administrator" },
   { value: "senior_administrator", label: "Senior Administrator" },
   { value: "customer_relations", label: "Customer Relations" },
   { value: "team_member", label: "Team Member" },
-  { value: "staff_administration_director", label: "Trust & Safety Director" },
+  { value: "staff_department_director", label: "Staff Department Director" },
+  { value: "mi_trust_safety_director", label: "MI Trust & Safety Director" },
   { value: "leadership_council", label: "Leadership Council" },
   { value: "operations_manager", label: "Operations Manager" },
   { value: "company_director", label: "Company Director" },
@@ -226,7 +232,7 @@ export default function AdminPanel() {
           )}
 
           <div className="text-sm text-muted-foreground pt-4 border-t">
-            Total users: {users.length}
+            Total users: {Users.length}
           </div>
         </CardContent>
       </Card>

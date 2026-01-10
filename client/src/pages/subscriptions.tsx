@@ -23,17 +23,14 @@ import {
 } from "@/components/ui/dialog";
 import {
   Crown,
-  Gem,
   Diamond,
   Star,
   Check,
   Zap,
   Users,
-  MessageSquare,
   Shield,
   Sparkles,
   ArrowRight,
-  Lock,
 } from "lucide-react";
 import { SiDiscord, SiRoblox } from "react-icons/si";
 
@@ -41,7 +38,7 @@ const tiers = [
   {
     id: "bronze",
     name: "Bronze VIP",
-    price: 22.95,
+    price: 12.99,
     icon: Crown,
     className: "vip-bronze",
     features: [
@@ -61,99 +58,11 @@ const tiers = [
     ],
     popular: true,
     limited: false,
-    sale: true,
-    salePrice: 10.99,
-    saleEnds: "2026-8-29T23:59:59Z",
-    saleDiscount: 5,
-    saleDiscountText: "5% OFF",
-    saleDiscountBadge: "bg-red-500 text-red-50",
-    saleDiscountBadgeText: "SALE",
-    saleDiscountBadgeIcon: Lock,
-    saleDiscountBadgeIconClassName: "w-3 h-3 text-red-500",
-    comingSoon: false,
-    comingSoonText: "COMING SOON",
-    comingSoonBadge: "bg-yellow-500 text-yellow-950",
-    comingSoonBadgeText: "COMING SOON",
-    comingSoonBadgeIcon: Zap,
-    comingSoonBadgeIconClassName: "w-3 h-3 text-yellow-500",
-    leavingSoon: false,
-    leavingSoonText: "LEAVING SOON",
-    leavingSoonBadge: "bg-red-500 text-red-50",
-    leavingSoonBadgeText: "LEAVING SOON",
-    leavingSoonBadgeIcon: Lock,
-    leavingSoonBadgeIconClassName: "w-3 h-3 text-red-500",
-    leavingSoonEnds: "2026-8-29T23:59:59Z",
-    soldOut: false,
-    soldOutText: "SOLD OUT",
-    soldOutBadge: "bg-gray-500 text-gray-50",
-    soldOutBadgeText: "SOLD OUT",
-    soldOutBadgeIcon: Lock,
-    soldOutBadgeIconClassName: "w-3 h-3 text-gray-500",
-    // Disable the purchase button for this tier when soldOut: true
-    // Disable the purchase button for this tier when leavingSoonEnds date is reached and the tier is no longer available for purchase (leavingSoon: true) and change leavingSoonText to "UNAVAILABLE" and leavingSoonBadge to "bg-gray-500 text-gray-50" and leavingSoonBadgeText to "UNAVAILABLE" and leavingSoonBadgeIcon to Lock and leavingSoonBadgeIconClassName to "w-3 h-3 text-gray-500"
-  },
-  {
-    id: "sapphire",
-    name: "Sapphire VIP",
-    price: 33.95,
-    icon: Gem,
-    className: "vip-sapphire",
-    features: [
-      "Exclusive Discord Role & Privileges",
-      "Post Community Groups & Advertise",
-      "High Priority HelpDesk Support",
-      "High Priority Moderation Appeals",
-      "High Priority Staff Applications",
-      "Audi RS3 Given each Subscription Cycle",
-      "All Playtime Requirements Waived",
-      "Unlock USMS",
-      "XP Boost (45%)",
-      "Medical Bills 50% Off",
-      "No Wallet Limit",
-      "Paychecks Boost (40%)",
-      "Save 35% on Vehicle Insurance",
-      "Save 35% on Vehicles",
-      "Higher Chem & Plant Sell Rates (40%)",
-      "Perma-Knife on Civilian Team",
-      "ATM Fees Waived",
-    ],
-    popular: false,
-    limited: false,
-    sale: true,
-    salePrice: 14.99,
-    saleEnds: "2026-8-29T23:59:59Z",
-    saleDiscount: 25,
-    saleDiscountText: "25% OFF",
-    saleDiscountBadge: "bg-red-500 text-red-50",
-    saleDiscountBadgeText: "SALE",
-    saleDiscountBadgeIcon: Lock,
-    saleDiscountBadgeIconClassName: "w-3 h-3 text-red-500",
-    comingSoon: false,
-    comingSoonText: "COMING SOON",
-    comingSoonBadge: "bg-yellow-500 text-yellow-950",
-    comingSoonBadgeText: "COMING SOON",
-    comingSoonBadgeIcon: Zap,
-    comingSoonBadgeIconClassName: "w-3 h-3 text-yellow-500",
-    leavingSoon: true,
-    leavingSoonText: "LEAVING SOON",
-    leavingSoonBadge: "bg-red-500 text-red-50",
-    leavingSoonBadgeText: "LEAVING SOON",
-    leavingSoonBadgeIcon: Lock,
-    leavingSoonBadgeIconClassName: "w-3 h-3 text-red-500",
-    leavingSoonEnds: "2026-8-29T23:59:59Z",
-    soldOut: false,
-    soldOutText: "SOLD OUT",
-    soldOutBadge: "bg-gray-500 text-gray-50",
-    soldOutBadgeText: "SOLD OUT",
-    soldOutBadgeIcon: Lock,
-    soldOutBadgeIconClassName: "w-3 h-3 text-gray-500",
-    // Disable the purchase button for this tier when soldOut: true
-    // Disable the purchase button for this tier when leavingSoonEnds date is reached and the tier is no longer available for purchase (leavingSoon: true) and change leavingSoonText to "UNAVAILABLE" and leavingSoonBadge to "bg-gray-500 text-gray-50" and leavingSoonBadgeText to "UNAVAILABLE" and leavingSoonBadgeIcon to Lock and leavingSoonBadgeIconClassName to "w-3 h-3 text-gray-500"
   },
   {
     id: "diamond",
     name: "Diamond VIP",
-    price: 45.99,
+    price: 19.99,
     icon: Diamond,
     className: "vip-diamond",
     features: [
@@ -177,41 +86,11 @@ const tiers = [
     ],
     popular: false,
     limited: false,
-    sale: true,
-    salePrice: 19.99,
-    saleEnds: "2026-8-29T23:59:59Z",
-    saleDiscount: 15,
-    saleDiscountText: "15% OFF",
-    saleDiscountBadge: "bg-red-500 text-red-50",
-    saleDiscountBadgeText: "SALE",
-    saleDiscountBadgeIcon: Lock,
-    saleDiscountBadgeIconClassName: "w-3 h-3 text-red-500",
-    comingSoon: false,
-    comingSoonText: "COMING SOON",
-    comingSoonBadge: "bg-yellow-500 text-yellow-950",
-    comingSoonBadgeText: "COMING SOON",
-    comingSoonBadgeIcon: Zap,
-    comingSoonBadgeIconClassName: "w-3 h-3 text-yellow-500",
-    leavingSoon: false,
-    leavingSoonText: "LEAVING SOON",
-    leavingSoonBadge: "bg-red-500 text-red-50",
-    leavingSoonBadgeText: "LEAVING SOON",
-    leavingSoonBadgeIcon: Lock,
-    leavingSoonBadgeIconClassName: "w-3 h-3 text-red-500",
-    leavingSoonEnds: "2026-8-29T23:59:59Z",
-    soldOut: false,
-    soldOutText: "SOLD OUT",
-    soldOutBadge: "bg-gray-500 text-gray-50",
-    soldOutBadgeText: "SOLD OUT",
-    soldOutBadgeIcon: Lock,
-    soldOutBadgeIconClassName: "w-3 h-3 text-gray-500",
-    // Disable the purchase button for this tier when soldOut: true
-    // Disable the purchase button for this tier when leavingSoonEnds date is reached and the tier is no longer available for purchase (leavingSoon: true) and change leavingSoonText to "UNAVAILABLE" and leavingSoonBadge to "bg-gray-500 text-gray-50" and leavingSoonBadgeText to "UNAVAILABLE" and leavingSoonBadgeIcon to Lock and leavingSoonBadgeIconClassName to "w-3 h-3 text-gray-500"
   },
   {
     id: "founders",
-    name: "Founders Edition",
-    price: 120.0,
+    name: "Founders Edition VIP",
+    price: 45.99,
     icon: Star,
     className: "vip-founders",
     features: [
@@ -236,36 +115,36 @@ const tiers = [
     ],
     popular: false,
     limited: true,
-    sale: true,
-    salePrice: 35.0,
-    saleEnds: "2026-8-29T23:59:59Z",
-    saleDiscount: 70,
-    saleDiscountText: "70% OFF",
-    saleDiscountBadge: "bg-red-500 text-red-50",
-    saleDiscountBadgeText: "SALE",
-    saleDiscountBadgeIcon: Lock,
-    saleDiscountBadgeIconClassName: "w-3 h-3 text-red-500",
-    comingSoon: false,
-    comingSoonText: "COMING SOON",
-    comingSoonBadge: "bg-yellow-500 text-yellow-950",
-    comingSoonBadgeText: "COMING SOON",
-    comingSoonBadgeIcon: Zap,
-    comingSoonBadgeIconClassName: "w-3 h-3 text-yellow-500",
-    leavingSoon: false,
-    leavingSoonText: "LEAVING SOON",
-    leavingSoonBadge: "bg-red-500 text-red-50",
-    leavingSoonBadgeText: "LEAVING SOON",
-    leavingSoonBadgeIcon: Lock,
-    leavingSoonBadgeIconClassName: "w-3 h-3 text-red-500",
-    leavingSoonEnds: "2026-8-29T23:59:59Z",
-    soldOut: false,
-    soldOutText: "SOLD OUT",
-    soldOutBadge: "bg-gray-500 text-gray-50",
-    soldOutBadgeText: "SOLD OUT",
-    soldOutBadgeIcon: Lock,
-    soldOutBadgeIconClassName: "w-3 h-3 text-gray-500",
-    // Disable the purchase button for this tier when soldOut: true
-    // Disable the purchase button for this tier when leavingSoonEnds date is reached and the tier is no longer available for purchase (leavingSoon: true) and change leavingSoonText to "UNAVAILABLE" and leavingSoonBadge to "bg-gray-500 text-gray-50" and leavingSoonBadgeText to "UNAVAILABLE" and leavingSoonBadgeIcon to Lock and leavingSoonBadgeIconClassName to "w-3 h-3 text-gray-500"
+  },
+  {
+    id: "founders_lifetime",
+    name: "Founders Edition Lifetime",
+    lifetimePrice: 64.99,
+    icon: Star,
+    className: "vip-lifetime",
+    features: [
+      "Exclusive Founders Edition Lifetime Discord Role",
+      "Urgent Priority HelpDesk Support",
+      "Urgent Priority Moderation Appeals",
+      "Urgent Priority Staff Applications",
+      "Instant FBI Access & Arrest Authority",
+      "All Team-Queue & Team Count Bypass",
+      "All Playtime Requirements Waived",
+      "Hellcat Given each Subscription Cycle",
+      "Direct communication to Trust & Safety Team",
+      "Exclusive Moderator Commands In-Game (Non-Abusive)",
+      "XP Boost (55%)",
+      "Medical Bills 55% Off",
+      "No Wallet Limit",
+      "Paychecks Boost (55%)",
+      "Save 50% on Vehicle Insurance",
+      "Save 50% on Vehicles",
+      "Higher Chem & Plant Sell Rates (50%)",
+      "Perma-Glock on Civilian Team",
+      "ATM Fees Waived",
+    ],
+    popular: false,
+    limited: true,
   },
 ];
 
@@ -334,8 +213,8 @@ export default function VIP() {
               <div className="flex-1">
                 <h3 className="font-semibold">Link Your Discord Account</h3>
                 <p className="text-sm text-muted-foreground mt-1">
-                  Link your Discord account before purchasing VIP to receive
-                  automatic role assignment in our Discord server.
+                  Link your Discord account to receive automatic role assignment
+                  in our Discord server.
                 </p>
               </div>
               <Button variant="outline" asChild>
@@ -387,6 +266,12 @@ export default function VIP() {
                   <span className="text-4xl font-bold">${tier.price}</span>
                   <span className="text-muted-foreground">/month</span>
                 </div>
+                <div className="mt-2">
+                  <span className="text-4xl font-bold">
+                    ${tier.lifetimePrice}
+                  </span>
+                  <span className="text-muted-foreground">Lifetime</span>
+                </div>
               </CardHeader>
               <CardContent className="space-y-4">
                 <ul className="space-y-2">
@@ -419,6 +304,10 @@ export default function VIP() {
                         <p className="text-sm font-medium">
                           ${tier.price}/month
                         </p>
+                        <div className="bg-primary/5 rounded p-3 mb-4">
+                          <p className="text-sm font-medium">
+                            ${tier.lifetimePrice}Lifetime
+                          </p>
                       </div>
                       <PaymentForm
                         tier={tier}
@@ -471,9 +360,9 @@ export default function VIP() {
                 <Zap className="w-5 h-5 text-chart-3" />
               </div>
               <div>
-                <h4 className="font-semibold">Priority Matching</h4>
+                <h4 className="font-semibold">Priority Support</h4>
                 <p className="text-sm text-muted-foreground">
-                  Get matched faster in LFG with priority queue access.
+                  Get support faster with priority queue access.
                 </p>
               </div>
             </div>
@@ -504,9 +393,9 @@ export default function VIP() {
                 <Shield className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <h4 className="font-semibold">Priority Support</h4>
+                <h4 className="font-semibold">Exclusive Commands</h4>
                 <p className="text-sm text-muted-foreground">
-                  Get faster responses from our support team.
+                  Receive exclusive in-game commands.
                 </p>
               </div>
             </div>
@@ -523,7 +412,7 @@ export default function VIP() {
           <div>
             <h4 className="font-semibold">How do I get my Discord role?</h4>
             <p className="text-sm text-muted-foreground mt-1">
-              Link your Discord account in Settings before or after purchasing
+              Link your Discord account in Settings after purchasing
               VIP. Your role will be automatically assigned within minutes.
             </p>
           </div>
@@ -543,12 +432,7 @@ export default function VIP() {
             </h4>
             <p className="text-sm text-muted-foreground mt-1">
               As of now, Sapphire VIP is not available for purchase. We are
-              currently evaluating the demand and feedback for this tier. Stay
-              tuned for updates! We appreciate your patience and understanding.
-              We will notify you when Sapphire VIP is available for purchase
-              again. Thank you for your support and understanding. We look
-              forward to serving you better in the future. Best regards, The
-              Resync Studios Team.
+              currently evaluating the demand and feedback for this tier.
             </p>
           </div>
           <div>

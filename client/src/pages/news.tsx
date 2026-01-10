@@ -10,14 +10,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Megaphone, Rocket } from "lucide-react";
+import { Megaphone, Rocket, MessageSquareWarning } from "lucide-react";
 
 const ICON_MAP: Record<string, any> = {
   launch: Rocket,
   roadmap: Rocket,
   feature: Rocket,
   update: Megaphone,
-  maintenance: Megaphone,
+  maintenance: MessageSquareWarning,
   event: Megaphone,
   news: Megaphone,
   important: Megaphone,
@@ -35,7 +35,7 @@ export default function Announcements() {
   if (isLoading) {
     return (
       <div className="text-center text-muted-foreground">
-        Loading announcements...
+        Loading news & announcements...
       </div>
     );
   }
@@ -45,7 +45,7 @@ export default function Announcements() {
       <div className="text-center space-y-2">
         <Badge variant="outline" className="mx-auto gap-2">
           <Megaphone className="w-3.5 h-3.5" />
-          Latest Updates
+          Latest News & Updates
         </Badge>
         <h1 className="font-display text-3xl sm:text-4xl font-bold">
           Announcements
