@@ -23,7 +23,7 @@ export default function VolunteerModeration() {
         </Badge>
         <div>
           <h1 className="font-display text-3xl sm:text-4xl font-bold mb-2">
-            RESYNC Volunteer Moderation Program
+            RIVET Volunteer Moderation Program
           </h1>
           <p className="text-lg text-muted-foreground">
             Join our moderation team and help maintain a safe, positive
@@ -376,7 +376,7 @@ export default function VolunteerModeration() {
               border: "none",
               borderRadius: "var(--radius)",
             }}
-            title="RESYNC Volunteer Moderation Application"
+            title="RIVET Volunteer Moderation Application"
           />
         </Card>
       </div>

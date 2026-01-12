@@ -10,6 +10,7 @@ import {
   insertForumThreadSchema,
   insertForumReplySchema,
   insertReportSchema,
+  type User,
 } from "@shared/schema";
 import { z } from "zod";
 
@@ -34,7 +35,13 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
     try {
       const { email, username, password } = req.body;
       const hashedPassword = hashPassword(password);
-      const user = await storage.upsertUser({ email, username, password: hashedPassword, userRank: "member", vipTier: "none" });
+      const user = await storage.upsertUser({ 
+        email, 
+        username, 
+        password: hashedPassword, 
+        userRank: "member", 
+        vipTier: "none" 
+      });
       res.json(user);
     } catch (error) {
       res.status(500).json({ message: "Signup failed" });
@@ -48,9 +55,28 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
       if (!user || !user.password || !verifyPassword(password, user.password)) {
         return res.status(401).json({ message: "Invalid credentials" });
       }
-      req.login(user, (err) => res.json(user));
+      req.login(user, (err) => {
+        if (err) return res.status(500).json({ message: "Session failed" });
+        res.json(user);
+      });
     } catch (error) {
       res.status(500).json({ message: "Login failed" });
+    }
+  });
+
+  app.get("/api/users", async (req, res) => {
+    try {
+      const { search } = req.query;
+      const allUsers = await storage.getAllUsers();
+      if (search) {
+        const filtered = allUsers.filter(u => 
+          u.username?.toLowerCase().includes((search as string).toLowerCase())
+        );
+        return res.json(filtered);
+      }
+      res.json(allUsers);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch users" });
     }
   });
 

@@ -21,7 +21,9 @@ export const reportStatusEnum = pgEnum("report_status", [
 ]);
 
 export const reports = pgTable("reports", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  id: varchar("id")
+    .primaryKey()
+    .default(sql`gen_random_uuid()`),
   reporterId: varchar("reporter_id").notNull(),
   targetId: varchar("target_id").notNull(),
   targetType: varchar("target_type").notNull(),
@@ -45,10 +47,9 @@ export type InsertReport = z.infer<typeof insertReportSchema>;
 // Enums
 export const vipTierEnum = pgEnum("vip_tier", [
   "none",
-  "bronze",
-  "sapphire",
-  "diamond",
-  "founders",
+  "bronze_vip",
+  "diamond_vip",
+  "founders_vip",
   "founders_lifetime",
   "lifetime",
 ]);
@@ -75,7 +76,7 @@ export const userRankEnum = pgEnum("user_rank", [
   "community_partner",
   "bronze_vip",
   "diamond_vip",
-  "founders_edition_vip",
+  "founders_vip",
   "lifetime",
   "customer_relations",
   "rs_volunteer_staff",
@@ -173,16 +174,12 @@ export const users = pgTable("users", {
   isModerator: boolean("is_moderator").default(false),
   // Admin Dashboard
   isAdmin: boolean("is_admin").default(false),
-  // Community Developer Dashboard
-  isCommunity Developer: boolean("is_community_developer").default(false),
-  // EAR (Emergency Access Request) Dashboard
-  isEAR: boolean("is_ear").default(false),
-  earRequests: text("ear_requests"),
-  earRequestStatus: varchar("ear_request_status").default("pending"),
-  earRequestDate: timestamp("ear_request_date"),
-  earRequestReviewedBy: varchar("ear_request_reviewed_by"),
-  earRequestReviewedDate: timestamp("ear_request_reviewed_date"),
-  earRequestReviewedReason: text("ear_request_reviewed_reason"),
+  mi_trust_safety_director: userRankEnum("mi_trust_safety_director").default(
+    "member",
+  ),
+  staff_department_director: boolean("staff_department_director").default(
+    false,
+  ),
   // Timestamps
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
@@ -396,7 +393,9 @@ export type Build = typeof builds.$inferSelect;
 export type InsertBuild = z.infer<typeof insertBuildSchema>;
 export type BuildVote = typeof buildVotes.$inferSelect;
 export type ForumCategory = typeof forumCategories.$inferSelect;
-export type InsertForumCategory = z.infer<ReturnType<typeof createInsertSchema<typeof forumCategories>>>;
+export type InsertForumCategory = z.infer<
+  ReturnType<typeof createInsertSchema<typeof forumCategories>>
+>;
 export type ForumThread = typeof forumThreads.$inferSelect;
 export type InsertForumThread = z.infer<typeof insertForumThreadSchema>;
 export type ForumReply = typeof forumReplies.$inferSelect;
@@ -406,6 +405,8 @@ export type InsertChatMessage = z.infer<typeof insertChatMessageSchema>;
 export type Announcement = typeof announcements.$inferSelect;
 export type InsertAnnouncement = z.infer<typeof insertAnnouncementSchema>;
 export type SiteSettings = typeof siteSettings.$inferSelect;
-export type InsertSiteSettings = z.infer<ReturnType<typeof createInsertSchema<typeof siteSettings>>>;
+export type InsertSiteSettings = z.infer<
+  ReturnType<typeof createInsertSchema<typeof siteSettings>>
+>;
 export type Payment = typeof payments.$inferSelect;
 export type InsertPayment = z.infer<typeof insertPaymentSchema>;

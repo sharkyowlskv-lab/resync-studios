@@ -200,7 +200,7 @@ export default function AboutRS() {
             </CardHeader>
             <CardContent className="text-sm text-muted-foreground">
               Continued dedication to quality, transparency, and fairness in
-              community management and moderation. Your voice matters in RESYNC
+              community management and moderation. Your voice matters in RIVET
               Studios™.
             </CardContent>
           </Card>

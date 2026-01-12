@@ -5,8 +5,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
 import { MainHeader } from "@/components/main-header";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth, AuthProvider } from "@/hooks/useAuth";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ProtectedRoute } from "@/lib/protected-route";
 
 import NotFound from "@/pages/not-found";
 import Landing from "@/pages/landing";
@@ -14,10 +15,12 @@ import Login from "@/pages/login";
 import Signup from "@/pages/signup";
 import Dashboard from "@/pages/dashboard";
 import Clans from "@/pages/clans";
-import Forums from "@/pages/forums";
+import ForumHome from "@/pages/forums/home";
+import ForumCategory from "@/pages/forums/category";
 import ForumThread from "@/pages/forums/thread";
+import CreateThread from "@/pages/forums/create-thread";
 import Subscriptions from "@/pages/subscriptions";
-import User from "@/pages/user";
+import UserProfile from "@/pages/user";
 import Settings from "@/pages/settings";
 import Guidelines from "@/pages/guidelines";
 import Privacy from "@/pages/privacy";
@@ -42,6 +45,7 @@ import Builds from "@/pages/builds";
 import Blog from "@/pages/blog";
 import Store from "@/pages/store";
 import Policies from "@/pages/policies";
+import UserSearch from "@/pages/user-search";
 
 function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -163,6 +167,14 @@ function PublicLayout({ children }: { children: React.ReactNode }) {
                     Projects
                   </a>
                 </li>
+                <li>
+                  <a
+                    href="/search"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    Search Members
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
@@ -196,35 +208,28 @@ function Router() {
     <PublicLayout>
       <Switch>
         <Route path="/" component={Landing} />
-        <Route
-          path="/api/auth/discord"
-          component={() => {
-            // This route should be handled by the backend, but we add it to the frontend
-            // to prevent 404s if the browser tries to render it before the redirect
-            window.location.href = "/dashboard";
-            return null;
-          }}
-        />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/blog" component={Blog} />
         <Route path="/store" component={Store} />
         <Route path="/policies" component={Policies} />
-        <Route path="/forums" component={Forums} />
+        <Route path="/forums" component={ForumHome} />
+        <Route path="/forums/category/:id" component={ForumCategory} />
         <Route path="/forums/thread/:id" component={ForumThread} />
+        <ProtectedRoute path="/forums/new" component={CreateThread} />
         <Route path="/subscriptions" component={Subscriptions} />
-        <Route path="/user" component={User} />
+        <Route path="/user" component={UserProfile} />
+        <Route path="/profile/:id" component={UserProfile} />
         <Route path="/settings" component={Settings} />
         <Route path="/team" component={StaffDirectory} />
-        <Route path="/staff" component={StaffDirectory} />
-        <Route path="/staff-directory" component={StaffDirectory} />
+        <Route path="/search" component={UserSearch} />
         <Route path="/builds" component={Builds} />
         <Route path="/chat" component={Chat} />
         <Route path="/clans" component={Clans} />
         <Route path="/admin" component={Admin} />
-        <Route path="/modcp" component={ModCP} />
-        <Route path="/admincp" component={AdminCP} />
+        <ProtectedRoute path="/modcp" component={ModCP} />
+        <ProtectedRoute path="/admincp" component={AdminCP} />
         <Route path="/guidelines" component={Guidelines} />
         <Route path="/privacy" component={Privacy} />
         <Route path="/terms" component={Terms} />
@@ -251,12 +256,14 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider defaultTheme="dark" storageKey="resync-studios-theme">
-        <TooltipProvider>
-          <Router />
-          <Toaster />
-        </TooltipProvider>
-      </ThemeProvider>
+      <AuthProvider>
+        <ThemeProvider defaultTheme="light" storageKey="rivet-studios-theme">
+          <TooltipProvider>
+            <Router />
+            <Toaster />
+          </TooltipProvider>
+        </ThemeProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }

@@ -33,7 +33,7 @@ export default function DMCAPolicy() {
                 What This Policy Covers
               </p>
               <p className="text-muted-foreground text-sm">
-                If your game was taken down due to a DMCA claim by Resync
+                If your game was taken down due to a DMCA claim by Rivet
                 Studios, it means we identified content that potentially
                 infringes on intellectual property owned by us or one of our
                 affiliated clients.

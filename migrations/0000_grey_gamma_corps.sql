@@ -1,7 +1,7 @@
 CREATE TYPE "public"."game_role" AS ENUM('tank', 'dps', 'support', 'healer', 'flex', 'any');--> statement-breakpoint
 CREATE TYPE "public"."skill_level" AS ENUM('beginner', 'intermediate', 'advanced', 'expert', 'pro');--> statement-breakpoint
-CREATE TYPE "public"."user_rank" AS ENUM('member', 'company_director', 'leadership_council', 'operations_manager', 'rs_trust_safety_director', 'team_member', 'administrator', 'senior_administrator', 'moderator', 'community_moderator', 'community_senior_moderator', 'community_developer', 'bronze_vip', 'sapphire_vip', 'diamond_vip', 'founders_edition_vip', 'customer_relations', 'rs_volunteer_staff');--> statement-breakpoint
-CREATE TYPE "public"."vip_tier" AS ENUM('none', 'bronze', 'sapphire', 'diamond', 'founders');--> statement-breakpoint
+CREATE TYPE "public"."user_rank" AS ENUM('banned', 'member', 'active_member', 'trusted_member', 'community_partner', 'rs_trust_safety_team', 'appeals_moderator', 'staff_internal_affairs', 'company_director', 'staff_department_director', 'operations_manager', 'mi_trust_safety_director', 'team_member', 'community_administrator', 'community_senior_administrator', 'moderator', 'community_moderator', 'community_senior_moderator', 'community_developer', 'bronze_vip', 'diamond_vip', 'founders_edition_vip', 'founders_vip', 'customer_relations', 'rs_volunteer_staff', 'founders_lifetime', 'lifetime', '');--> statement-breakpoint
+CREATE TYPE "public"."vip_tier" AS ENUM('none', 'bronze_vip', 'diamond_vip', 'founders_vip', 'founders_edition_lifetime', 'founders_lifetime', 'lifetime');--> statement-breakpoint
 CREATE TABLE "achievements" (
 	"id" varchar PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"name" varchar NOT NULL,

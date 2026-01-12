@@ -58,3 +58,6 @@ DISCORD_GUILD_ID = "1419115257753768031"
 
 [rules.formatter.fileExtensions.".tsx"]
 id = "module:nodejs-20/formatter:prettier"
+
+[objectStorage]
+defaultBucketID = "replit-objstore-9c354de7-3a27-453c-8717-a5718330d5f0"

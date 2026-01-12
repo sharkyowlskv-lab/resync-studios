@@ -169,7 +169,7 @@ export default function TermsOfService() {
             </CardHeader>
             <CardContent className="text-sm text-muted-foreground">
               All content, software, images, text, graphics, logos, trademarks,
-              and intellectual property rights are owned or licensed by Resync
+              and intellectual property rights are owned or licensed by Rivet
               Studios. Use of any content not expressly permitted by this
               Agreement is strictly prohibited.
             </CardContent>

@@ -120,7 +120,7 @@ export default function VolunteerStaffAgreement() {
                 functional microphone in good working order
               </li>
               <li>
-                <strong>Account in Good Standing:</strong> Have an active Resync
+                <strong>Account in Good Standing:</strong> Have an active Rivet
                 Studios user account with no history of significant violations
               </li>
               <li>
@@ -342,7 +342,7 @@ export default function VolunteerStaffAgreement() {
             </CardHeader>
             <CardContent className="text-sm text-muted-foreground">
               Engaging in prohibited post-service conduct is a material breach
-              resulting in immediate and permanent termination of your Resync
+              resulting in immediate and permanent termination of your Rivet
               Studios user account and a permanent ban from all Services,
               without appeal.
             </CardContent>
