@@ -27,8 +27,12 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
     if (!(req as any).isAuthenticated?.() || !req.user) {
       return res.status(401).json({ message: "Unauthorized" });
     }
-    const freshUser = await storage.getUser((req.user as any).id);
-    res.json(freshUser);
+    const user = await storage.getUser((req.user as any).id);
+    if (!user) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+    const { password, ...userWithoutPassword } = user as any;
+    res.json(userWithoutPassword);
   });
 
   app.post("/api/auth/signup", async (req, res) => {
