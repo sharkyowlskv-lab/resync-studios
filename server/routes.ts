@@ -57,7 +57,8 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
       }
       req.login(user, (err) => {
         if (err) return res.status(500).json({ message: "Session failed" });
-        res.json(user);
+        const { password, ...userWithoutPassword } = user as any;
+        res.json(userWithoutPassword);
       });
     } catch (error) {
       res.status(500).json({ message: "Login failed" });

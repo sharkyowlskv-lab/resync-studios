@@ -137,7 +137,7 @@ app.use((req, res, next) => {
     res.json({ status: "ok", mode: process.env.NODE_ENV });
   });
 
-  if (fs.existsSync(indexHtmlPath)) {
+  if (fs.existsSync(indexHtmlPath) && process.env.NODE_ENV === "production") {
     console.log("✅ PRODUCTION MODE: Serving from dist/public");
 
     // Serve all static assets with no caching

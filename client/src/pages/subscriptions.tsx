@@ -304,13 +304,14 @@ export default function VIP() {
                         <p className="text-sm font-medium">
                           ${tier.price}/month
                         </p>
-                        <div className="bg-primary/5 rounded p-3 mb-4">
-                          <p className="text-sm font-medium">
-                            ${tier.lifetimePrice}Lifetime
-                          </p>
+                      </div>
+                      <div className="bg-primary/5 rounded p-3 mb-4">
+                        <p className="text-sm font-medium">
+                          ${tier.lifetimePrice} Lifetime
+                        </p>
                       </div>
                       <PaymentForm
-                        tier={tier}
+                        tier={{...tier, price: tier.price || tier.lifetimePrice || 0}}
                         onSuccess={() => window.location.reload()}
                       />
                     </DialogContent>

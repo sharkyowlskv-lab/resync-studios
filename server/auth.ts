@@ -31,7 +31,12 @@ passport.serializeUser((user: any, done) => {
 passport.deserializeUser(async (id: string, done) => {
   try {
     const user = await storage.getUser(id);
-    done(null, user);
+    if (!user) {
+      return done(null, false);
+    }
+    // Convert nulls to undefined to match User type if necessary, 
+    // but usually casting is enough for passport
+    done(null, user as any);
   } catch (err) {
     done(err);
   }
@@ -107,7 +112,7 @@ if (DISCORD_CLIENT_ID && DISCORD_CLIENT_SECRET) {
               })) || user;
           }
 
-          done(null, user);
+          done(null, user as any);
         } catch (err) {
           done(err);
         }

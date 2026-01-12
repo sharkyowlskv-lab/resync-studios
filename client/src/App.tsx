@@ -190,7 +190,7 @@ function PublicLayout({ children }: { children: React.ReactNode }) {
 }
 
 function Router() {
-  const { isLoading } = useAuth();
+  const { isLoading, user } = useAuth();
 
   if (isLoading) {
     return (
@@ -217,7 +217,9 @@ function Router() {
         <Route path="/forums" component={ForumHome} />
         <Route path="/forums/category/:id" component={ForumCategory} />
         <Route path="/forums/thread/:id" component={ForumThread} />
-        <ProtectedRoute path="/forums/new" component={CreateThread} />
+        <Route path="/forums/new">
+          {user ? <CreateThread /> : <Login />}
+        </Route>
         <Route path="/subscriptions" component={Subscriptions} />
         <Route path="/user" component={UserProfile} />
         <Route path="/profile/:id" component={UserProfile} />
@@ -228,8 +230,12 @@ function Router() {
         <Route path="/chat" component={Chat} />
         <Route path="/clans" component={Clans} />
         <Route path="/admin" component={Admin} />
-        <ProtectedRoute path="/modcp" component={ModCP} />
-        <ProtectedRoute path="/admincp" component={AdminCP} />
+        <Route path="/modcp">
+          {user?.isModerator || user?.isAdmin ? <ModCP /> : <NotFound />}
+        </Route>
+        <Route path="/admincp">
+          {user?.isAdmin ? <AdminCP /> : <NotFound />}
+        </Route>
         <Route path="/guidelines" component={Guidelines} />
         <Route path="/privacy" component={Privacy} />
         <Route path="/terms" component={Terms} />
