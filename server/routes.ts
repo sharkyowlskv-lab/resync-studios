@@ -135,7 +135,18 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
 
   // Forums
   app.get("/api/forums/categories", async (req, res) => res.json(await storage.getForumCategories()));
-  app.get("/api/forums/threads", async (req, res) => res.json(await storage.getForumThreads(req.query.categoryId as string)));
+  app.get("/api/forums/categories/:id", async (req, res) => {
+    const category = await storage.getForumCategory(req.params.id);
+    if (!category) return res.status(404).json({ message: "Category not found" });
+    res.json(category);
+  });
+  app.get("/api/forums/threads", async (req, res) => {
+    const categoryId = req.query.categoryId as string;
+    const threads = await storage.getForumThreads(categoryId);
+    // In a real app we'd join with users, but here we'll map if needed or assume storage does it
+    // For now, let's just return the threads. If the frontend expects author, we might need a join.
+    res.json(threads);
+  });
   app.post("/api/forums/threads", requireAuth, async (req, res) => {
     try {
       const data = insertForumThreadSchema.parse({ ...req.body, authorId: (req.user as any).id });

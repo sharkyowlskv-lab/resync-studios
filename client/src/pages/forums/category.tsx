@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "wouter";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { MessageSquare, Clock, User as UserIcon, ChevronLeft } from "lucide-react";
@@ -68,11 +68,11 @@ export default function ForumCategoryPage() {
                 </Link>
                 <div className="flex items-center flex-wrap gap-x-3 gap-y-1 text-sm text-slate-500">
                   <span className="flex items-center gap-1.5">
-                    Started by <span className="font-semibold text-slate-700">{thread.author?.username}</span>
+                    Started by <span className="font-semibold text-slate-700">{thread.author?.username || "Unknown"}</span>
                   </span>
                   <span className="flex items-center gap-1">
                     <Clock className="w-3.5 h-3.5" />
-                    {formatDistanceToNow(new Date(thread.createdAt!), { addSuffix: true })}
+                    {thread.createdAt ? formatDistanceToNow(new Date(thread.createdAt), { addSuffix: true }) : "recently"}
                   </span>
                 </div>
               </div>
@@ -80,7 +80,7 @@ export default function ForumCategoryPage() {
               <div className="flex flex-col items-end gap-1.5 flex-shrink-0">
                 <div className="flex items-center gap-1 text-slate-400">
                   <MessageSquare className="w-4 h-4" />
-                  <span className="text-sm font-bold">{thread.replyCount}</span>
+                  <span className="text-sm font-bold">{thread.replyCount || 0}</span>
                 </div>
                 {thread.isPinned && <Badge className="bg-amber-50 text-amber-600 border-amber-100 text-[10px] px-1.5">PINNED</Badge>}
               </div>

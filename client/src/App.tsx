@@ -5,9 +5,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
 import { MainHeader } from "@/components/main-header";
-import { useAuth, AuthProvider } from "@/hooks/useAuth";
+import { useAuth } from "@/hooks/useAuth";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ProtectedRoute } from "@/lib/protected-route";
+// Removed missing ProtectedRoute and AuthProvider
 
 import NotFound from "@/pages/not-found";
 import Landing from "@/pages/landing";
