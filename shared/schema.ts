@@ -89,6 +89,7 @@ export const userRankEnum = pgEnum("user_rank", [
   "community_developer",
   "staff_internal_affairs",
   "mi_trust_safety_director_trademark",
+  "mi_trust_safety_director",
   "staff_department_director",
   "team_member",
   "operations_manager",
