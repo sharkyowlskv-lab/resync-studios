@@ -175,9 +175,7 @@ export const users = pgTable("users", {
   isModerator: boolean("is_moderator").default(false),
   // Admin Dashboard
   isAdmin: boolean("is_admin").default(false),
-  mi_trust_safety_director: userRankEnum("mi_trust_safety_director").default(
-    "member",
-  ),
+  mi_trust_safety_director: boolean("mi_trust_safety_director").default(false),
   staff_department_director: boolean("staff_department_director").default(
     false,
   ),
