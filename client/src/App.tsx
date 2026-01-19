@@ -214,12 +214,18 @@ function Router() {
         <Route path="/signup" component={Signup} />
         <Route path="/blog" component={Blog} />
         <Route path="/store" component={Store} />
+        <Route path="/store/subscriptions" component={Subscriptions} />
         <Route path="/policies" component={Policies} />
         <Route path="/forums" component={ForumHome} />
         <Route path="/forums/category/:id" component={ForumCategory} />
         <Route path="/forums/thread/:id" component={ForumThread} />
         <Route path="/forums/new">{user ? <CreateThread /> : <Login />}</Route>
-        <Route path="/subscriptions" component={Subscriptions} />
+        <Route path="/subscriptions">
+          <Redirect to="/store/subscriptions" />
+        </Route>
+        <Route path="/vip">
+          <Redirect to="/store/subscriptions" />
+        </Route>
         <Route path="/user" component={UserProfile} />
         <Route path="/profile/:id" component={UserProfile} />
         <Route path="/settings" component={Settings} />

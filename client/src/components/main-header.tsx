@@ -38,7 +38,7 @@ export function MainHeader() {
     { label: "Blog", href: "/blog" },
     { label: "Forums", href: "/forums" },
     { label: "Store", href: "/store" },
-    { label: "Subscriptions", href: "/vip" },
+    { label: "Subscriptions", href: "/store/subscriptions" },
   ];
 
   return (

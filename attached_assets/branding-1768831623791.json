@@ -1,0 +1,103 @@
+{
+  "colorScheme": "light",
+  "fonts": [
+    {
+      "family": "Instrument Sans",
+      "count": 3
+    },
+    {
+      "family": "ui-sans-serif",
+      "count": 3
+    },
+    {
+      "family": "system-ui",
+      "count": 3
+    },
+    {
+      "family": "sans-serif",
+      "count": 3
+    },
+    {
+      "family": "Apple Color Emoji",
+      "count": 3
+    },
+    {
+      "family": "Segoe UI Emoji",
+      "count": 3
+    },
+    {
+      "family": "Segoe UI Symbol",
+      "count": 3
+    },
+    {
+      "family": "Noto Color Emoji",
+      "count": 3
+    }
+  ],
+  "colors": {
+    "primary": "#000000",
+    "accent": "#000000",
+    "background": "#FFFFFF",
+    "textPrimary": "#0A0A0A",
+    "link": "#000000"
+  },
+  "typography": {
+    "fontFamilies": {
+      "primary": "Instrument Sans",
+      "heading": "Instrument Sans"
+    },
+    "fontStacks": {
+      "body": [
+        "Instrument Sans",
+        "ui-sans-serif",
+        "system-ui",
+        "sans-serif",
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Segoe UI Symbol",
+        "Noto Color Emoji"
+      ],
+      "heading": [
+        "Instrument Sans",
+        "ui-sans-serif",
+        "system-ui",
+        "sans-serif",
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Segoe UI Symbol",
+        "Noto Color Emoji"
+      ],
+      "paragraph": [
+        "Instrument Sans",
+        "ui-sans-serif",
+        "system-ui",
+        "sans-serif",
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Segoe UI Symbol",
+        "Noto Color Emoji"
+      ]
+    },
+    "fontSizes": {
+      "h1": "16px",
+      "h2": "16px",
+      "body": "16px"
+    }
+  },
+  "spacing": {
+    "baseUnit": 8,
+    "borderRadius": "8px"
+  },
+  "components": {},
+  "images": {
+    "logo": null,
+    "favicon": "https://reactstudios.com/favicon.ico",
+    "ogImage": null
+  },
+  "__framework_hints": [],
+  "confidence": {
+    "buttons": 0,
+    "colors": 0,
+    "overall": 0
+  }
+}
