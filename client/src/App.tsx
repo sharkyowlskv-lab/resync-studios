@@ -7,7 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { MainHeader } from "@/components/main-header";
 import { useAuth } from "@/hooks/useAuth";
 import { Skeleton } from "@/components/ui/skeleton";
-// Removed missing ProtectedRoute and AuthProvider
+import { AuthProvider } from "@/components/auth-provider";
 
 import NotFound from "@/pages/not-found";
 import Unauthorized from "@/pages/unauthorized";
