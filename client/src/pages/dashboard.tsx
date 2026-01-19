@@ -139,9 +139,7 @@ export default function Dashboard() {
               </div>
               <div>
                 <p className="text-2xl font-bold">---</p>
-                <p className="text-xs text-muted-foreground">
-                  Active LFG Posts
-                </p>
+                <p className="text-xs text-muted-foreground">[DEPRECATED]</p>
               </div>
             </div>
           </CardContent>

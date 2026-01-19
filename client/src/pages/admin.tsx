@@ -50,7 +50,10 @@ const RANK_OPTIONS = [
   { value: "community_moderator", label: "Community Moderator" },
   { value: "community_senior_moderator", label: "Community Senior Moderator" },
   { value: "community_administrator", label: "Community Administrator" },
-  { value: "community_senior_administrator", label: "Community Senior Administrator" },
+  {
+    value: "community_senior_administrator",
+    label: "Community Senior Administrator",
+  },
   { value: "moderator", label: "Moderator" },
   { value: "administrator", label: "Administrator" },
   { value: "senior_administrator", label: "Senior Administrator" },
@@ -66,11 +69,17 @@ const RANK_OPTIONS = [
 export default function AdminPanel() {
   const { user: currentUser } = useAuth();
   const { toast } = useToast();
-  
-  const staffRanks = ["team_member", "operations_manager", "company_director", "mi_trust_safety_director"];
-  const hasAccess = currentUser?.email?.endsWith("@resyncstudios.com") || 
-                   staffRanks.includes(currentUser?.userRank || "") ||
-                   (currentUser?.additionalRanks || []).some(r => staffRanks.includes(r));
+
+  const staffRanks = [
+    "team_member",
+    "operations_manager",
+    "company_director",
+    "mi_trust_safety_director",
+  ];
+  const hasAccess =
+    currentUser?.email?.endsWith("@resyncstudios.com") ||
+    staffRanks.includes(currentUser?.userRank || "") ||
+    (currentUser?.additionalRanks || []).some((r) => staffRanks.includes(r));
 
   if (!hasAccess) {
     return <Unauthorized />;
@@ -206,7 +215,8 @@ export default function AdminPanel() {
                       </Badge>
                       {(user.additionalRanks || []).map((rank) => (
                         <Badge key={rank} variant="secondary">
-                          {RANK_OPTIONS.find((r) => r.value === rank)?.label || rank}
+                          {RANK_OPTIONS.find((r) => r.value === rank)?.label ||
+                            rank}
                         </Badge>
                       ))}
                     </div>
@@ -256,4 +266,8 @@ export default function AdminPanel() {
       </Card>
     </div>
   );
+}
+
+function useAuth(): { user: any } {
+  throw new Error("Function not implemented.");
 }

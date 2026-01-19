@@ -11,28 +11,30 @@ const tiers = [
     name: "Bronze VIP®",
     rating: "4.5",
     price: "13.99",
-    description: "The Bronze VIP® package is designed for supporters who want to help REACT Studios grow while enhancing their REACT Studios account experience exclusively.",
+    description:
+      "The Bronze VIP® package is designed for supporters who want to help RIVET Studios grow while enhancing their RIVET Studios account experience exclusively.",
     features: [
       "[RS Discord Server] Exclusive Role, Less Chat Restrictions, Post Images / Videos / Files, Higher Priority Suggestions and Bugs",
-      "[RS Discord Server] Post your own Community Group for Project Ventura, Ability to Advertise",
+      "[RS Discord Server] Post your own Community Group for Project Catalina, Ability to Advertise",
       "[RS HelpDesk] Priority Ticket Support",
       "[RS Moderation] Priority Appeals and Player Reports",
-      "[RS Moderation] Priority Staff Applications"
-    ]
+      "[RS Moderation] Priority Staff Applications",
+    ],
   },
   {
     id: "diamond",
     name: "Diamond VIP®",
     rating: "4.8",
     price: "34.99",
-    description: "The Diamond VIP® package is built for supporters who want the highest level of benefits within REACT Studios exclusively.",
+    description:
+      "The Diamond VIP® package is built for supporters who want the highest level of benefits within RIVET Studios exclusively.",
     features: [
       "[RS Discord Server] Exclusive Role, Less Chat Restrictions, Post Images / Videos / Files, Higher Priority Suggestions and Bugs",
-      "[RS Discord Server] Post your own Community Group for Project Ventura, Ability to Advertise",
+      "[RS Discord Server] Post your own Community Group for Project Catalina, Ability to Advertise",
       "[RS HelpDesk] High Priority Ticket Support",
       "[RS Moderation] High Priority Appeals and Player Reports",
-      "[RS Moderation] High Priority Staff Applications"
-    ]
+      "[RS Moderation] High Priority Staff Applications",
+    ],
   },
   {
     id: "founders",
@@ -40,15 +42,16 @@ const tiers = [
     rating: "4.8",
     price: "64.99",
     featured: true,
-    description: "The Founder's Edition VIP® package is our most exclusive tier, created for supporters who want the highest level of access within REACT Studios exclusively.",
+    description:
+      "The Founder's Edition VIP® package is our most exclusive tier, created for supporters who want the highest level of access within RIVET Studios exclusively.",
     features: [
       "[RS Discord Server] Exclusive Role, Less Chat Restrictions, Post Images / Videos / Files, Higher Priority Suggestions and Bugs",
-      "[RS Discord Server] Post your own Community Group for Project Ventura, Ability to Advertise",
+      "[RS Discord Server] Post your own Community Group for Project Catalina, Ability to Advertise",
       "[RS HelpDesk] Urgent Priority Ticket Support",
       "[RS Moderation] Urgent Priority Appeals and Player Reports",
-      "[RS Moderation] Urgent Priority Staff Applications"
-    ]
-  }
+      "[RS Moderation] Urgent Priority Staff Applications",
+    ],
+  },
 ];
 
 export default function Subscriptions() {
@@ -59,21 +62,22 @@ export default function Subscriptions() {
       <div className="text-center space-y-4">
         <h1 className="text-2xl font-bold tracking-tight">Choose your plan</h1>
         <p className="text-sm text-muted-foreground">
-          Select the perfect subscription plan for your needs. Upgrade or downgrade anytime.
+          Select the perfect subscription plan for your needs. Upgrade or
+          downgrade anytime.
         </p>
-        
+
         <div className="flex items-center justify-center pt-4">
           <div className="bg-muted p-1 rounded-lg flex gap-1">
-            <Button 
-              variant={billingCycle === "month" ? "secondary" : "ghost"} 
+            <Button
+              variant={billingCycle === "month" ? "secondary" : "ghost"}
               size="sm"
               onClick={() => setBillingCycle("month")}
               className="text-xs h-8 px-4"
             >
               Month
             </Button>
-            <Button 
-              variant={billingCycle === "year" ? "secondary" : "ghost"} 
+            <Button
+              variant={billingCycle === "year" ? "secondary" : "ghost"}
               size="sm"
               onClick={() => setBillingCycle("year")}
               className="text-xs h-8 px-4"
@@ -86,8 +90,8 @@ export default function Subscriptions() {
 
       <div className="grid md:grid-cols-3 gap-8">
         {tiers.map((tier) => (
-          <Card 
-            key={tier.id} 
+          <Card
+            key={tier.id}
             className={`relative border-border/40 shadow-none rounded-xl overflow-visible flex flex-col ${
               tier.featured ? "ring-2 ring-primary border-primary/20" : ""
             }`}
@@ -99,18 +103,23 @@ export default function Subscriptions() {
                 </Badge>
               </div>
             )}
-            
+
             <CardHeader className="text-center space-y-4 pt-10">
               <div className="w-12 h-12 bg-muted rounded-full mx-auto flex items-center justify-center">
-                 <Star className="w-6 h-6 text-foreground/60" />
+                <Star className="w-6 h-6 text-foreground/60" />
               </div>
               <div className="space-y-1">
-                <CardTitle className="text-lg font-bold tracking-tight">{tier.name}</CardTitle>
+                <CardTitle className="text-lg font-bold tracking-tight">
+                  {tier.name}
+                </CardTitle>
                 <div className="flex items-center justify-center gap-1 text-[11px] font-bold text-yellow-500">
                   <span>{tier.rating}</span>
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className={`w-3 h-3 fill-current ${i < 5 ? "" : "text-muted"}`} />
+                      <Star
+                        key={i}
+                        className={`w-3 h-3 fill-current ${i < 5 ? "" : "text-muted"}`}
+                      />
                     ))}
                   </div>
                 </div>
@@ -130,15 +139,19 @@ export default function Subscriptions() {
               </div>
 
               <div className="pt-2">
-                <Button asChild className="w-full font-bold h-11" variant={tier.featured ? "default" : "outline"}>
-                  <Link href={`/checkout/${tier.id}`}>
-                    Get Started
-                  </Link>
+                <Button
+                  asChild
+                  className="w-full font-bold h-11"
+                  variant={tier.featured ? "default" : "outline"}
+                >
+                  <Link href={`/checkout/${tier.id}`}>Get Started</Link>
                 </Button>
               </div>
 
               <div className="space-y-4 flex-1">
-                <h4 className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">Features Included</h4>
+                <h4 className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">
+                  Features Included
+                </h4>
                 <ul className="space-y-3">
                   {tier.features.map((feature, i) => (
                     <li key={i} className="flex gap-3 text-[12px] leading-snug">

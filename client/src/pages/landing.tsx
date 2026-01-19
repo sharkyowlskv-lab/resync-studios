@@ -155,8 +155,8 @@ export default function Landing() {
             Ready to join our community?
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Join thousands of community members at RIVET Studios™ to
-            experience roleplay & realism like never before!
+            Join thousands of community members at RIVET Studios™ to experience
+            roleplay & realism like never before!
           </p>
         </div>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -167,7 +167,13 @@ export default function Landing() {
             </Link>
           </Button>
           <Button size="lg" variant="outline" asChild>
-            <a href="https://support.resyncstudios.com" target="_blank" rel="noopener noreferrer">Contact Support</a>
+            <a
+              href="https://support.resyncstudios.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Contact Support
+            </a>
           </Button>
         </div>
       </section>

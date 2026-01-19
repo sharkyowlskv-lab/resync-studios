@@ -198,11 +198,21 @@ function AnnouncementForm({ initialData, onSubmit, isLoading }: any) {
 export default function AdminCP() {
   const { user } = useAuth();
   const { toast } = useToast();
-  
-  const adminRanks = ["community_administrator", "community_senior_administrator", "staff_department_director", "leadership_council", "operations_manager", "team_member", "company_director", "mi_trust_safety_director"];
-  const isAdmin = user?.email?.endsWith("@resyncstudios.com") || 
-                  adminRanks.includes(user?.userRank || "") ||
-                  (user?.additionalRanks || []).some(r => adminRanks.includes(r));
+
+  const adminRanks = [
+    "community_administrator",
+    "community_senior_administrator",
+    "staff_department_director",
+    "leadership_council",
+    "operations_manager",
+    "team_member",
+    "company_director",
+    "mi_trust_safety_director",
+  ];
+  const isAdmin =
+    user?.email?.endsWith("@resyncstudios.com") ||
+    adminRanks.includes(user?.userRank || "") ||
+    (user?.additionalRanks || []).some((r) => adminRanks.includes(r));
 
   if (!isAdmin) {
     return (
@@ -233,8 +243,8 @@ export default function AdminCP() {
   });
   const { data: siteSettings } = useQuery({ queryKey: ["/api/site-settings"] });
   const { data: searchResults = [] } = useQuery({
-    queryKey: ["/api/admin/search-users", subscriptionSearch],
-    enabled: subscriptionSearch.length > 0,
+    queryKey: ["/api/admin/search-users", setSubscriptionSearch],
+    enabled: setSubscriptionSearch.length > 0,
   });
 
   const assignSubscriptionMutation = useMutation({
@@ -243,8 +253,8 @@ export default function AdminCP() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          targetUsername: selectedUser?.username,
-          vipTier: selectedVip,
+          targetUsername: setSelectedUser?.username,
+          vipTier: setSelectedVip,
         }),
         credentials: "include",
       });
@@ -267,8 +277,8 @@ export default function AdminCP() {
   const updateSiteSettingsMutation = useMutation({
     mutationFn: async () => {
       await apiRequest("PATCH", "/api/admin/site-settings", {
-        isOffline,
-        offlineMessage,
+        setIsOffline,
+        setOfflineMessage,
       });
     },
     onSuccess: () => {
@@ -325,8 +335,8 @@ export default function AdminCP() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          userId: userToSetPassword.id,
-          password: newPassword,
+          userId: setUserToSetPassword.id,
+          password: setNewPassword,
         }),
         credentials: "include",
       });
@@ -347,6 +357,34 @@ export default function AdminCP() {
       });
     },
   });
+
+  function setSubscriptionSearch(value: string): void {
+    throw new Error("Function not implemented.");
+  }
+
+  function setSelectedUser(u: User): void {
+    throw new Error("Function not implemented.");
+  }
+
+  function setSelectedVip(value: string): void {
+    throw new Error("Function not implemented.");
+  }
+
+  function setSearchTerm(value: string): void {
+    throw new Error("Function not implemented.");
+  }
+
+  function setNewPassword(value: string): void {
+    throw new Error("Function not implemented.");
+  }
+
+  function setIsOffline(checked: boolean): void {
+    throw new Error("Function not implemented.");
+  }
+
+  function setOfflineMessage(value: string): void {
+    throw new Error("Function not implemented.");
+  }
 
   return (
     <div className="space-y-6">
@@ -423,12 +461,12 @@ export default function AdminCP() {
                 <label className="text-sm font-medium">Search User</label>
                 <Input
                   placeholder="Username or email..."
-                  value={subscriptionSearch}
+                  value={setSubscriptionSearch}
                   onChange={(e) => setSubscriptionSearch(e.target.value)}
                 />
               </div>
 
-              {subscriptionSearch && searchResults.length > 0 && (
+              {setSubscriptionSearch && searchResults.length > 0 && (
                 <div className="space-y-2 max-h-48 overflow-y-auto border rounded p-2">
                   {searchResults.map((u: User) => (
                     <div
@@ -446,7 +484,7 @@ export default function AdminCP() {
               {selectedUser && (
                 <div>
                   <p className="text-sm font-medium mb-2">
-                    Selected: {selectedUser.username}
+                    Selected: {setSelectedUser.username}
                   </p>
                   <Select value={selectedVip} onValueChange={setSelectedVip}>
                     <SelectTrigger>
@@ -549,8 +587,10 @@ export default function AdminCP() {
                         </p>
                         <div className="flex flex-wrap gap-2 mt-1">
                           <Badge variant="outline">{u.userRank}</Badge>
-                          {(u.additionalRanks || []).map(r => (
-                            <Badge key={r} variant="secondary">{r}</Badge>
+                          {(u.additionalRanks || []).map((r) => (
+                            <Badge key={r} variant="secondary">
+                              {r}
+                            </Badge>
                           ))}
                           <Badge variant="outline">{u.vipTier}</Badge>
                         </div>
@@ -688,4 +728,15 @@ export default function AdminCP() {
       </Tabs>
     </div>
   );
+}
+function setUserToSetPassword(arg0: null) {
+  throw new Error("Function not implemented.");
+}
+
+function setSelectedUser(arg0: null) {
+  throw new Error("Function not implemented.");
+}
+
+function setNewPassword(arg0: string) {
+  throw new Error("Function not implemented.");
 }
