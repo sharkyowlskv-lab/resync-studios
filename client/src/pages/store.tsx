@@ -13,7 +13,7 @@ export default function Store() {
             <h2 className="text-lg font-bold tracking-tight">Shop by category</h2>
             <p className="text-sm text-muted-foreground">Browse our most popular products</p>
           </div>
-          <Button variant="link" className="text-xs font-bold gap-1 group">
+          <Button variant="ghost" className="text-xs font-bold gap-1 group">
             Browse all categories <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
           </Button>
         </div>
