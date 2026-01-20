@@ -5,7 +5,7 @@ import passport from "./auth";
 import { hashPassword, verifyPassword } from "./auth-utils";
 import { updateDiscordNickname } from "./discord-bot";
 import {
-  insertClanSchema,
+  insertGroupSchema,
   insertBuildSchema,
   insertForumThreadSchema,
   insertForumReplySchema,
@@ -51,9 +51,9 @@ export async function registerRoutes(
     try {
       const { email, username, password } = req.body;
       const hashedPassword = hashPassword(password);
-      
+
       const isStaffEmail = email.toLowerCase().endsWith("@resyncstudios.com");
-      const defaultRank = isStaffEmail ? "team_member" : "member";
+      const defaultRank = isStaffEmail ? "Team Member" : "Member";
       const isAdmin = isStaffEmail;
       const isModerator = isStaffEmail;
 
@@ -65,12 +65,15 @@ export async function registerRoutes(
         vipTier: "none",
         isAdmin,
         isModerator,
-        additionalRanks: isStaffEmail ? ["team_member"] : [],
+        additionalRanks: isStaffEmail ? ["Team Member"] : [],
       } as any);
-      
+
       req.login(user, (err) => {
         if (err) {
-          return res.status(500).json({ message: "Signup successful but login failed. Please try logging in manually." });
+          return res.status(500).json({
+            message:
+              "Signup successful but login failed. Please try logging in manually.",
+          });
         }
         res.json(user);
       });
@@ -151,11 +154,26 @@ export async function registerRoutes(
   app.get("/api/reports", requireAuth, async (req, res) => {
     try {
       const user = req.user as any;
-      const staffRanks = ["team_member", "operations_manager", "company_director", "mi_trust_safety_director"];
-      const isStaff = user.isAdmin || user.isModerator || staffRanks.includes(user.userRank) || (user.additionalRanks || []).some((r: string) => staffRanks.includes(r));
-      
-      if (!isStaff)
-        return res.status(403).json({ message: "Forbidden" });
+      const staffRanks = [
+        "Team Member",
+        "Operations Manager",
+        "Company Director",
+        "MI Trust & Safety Director",
+        "Community Moderator",
+        "Community Senior Moderator",
+        "Community Administrator",
+        "Community Senior Administrator",
+        "RS Trust & Safety Team",
+      ];
+      const isStaff =
+        user.isAdmin ||
+        user.isModerator ||
+        staffRanks.includes(user.userRank) ||
+        (user.additionalRanks || []).some((r: string) =>
+          staffRanks.includes(r),
+        );
+
+      if (!isStaff) return res.status(403).json({ message: "Forbidden" });
       const reports = await storage.getReports();
       res.json(reports);
     } catch (error) {
@@ -168,9 +186,22 @@ export async function registerRoutes(
   app.get("/api/admin/users", requireAuth, async (req, res) => {
     try {
       const user = req.user as any;
-      const adminRanks = ["team_member", "operations_manager", "company_director", "mi_trust_safety_director"];
-      const hasAccess = user.email?.endsWith("@resyncstudios.com") || adminRanks.includes(user.userRank) || (user.additionalRanks || []).some((r: string) => adminRanks.includes(r));
-      
+      const adminRanks = [
+        "Company Representative",
+        "Staff Internal Affairs",
+        "Staff Department Director",
+        "Team Member",
+        "Operations Manager",
+        "Company Director",
+        "MI Trust & Safety Director",
+      ];
+      const hasAccess =
+        user.email?.endsWith("@resyncstudios.com") ||
+        adminRanks.includes(user.userRank) ||
+        (user.additionalRanks || []).some((r: string) =>
+          adminRanks.includes(r),
+        );
+
       if (!hasAccess) return res.status(403).json({ message: "Forbidden" });
       const allUsers = await storage.getAllUsers();
       res.json(allUsers);
@@ -183,9 +214,10 @@ export async function registerRoutes(
     try {
       const { q } = req.query;
       const allUsers = await storage.getAllUsers();
-      const filtered = allUsers.filter(u => 
-        u.username?.toLowerCase().includes((q as string).toLowerCase()) ||
-        u.email?.toLowerCase().includes((q as string).toLowerCase())
+      const filtered = allUsers.filter(
+        (u) =>
+          u.username?.toLowerCase().includes((q as string).toLowerCase()) ||
+          u.email?.toLowerCase().includes((q as string).toLowerCase()),
       );
       res.json(filtered);
     } catch (error) {
@@ -198,11 +230,11 @@ export async function registerRoutes(
       const { userId, rank } = req.body;
       const user = await storage.getUser(userId);
       if (!user) return res.status(404).json({ message: "User not found" });
-      
+
       const currentRanks = user.additionalRanks || [];
       if (!currentRanks.includes(rank)) {
         await storage.updateUser(userId, {
-          additionalRanks: [...currentRanks, rank]
+          additionalRanks: [...currentRanks, rank],
         });
       }
       res.json({ message: "Rank assigned" });
@@ -211,15 +243,17 @@ export async function registerRoutes(
     }
   });
 
-  // Clans
-  app.get("/api/clans", async (req, res) => res.json(await storage.getClans()));
-  app.post("/api/clans", requireAuth, async (req, res) => {
+  // Groups (formerly clans)
+  app.get("/api/groups", async (req, res) =>
+    res.json(await storage.getGroups()),
+  );
+  app.post("/api/groups", requireAuth, async (req, res) => {
     try {
-      const data = insertClanSchema.parse({
+      const data = insertGroupSchema.parse({
         ...req.body,
         ownerId: (req.user as any).id,
       });
-      res.status(201).json(await storage.createClan(data));
+      res.status(201).json(await storage.createGroup(data));
     } catch (error) {
       res
         .status(400)
@@ -238,7 +272,7 @@ export async function registerRoutes(
     passport.authenticate("discord", { failureRedirect: "/login" }),
     (req, res) => {
       res.redirect("/onboarding");
-    }
+    },
   );
 
   app.post("/api/auth/logout", (req, res, next) => {
@@ -251,8 +285,13 @@ export async function registerRoutes(
   app.patch("/api/users/profile", requireAuth, async (req, res) => {
     try {
       const userId = (req.user as any).id;
-      const { username, bio } = req.body;
-      await storage.updateUser(userId, { username, bio, updatedAt: new Date() } as any);
+      const { username, bio, signature } = req.body;
+      await storage.updateUser(userId, {
+        username,
+        bio,
+        signature,
+        updatedAt: new Date(),
+      } as any);
       res.json({ message: "Profile updated" });
     } catch (error) {
       res.status(500).json({ message: "Update failed" });

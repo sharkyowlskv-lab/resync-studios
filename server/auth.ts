@@ -34,7 +34,7 @@ passport.deserializeUser(async (id: string, done) => {
     if (!user) {
       return done(null, false);
     }
-    // Convert nulls to undefined to match User type if necessary, 
+    // Convert nulls to undefined to match User type if necessary,
     // but usually casting is enough for passport
     done(null, user as any);
   } catch (err) {
@@ -95,7 +95,7 @@ if (DISCORD_CLIENT_ID && DISCORD_CLIENT_SECRET) {
                 discordUsername: profile.username,
                 discordAvatar: profile.avatar,
                 discordLinkedAt: new Date(),
-                userRank: "member",
+                userRank: "Member",
                 vipTier: "none",
               });
 

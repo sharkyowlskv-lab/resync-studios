@@ -34,7 +34,7 @@ export async function initializeDatabase() {
     // Create enum types
     await db.execute(sql`
       DO $$ BEGIN
-        CREATE TYPE vip_tier AS ENUM ('none', 'bronze_vip', 'diamond_vip', 'founders_vip', 'founders_lifetime', 'lifetime');
+        CREATE TYPE vip_tier AS ENUM ('none', 'Bronze VIP', 'Diamond VIP', 'Founders Edition VIP', 'Lifetime');
       EXCEPTION WHEN duplicate_object THEN null;
       END $$;
     `);
@@ -42,33 +42,35 @@ export async function initializeDatabase() {
     await db.execute(sql`
       DO $$ BEGIN
         CREATE TYPE user_rank AS ENUM (
-    'banned',
-    'member',
-    'active_member',
-    'trusted_member',
-    'community_partner',
-    'company_director',
-    'leadership_council',
-    'operations_manager',
-    'mi_trust_safety_director',
-    'staff_department_director',
-    'team_member',
-    'community_administrator',
-    'community_senior_administrator',
-    'community_moderator',
-    'community_senior_moderator',
-    'community_developer',
-    'bronze_vip',
-    'diamond_vip',
-    'founders_vip',
-    'founders_lifetime',
-    'lifetime',
-    'customer_relations',
-    'rs_volunteer_staff',
-    'staff_internal_affairs',
-    'administrator',
-    'senior_administrator',
-    'moderator'
+    'Moderator',
+    'Administrator',
+    'Senior Administrator',
+    'Banned',
+    'Member',
+    'Active Member',
+    'Trusted Member',
+    'Community Partner',
+    'Bronze VIP',
+    'Diamond VIP',
+    'Founders Edition VIP',
+    'Lifetime',
+    'RS Volunteer Staff',
+    'RS Trust & Safety Team',
+    'Customer Relations',
+    'Appeals Moderator',
+    'Community Moderator',
+    'Community Senior Moderator',
+    'Community Administrator',
+    'Community Senior Administrator',
+    'Community Developer',
+    'Staff Internal Affairs',
+    'Company Representative',
+    'Team Member',
+    'MI Trust & Safety Director',
+    'Staff Department Director',
+    'Operations Manager',
+    'Company Director',
+    
         );
       EXCEPTION WHEN duplicate_object THEN null;
       END $$;
@@ -114,8 +116,8 @@ export async function initializeDatabase() {
         "games_played" integer DEFAULT 0,
         "total_posts" integer DEFAULT 0,
         "reputation" integer DEFAULT 1,
-        "clan_id" varchar,
-        "clan_role" varchar,
+        "group_id" varchar,
+        "group_role" varchar,
         "user_rank" user_rank DEFAULT 'member',
         "secondary_user_rank" text DEFAULT 'None',
         "tertiary_user_rank" user_rank DEFAULT 'member',
@@ -157,9 +159,9 @@ export async function initializeDatabase() {
       );
     `);
 
-    // Clans table
+    // Groups table (formerly clans)
     await db.execute(sql`
-      CREATE TABLE IF NOT EXISTS "clans" (
+      CREATE TABLE IF NOT EXISTS "groups" (
         "id" varchar PRIMARY KEY DEFAULT gen_random_uuid(),
         "name" varchar NOT NULL UNIQUE,
         "tag" varchar NOT NULL UNIQUE,

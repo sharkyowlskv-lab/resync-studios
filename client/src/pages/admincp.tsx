@@ -65,55 +65,58 @@ interface Stats {
 }
 
 const ADMIN_RANKS = [
-  "community_administrator",
-  "community_senior_administrator",
-  "staff_department_director",
-  "leadership_council",
-  "operations_manager",
-  "team_member",
-  "company_director",
+  "Community Administrator",
+  "Community Senior Administrator",
+  "Community Developer",
+  "Staff Internal Affairs",
+  "Company Representative",
+  "Team Member",
+  "MI Trust & Safety Director",
+  "Staff Department Director",
+  "Operations Manager",
+  "Company Director",
 ];
 
 const RANK_OPTIONS = [
+  { value: "Moderator", label: "Moderator" },
+  { value: "Administrator", label: "Administrator" },
+  { value: "Senior Administrator", label: "Senior Administrator" },
   { value: "Banned", label: "Banned" },
-  { value: "member", label: "Member" },
-  { value: "active_member", label: "Active Member" },
-  { value: "trusted_member", label: "Trusted Member" },
-  { value: "community_partner", label: "Community Partner" },
-  { value: "bronze_vip", label: "Bronze VIP" },
-  { value: "sapphire_vip", label: "Sapphire VIP" },
-  { value: "diamond_vip", label: "Diamond VIP" },
-  { value: "founders_vip", label: "Founders Edition VIP" },
-  { value: "founders_lifetime", label: "Lifetime" },
-  { value: "community_developer", label: "Community Developer" },
-  { value: "staff_internal_affairs", label: "Staff Internal Affairs" },
-  { value: "appeals_moderator", label: "Appeals Moderator" },
-  { value: "rs_volunteer_staff", label: "RS Volunteer Staff" },
-  { value: "community_moderator", label: "Community Moderator" },
-  { value: "community_senior_moderator", label: "Community Senior Moderator" },
-  { value: "community_administrator", label: "Community Administrator" },
+  { value: "Member", label: "Member" },
+  { value: "Active Member", label: "Active Member" },
+  { value: "Trusted Member", label: "Trusted Member" },
+  { value: "Community Partner", label: "Community Partner" },
+  { value: "Bronze VIP", label: "Bronze VIP" },
+  { value: "Diamond VIP", label: "Diamond VIP" },
+  { value: "Founders Edition VIP", label: "Founders Edition VIP" },
+  { value: "Lifetime", label: "Lifetime" },
+  { value: "RS Volunteer Staff", label: "RS Volunteer Staff" },
+  { value: "RS Trust & Safety Team", label: "RS Trust & Safety Team" },
+  { value: "Customer Relations", label: "Customer Relations" },
+  { value: "Appeals Moderator", label: "Appeals Moderator" },
+  { value: "Community Moderator", label: "Community Moderator" },
+  { value: "Community Senior Moderator", label: "Community Senior Moderator" },
+  { value: "Community Administrator", label: "Community Administrator" },
   {
-    value: "community_senior_administrator",
+    value: "Community Senior Sdministrator",
     label: "Community Senior Administrator",
   },
-  { value: "moderator", label: "Moderator" },
-  { value: "administrator", label: "Administrator" },
-  { value: "senior_administrator", label: "Senior Administrator" },
-  { value: "customer_relations", label: "Customer Relations" },
-  { value: "team_member", label: "Team Member" },
-  { value: "staff_department_director", label: "Staff Department Director" },
-  { value: "mi_trust_safety_director", label: "MI Trust & Safety Director" },
-  { value: "leadership_council", label: "Leadership Council" },
-  { value: "operations_manager", label: "Operations Manager" },
-  { value: "company_director", label: "Company Director" },
+  { value: "Community Developer", label: "Community Developer" },
+  { value: "Staff Internal Affairs", label: "Staff Internal Affairs" },
+  { value: "Company Representative", label: "Company Representative" },
+  { value: "Team Member", label: "Team Member" },
+  { value: "MI Trust & Safety Director", label: "MI Trust & Safety Director" },
+  { value: "Staff Department Director", label: "Staff Department Director" },
+  { value: "Operations Manager", label: "Operations Manager" },
+  { value: "Company Director", label: "Company Director" },
 ];
 
 const VIP_OPTIONS = [
   { value: "none", label: "None" },
-  { value: "bronze_vip", label: "Bronze ($12.99)" },
-  { value: "diamond_vip", label: "Diamond ($19.99)" },
-  { value: "founders_vip", label: "Founders ($45.99)" },
-  { value: "founders_lifetime", label: "Founders ($64.99)" },
+  { value: "Bronze VIP", label: "Bronze ($12.99)" },
+  { value: "Diamond VIP", label: "Diamond ($19.99)" },
+  { value: "Founders Edition VIP", label: "Founders ($45.99)" },
+  { value: "Lifetime", label: "Lifetime ($64.99)" },
 ];
 
 function AnnouncementForm({ initialData, onSubmit, isLoading }: any) {
@@ -200,14 +203,16 @@ export default function AdminCP() {
   const { toast } = useToast();
 
   const adminRanks = [
-    "community_administrator",
-    "community_senior_administrator",
-    "staff_department_director",
-    "leadership_council",
-    "operations_manager",
-    "team_member",
-    "company_director",
-    "mi_trust_safety_director",
+    "Community Administrator",
+    "Community Senior Administrator",
+    "Community Developer",
+    "Staff Internal Affairs",
+    "Company Representative",
+    "Team Member",
+    "MI Trust & Safety Director",
+    "Staff Department Director",
+    "Operations Manager",
+    "Company Director",
   ];
   const isAdmin =
     user?.email?.endsWith("@resyncstudios.com") ||
@@ -358,31 +363,31 @@ export default function AdminCP() {
     },
   });
 
-  function setSubscriptionSearch(value: string): void {
+  function setSubscriptionSearch(_value: string): void {
     throw new Error("Function not implemented.");
   }
 
-  function setSelectedUser(u: User): void {
+  function setSelectedUser(_u: User): void {
     throw new Error("Function not implemented.");
   }
 
-  function setSelectedVip(value: string): void {
+  function setSelectedVip(_value: string): void {
     throw new Error("Function not implemented.");
   }
 
-  function setSearchTerm(value: string): void {
+  function setSearchTerm(_value: string): void {
     throw new Error("Function not implemented.");
   }
 
-  function setNewPassword(value: string): void {
+  function setNewPassword(_value: string): void {
     throw new Error("Function not implemented.");
   }
 
-  function setIsOffline(checked: boolean): void {
+  function setIsOffline(_checked: boolean): void {
     throw new Error("Function not implemented.");
   }
 
-  function setOfflineMessage(value: string): void {
+  function setOfflineMessage(_value: string): void {
     throw new Error("Function not implemented.");
   }
 
@@ -729,14 +734,14 @@ export default function AdminCP() {
     </div>
   );
 }
-function setUserToSetPassword(arg0: null) {
+function setUserToSetPassword(_arg0: null) {
   throw new Error("Function not implemented.");
 }
 
-function setSelectedUser(arg0: null) {
+function setSelectedUser(_arg0: null) {
   throw new Error("Function not implemented.");
 }
 
-function setNewPassword(arg0: string) {
+function setNewPassword(_arg0: null) {
   throw new Error("Function not implemented.");
 }

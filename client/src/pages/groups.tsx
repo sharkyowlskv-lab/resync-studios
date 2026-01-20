@@ -47,9 +47,9 @@ import {
   MessageSquare,
 } from "lucide-react";
 import { SiDiscord } from "react-icons/si";
-import type { Clan, User } from "@shared/schema";
+import type { Groups, User } from "@shared/schema";
 
-const createClanSchema = z.object({
+const createGroupSchema = z.object({
   name: z.string().min(3, "Name must be at least 3 characters").max(50),
   tag: z
     .string()
@@ -62,24 +62,24 @@ const createClanSchema = z.object({
   requirements: z.string().max(500).optional(),
 });
 
-type CreateClanForm = z.infer<typeof createClanSchema>;
+type CreateGroupForm = z.infer<typeof createGroupSchema>;
 
-interface ClanWithOwner extends Clan {
+interface GroupWithOwner extends Groups {
   owner?: User;
 }
 
-export default function Clans() {
+export default function Groups() {
   const { user } = useAuth();
   const { toast } = useToast();
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
-  const { data: clans, isLoading } = useQuery<ClanWithOwner[]>({
-    queryKey: ["/api/clans"],
+  const { data: groups, isLoading } = useQuery<GroupWithOwner[]>({
+    queryKey: ["/api/groups"],
   });
 
-  const form = useForm<CreateClanForm>({
-    resolver: zodResolver(createClanSchema),
+  const form = useForm<CreateGroupForm>({
+    resolver: zodResolver(createGroupSchema),
     defaultValues: {
       name: "",
       tag: "",
@@ -91,31 +91,34 @@ export default function Clans() {
   });
 
   const createMutation = useMutation({
-    mutationFn: async (data: CreateClanForm) => {
-      const response = await apiRequest("POST", "/api/clans", data);
+    mutationFn: async (data: CreateGroupForm) => {
+      const response = await apiRequest("POST", "/api/groups", data);
       return response.json();
     },
     onSuccess: () => {
-      toast({ title: "Clan created!", description: "Your clan is now live." });
-      queryClient.invalidateQueries({ queryKey: ["/api/clans"] });
+      toast({
+        title: "Group created!",
+        description: "Your group is now live.",
+      });
+      queryClient.invalidateQueries({ queryKey: ["/api/groups"] });
       setIsCreateOpen(false);
       form.reset();
     },
-    // Ensure an error code is returned from the API to handle specific cases like duplicate name/tag errors - this is just a placeholder for now and should be replaced with actual error handling based on the API response code and message. For example, if the API returns a 409 status code with a message "Clan name already exists", we should show a toast with that message. If the API returns a 409 status code with a message "Clan tag already exists", we should show a toast with that message. If the API returns a 400 status code with a message "Invalid clan data", we should show a toast with that message. If the API returns a 500 status code with a message "Internal server error", we should show a toast with that message. If the API returns a 401 status code with a message "Unauthorized", we should show a toast with that message. If the API returns a 403 status code with a message "Forbidden", we should show a toast with that message. If the API returns a 404 status code with a message "Not found", we should show a toast with that message. If the API returns a 429 status code with a message "Too many requests", we should show a toast with that message. If the API returns a 503 status code with a message "Service unavailable", we should show a toast with that message. If the API returns a 504 status code with a message "Gateway timeout", we should show a toast with that message. If the API returns a 502 status code with a message "Bad gateway", we should show a toast with that message.
+    // Ensure an error code is returned from the API to handle specific cases like duplicate name/tag errors - this is just a placeholder for now and should be replaced with actual error handling based on the API response code and message. For example, if the API returns a 409 status code with a message "Group name already exists", we should show a toast with that message. If the API returns a 409 status code with a message "Group tag already exists", we should show a toast with that message. If the API returns a 400 status code with a message "Invalid group data", we should show a toast with that message. If the API returns a 500 status code with a message "Internal server error", we should show a toast with that message. If the API returns a 401 status code with a message "Unauthorized", we should show a toast with that message. If the API returns a 403 status code with a message "Forbidden", we should show a toast with that message. If the API returns a 404 status code with a message "Not found", we should show a toast with that message. If the API returns a 429 status code with a message "Too many requests", we should show a toast with that message. If the API returns a 503 status code with a message "Service unavailable", we should show a toast with that message. If the API returns a 504 status code with a message "Gateway timeout", we should show a toast with that message. If the API returns a 502 status code with a message "Bad gateway", we should show a toast with that message.
     onError: () => {
       toast({
         title: "Error",
-        description: "Failed to create clan.",
+        description: "Failed to create group.",
         variant: "destructive",
       });
     },
   });
 
   const joinMutation = useMutation({
-    mutationFn: async (clanId: string) => {
+    mutationFn: async (groupId: string) => {
       const response = await apiRequest(
         "POST",
-        `/api/clans/${clanId}/join`,
+        `/api/groups/${groupId}/join`,
         {},
       );
       return response.json();
@@ -125,7 +128,7 @@ export default function Clans() {
         title: "Request sent!",
         description: "Your join request has been sent.",
       });
-      queryClient.invalidateQueries({ queryKey: ["/api/clans"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/groups"] });
     },
     onError: () => {
       toast({
@@ -136,17 +139,22 @@ export default function Clans() {
     },
   });
 
-  const filteredClans = clans?.filter(
-    (clan) =>
-      clan.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      clan.tag.toLowerCase().includes(searchQuery.toLowerCase()),
+  const filteredGroups = groups?.filter(
+    (group) =>
+      group.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      group.tag.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
-  const onSubmit = (data: CreateClanForm) => {
+  const onSubmit = (data: CreateGroupForm) => {
     createMutation.mutate(data);
   };
 
-  const canCreateClan = user?.vipTier === "none" || user?.vipTier === "any";
+  const canCreateGroup =
+    user?.vipTier === "none" ||
+    user?.vipTier === "Bronze VIP" ||
+    user?.vipTier === "Diamond VIP" ||
+    user?.vipTier === "Founders Edition VIP" ||
+    user?.vipTier === "Lifetime";
 
   return (
     <div className="space-y-6">
@@ -154,28 +162,30 @@ export default function Clans() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="font-display text-2xl sm:text-3xl font-bold">
-            Clan Hubs
+            Group Hubs
           </h1>
           <p className="text-muted-foreground mt-1">
-            Find and join gaming communities
+            Find and join Project Catalina groups.
           </p>
         </div>
         <Dialog open={isCreateOpen} onOpenChange={setIsCreateOpen}>
           <DialogTrigger asChild>
             <Button
-              disabled={!canCreateClan && !user?.clanId}
+              disabled={!canCreateGroup && !user?.groupId}
               data-testid="button-create-clan"
             >
               <Plus className="w-4 h-4 mr-2" />
-              Create Clan
+              Create Group
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-lg">
             <DialogHeader>
-              <DialogTitle>Create Your Clan</DialogTitle>
-              <DialogDescription>Build your gaming community</DialogDescription>
+              <DialogTitle>Create Your Catalina Group</DialogTitle>
+              <DialogDescription>
+                Build your Project Catalina faction
+              </DialogDescription>
             </DialogHeader>
-            {canCreateClan ? (
+            {canCreateGroup ? (
               <Form {...form}>
                 <form
                   onSubmit={form.handleSubmit(onSubmit)}
@@ -187,12 +197,12 @@ export default function Clans() {
                       name="name"
                       render={({ field }) => (
                         <FormItem className="col-span-2">
-                          <FormLabel>Clan Name</FormLabel>
+                          <FormLabel>Group Name</FormLabel>
                           <FormControl>
                             <Input
-                              placeholder="Epic Gamers"
+                              placeholder="Catalina Car Spotters"
                               {...field}
-                              data-testid="input-clan-name"
+                              data-testid="input-group-name"
                             />
                           </FormControl>
                           <FormMessage />
@@ -207,13 +217,13 @@ export default function Clans() {
                           <FormLabel>Tag</FormLabel>
                           <FormControl>
                             <Input
-                              placeholder="EPIC"
+                              placeholder="CAR"
                               maxLength={6}
                               {...field}
                               onChange={(e) =>
                                 field.onChange(e.target.value.toUpperCase())
                               }
-                              data-testid="input-clan-tag"
+                              data-testid="input-group-tag"
                             />
                           </FormControl>
                           <FormMessage />
@@ -230,10 +240,10 @@ export default function Clans() {
                         <FormLabel>Description</FormLabel>
                         <FormControl>
                           <Textarea
-                            placeholder="Tell others about your clan..."
+                            placeholder="What do the Catalina Car Spotters do..."
                             className="resize-none"
                             {...field}
-                            data-testid="input-clan-description"
+                            data-testid="input-group-description"
                           />
                         </FormControl>
                         <FormMessage />
@@ -250,9 +260,9 @@ export default function Clans() {
                           <FormLabel>Primary Game</FormLabel>
                           <FormControl>
                             <Input
-                              placeholder="Roblox"
+                              placeholder="Project Catalina"
                               {...field}
-                              data-testid="input-clan-game"
+                              data-testid="input-group-game"
                             />
                           </FormControl>
                           <FormMessage />
@@ -269,7 +279,7 @@ export default function Clans() {
                             <Input
                               placeholder="https://discord.gg/..."
                               {...field}
-                              data-testid="input-clan-discord"
+                              data-testid="input-group-discord"
                             />
                           </FormControl>
                           <FormMessage />
@@ -289,7 +299,7 @@ export default function Clans() {
                             placeholder="Any requirements to join..."
                             className="resize-none"
                             {...field}
-                            data-testid="input-clan-requirements"
+                            data-testid="input-group-requirements"
                           />
                         </FormControl>
                         <FormMessage />
@@ -301,22 +311,22 @@ export default function Clans() {
                     type="submit"
                     className="w-full"
                     disabled={createMutation.isPending}
-                    data-testid="button-submit-clan"
+                    data-testid="button-submit-group"
                   >
-                    {createMutation.isPending ? "Creating..." : "Create Clan"}
+                    {createMutation.isPending ? "Creating..." : "Create Group"}
                   </Button>
                 </form>
               </Form>
             ) : (
               <div className="text-center py-6">
                 <Crown className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
-                <h3 className="font-semibold mb-2">VIP Required</h3>
+                <h3 className="font-semibold mb-2">
+                  Anyone can create a group without VIP!
+                </h3>
                 <p className="text-muted-foreground mb-4">
-                  You need Diamond VIP or higher to create a clan.
+                  Group creation no longer requires a membership as of January
+                  20th, 2026!!
                 </p>
-                <Button asChild>
-                  <Link href="/vip">Upgrade to VIP</Link>
-                </Button>
               </div>
             )}
           </DialogContent>
@@ -329,18 +339,18 @@ export default function Clans() {
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <Input
-              placeholder="Search clans..."
+              placeholder="Search groups..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-9"
-              data-testid="input-clan-search"
+              data-testid="input-group-search"
             />
           </div>
         </CardContent>
       </Card>
 
-      {/* Your Clan Banner */}
-      {user?.clanId && (
+      {/* Your Group Banner */}
+      {user?.groupId && (
         <Card className="bg-gradient-to-r from-primary/10 to-chart-3/10">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
@@ -349,21 +359,21 @@ export default function Clans() {
                   <Shield className="w-8 h-8 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg">Your Clan</h3>
+                  <h3 className="font-semibold text-lg">Your Group</h3>
                   <p className="text-muted-foreground">
-                    Role: {user.clanRole || "Member"}
+                    Role: {user.groupRole || "Member"}
                   </p>
                 </div>
               </div>
               <div className="flex gap-2">
                 <Button variant="outline" asChild>
-                  <Link href={`/clans/${user.clanId}/chat`}>
+                  <Link href={`/groups/${user.groupId}/chat`}>
                     <MessageSquare className="w-4 h-4 mr-2" />
-                    Clan Chat
+                    Group Chat
                   </Link>
                 </Button>
                 <Button asChild>
-                  <Link href={`/clans/${user.clanId}`}>View Clan</Link>
+                  <Link href={`/groups/${user.groupId}`}>View Group</Link>
                 </Button>
               </div>
             </div>
@@ -371,7 +381,7 @@ export default function Clans() {
         </Card>
       )}
 
-      {/* Clans Grid */}
+      {/* Groups Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         {isLoading ? (
           <>
@@ -382,12 +392,12 @@ export default function Clans() {
             <Skeleton className="h-64" />
             <Skeleton className="h-64" />
           </>
-        ) : filteredClans && filteredClans.length > 0 ? (
-          filteredClans.map((clan) => (
+        ) : filteredGroups && filteredGroups.length > 0 ? (
+          filteredGroups.map((group) => (
             <Card
-              key={clan.id}
+              key={group.id}
               className="hover-elevate"
-              data-testid={`card-clan-${clan.id}`}
+              data-testid={`card-group-${group.id}`}
             >
               <CardHeader className="pb-3">
                 <div className="flex items-start justify-between gap-2">
@@ -397,27 +407,27 @@ export default function Clans() {
                     </div>
                     <div>
                       <CardTitle className="text-base flex items-center gap-2">
-                        {clan.name}
+                        {group.name}
                         <Badge variant="outline" className="text-xs">
-                          [{clan.tag}]
+                          [{group.tag}]
                         </Badge>
                       </CardTitle>
                       <div className="flex items-center gap-2 mt-1">
                         <Avatar className="w-5 h-5">
                           <AvatarImage
-                            src={clan.owner?.profileImageUrl || undefined}
+                            src={group.owner?.profileImageUrl || undefined}
                           />
                           <AvatarFallback className="text-[10px]">
-                            {clan.owner?.username?.[0]?.toUpperCase() || "O"}
+                            {group.owner?.username?.[0]?.toUpperCase() || "O"}
                           </AvatarFallback>
                         </Avatar>
                         <span className="text-sm text-muted-foreground">
-                          {clan.owner?.username || "Unknown"}
+                          {group.owner?.username || "Unknown"}
                         </span>
                       </div>
                     </div>
                   </div>
-                  {clan.isRecruiting && (
+                  {group.isRecruiting && (
                     <Badge className="bg-green-500/10 text-green-500 border-0">
                       Recruiting
                     </Badge>
@@ -425,24 +435,24 @@ export default function Clans() {
                 </div>
               </CardHeader>
               <CardContent className="space-y-3">
-                {clan.description && (
+                {group.description && (
                   <p className="text-sm text-muted-foreground line-clamp-2">
-                    {clan.description}
+                    {group.description}
                   </p>
                 )}
 
                 <div className="flex flex-wrap gap-2">
                   <Badge variant="outline" className="gap-1">
                     <Users className="w-3 h-3" />
-                    {clan.memberCount}/{clan.maxMembers}
+                    {group.memberCount}/{group.maxMembers}
                   </Badge>
-                  {clan.primaryGame && (
+                  {group.primaryGame && (
                     <Badge variant="outline" className="gap-1">
                       <Gamepad2 className="w-3 h-3" />
-                      {clan.primaryGame}
+                      {group.primaryGame}
                     </Badge>
                   )}
-                  {clan.discordInvite && (
+                  {group.discordInvite && (
                     <Badge variant="outline" className="gap-1">
                       <SiDiscord className="w-3 h-3" />
                       Discord
@@ -452,16 +462,16 @@ export default function Clans() {
 
                 <div className="flex items-center justify-between pt-2">
                   <Button variant="outline" size="sm" asChild>
-                    <Link href={`/clans/${clan.id}`}>View Details</Link>
+                    <Link href={`/groups/${group.id}`}>View Details</Link>
                   </Button>
-                  {clan.isRecruiting &&
-                    clan.ownerId !== user?.id &&
-                    user?.clanId !== clan.id && (
+                  {group.isRecruiting &&
+                    group.ownerId !== user?.id &&
+                    user?.groupId !== group.id && (
                       <Button
                         size="sm"
-                        onClick={() => joinMutation.mutate(clan.id)}
+                        onClick={() => joinMutation.mutate(group.id)}
                         disabled={joinMutation.isPending}
-                        data-testid={`button-join-clan-${clan.id}`}
+                        data-testid={`button-join-group-${group.id}`}
                       >
                         <UserPlus className="w-4 h-4 mr-1" />
                         Join
@@ -475,16 +485,16 @@ export default function Clans() {
           <Card className="col-span-full border-dashed">
             <CardContent className="p-12 text-center">
               <Users className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
-              <h3 className="font-semibold mb-2">No Clans Found</h3>
+              <h3 className="font-semibold mb-2">No Groups Found</h3>
               <p className="text-muted-foreground mb-4">
                 {searchQuery
                   ? "Try adjusting your search"
-                  : "Be the first to create a clan!"}
+                  : "Be the first to create a group!"}
               </p>
-              {canCreateClan && (
+              {canCreateGroup && (
                 <Button onClick={() => setIsCreateOpen(true)}>
                   <Plus className="w-4 h-4 mr-2" />
-                  Create Clan
+                  Create Group
                 </Button>
               )}
             </CardContent>

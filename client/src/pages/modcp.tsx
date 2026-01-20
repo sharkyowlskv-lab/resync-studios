@@ -72,18 +72,27 @@ export default function ModCP() {
 
   // Check if user is moderator or above
   const staffRanks = [
-    'community_moderator',
-    'community_senior_moderator',
-    'community_administrator',
-    'community_senior_administrator',
-    'team_member',
-    'operations_manager',
-    'company_director',
-    'mi_trust_safety_director'
+    "Customer Relations",
+    "Appeals Moderator",
+    "RS Volunteer Staff",
+    "RS Trust & Safety Team",
+    "Community Moderator",
+    "Community Senior Moderator",
+    "Community Administrator",
+    "Community Senior Administrator",
+    "Community Developer",
+    "Staff Internal Affairs",
+    "Company Representative",
+    "Team Member",
+    "MI Trust & Safety Director",
+    "Staff Department Director",
+    "Operations Manager",
+    "Company Director",
   ];
-  const isMod = user?.email?.endsWith("@resyncstudios.com") || 
-                staffRanks.includes(user?.userRank || "") ||
-                (user?.additionalRanks || []).some(r => staffRanks.includes(r));
+  const isMod =
+    user?.email?.endsWith("@resyncstudios.com") ||
+    staffRanks.includes(user?.userRank || "") ||
+    (user?.additionalRanks || []).some((r) => staffRanks.includes(r));
 
   if (!isMod) {
     return (

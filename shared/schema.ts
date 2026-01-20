@@ -14,10 +14,10 @@ import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
 export const reportStatusEnum = pgEnum("report_status", [
-  "pending",
-  "reviewed",
-  "dismissed",
-  "action_taken",
+  "Pending",
+  "Reviewed",
+  "Dismissed",
+  "Action Taken",
 ]);
 
 export const reports = pgTable("reports", {
@@ -29,7 +29,7 @@ export const reports = pgTable("reports", {
   targetType: varchar("target_type").notNull(),
   reason: text("reason").notNull(),
   details: text("details"),
-  status: reportStatusEnum("status").default("pending"),
+  status: reportStatusEnum("status").default("Pending"),
   moderatorNotes: text("moderator_notes"),
   createdAt: timestamp("created_at").defaultNow(),
 });
@@ -47,53 +47,55 @@ export type InsertReport = z.infer<typeof insertReportSchema>;
 // Enums
 export const vipTierEnum = pgEnum("vip_tier", [
   "none",
-  "bronze_vip",
-  "diamond_vip",
-  "founders_vip",
-  "founders_lifetime",
-  "lifetime",
+  "Bronze VIP",
+  "Diamond VIP",
+  "Founders Edition VIP",
+  "Lifetime",
 ]);
 export const skillLevelEnum = pgEnum("skill_level", [
-  "beginner",
-  "intermediate",
-  "advanced",
-  "expert",
-  "pro",
+  "Beginner",
+  "Intermediate",
+  "Advanced",
+  "Expert",
+  "Pro",
 ]);
 export const gameRoleEnum = pgEnum("game_role", [
-  "tank",
-  "dps",
-  "support",
-  "healer",
-  "flex",
-  "any",
+  "Tank",
+  "DPS",
+  "Support",
+  "Healer",
+  "Flex",
+  "Any",
 ]);
 export const userRankEnum = pgEnum("user_rank", [
-  "banned",
-  "member",
-  "active_member",
-  "trusted_member",
-  "community_partner",
-  "bronze_vip",
-  "diamond_vip",
-  "founders_vip",
-  "lifetime",
-  "customer_relations",
-  "rs_volunteer_staff",
-  "rs_trust_safety_team",
-  "appeals_moderator",
-  "community_moderator",
-  "community_senior_moderator",
-  "community_administrator",
-  "community_senior_administrator",
-  "community_developer",
-  "staff_internal_affairs",
-  "mi_trust_safety_director_trademark",
-  "mi_trust_safety_director",
-  "staff_department_director",
-  "team_member",
-  "operations_manager",
-  "company_director",
+  "Moderator",
+  "Administrator",
+  "Senior Administrator",
+  "Banned",
+  "Member",
+  "Active Member",
+  "Trusted Member",
+  "Community Partner",
+  "Bronze VIP",
+  "Diamond VIP",
+  "Founders Edition VIP",
+  "Lifetime",
+  "RS Volunteer Staff",
+  "RS Trust & Safety Team",
+  "Customer Relations",
+  "Appeals Moderator",
+  "Community Moderator",
+  "Community Senior Moderator",
+  "Community Administrator",
+  "Community Senior Administrator",
+  "Community Developer",
+  "Staff Internal Affairs",
+  "Company Representative",
+  "Team Member",
+  "MI Trust & Safety Director",
+  "Staff Department Director",
+  "Operations Manager",
+  "Company Director",
 ]);
 
 // Session storage table (mandatory for Replit Auth)
@@ -119,6 +121,7 @@ export const users = pgTable("users", {
   profileImageUrl: varchar("profile_image_url"),
   username: varchar("username").unique(),
   bio: text("bio"),
+  signature: text("signature"),
   // VIP subscription
   vipTier: vipTierEnum("vip_tier").default("none"),
   stripeCustomerId: varchar("stripe_customer_id"),
@@ -137,14 +140,16 @@ export const users = pgTable("users", {
   gamesPlayed: integer("games_played").default(0),
   totalPosts: integer("total_posts").default(0),
   reputation: integer("reputation").default(0),
-  // Clan membership
-  clanId: varchar("clan_id"),
-  clanRole: varchar("clan_role"),
+  // Group membership
+  groupId: varchar("group_id"),
+  groupRole: varchar("group_role"),
   // User rank/role - Support for multiple ranks
-  userRank: userRankEnum("user_rank").default("member"), // Primary rank
-  additionalRanks: text("additional_ranks").array().default(sql`'{}'::text[]`), 
-  secondaryUserRank: text("secondary_user_rank").default("None"), // Legacy
-  tertiaryUserRank: userRankEnum("tertiary_user_rank").default("lifetime"), // Legacy
+  userRank: userRankEnum("user_rank").default("Member"), // Primary rank
+  additionalRanks: text("additional_ranks")
+    .array()
+    .default(sql`'{}'::text[]`),
+  secondaryUserRank: text("secondary_user_rank").default("Active Member"), // Legacy
+  tertiaryUserRank: userRankEnum("tertiary_user_rank").default("Lifetime"), // Legacy
   // Banning
   isBanned: boolean("is_banned").default(false),
   banReason: text("ban_reason"),
@@ -159,8 +164,10 @@ export const users = pgTable("users", {
   isModerator: boolean("is_moderator").default(false),
   // Admin Dashboard
   isAdmin: boolean("is_admin").default(false),
-  mi_trust_safety_director: boolean("mi_trust_safety_director").default(false),
-  staff_department_director: boolean("staff_department_director").default(
+  MI_Trust_Safety_Director: boolean("MI Trust & Safety Director").default(
+    false,
+  ),
+  Staff_Department_Director: boolean("Staff Department Director").default(
     false,
   ),
   // Timestamps
@@ -168,8 +175,8 @@ export const users = pgTable("users", {
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
-// Clans table
-export const clans = pgTable("clans", {
+// Groups table (formally clans)
+export const groups = pgTable("groups", {
   id: varchar("id")
     .primaryKey()
     .default(sql`gen_random_uuid()`),
@@ -273,7 +280,7 @@ export const chatMessages = pgTable("chat_messages", {
     .default(sql`gen_random_uuid()`),
   senderId: varchar("sender_id").notNull(),
   recipientId: varchar("recipient_id"),
-  clanId: varchar("clan_id"),
+  groupId: varchar("group_id"),
   content: text("content").notNull(),
   createdAt: timestamp("created_at").defaultNow(),
 });
@@ -334,7 +341,7 @@ export const insertUserSchema = createInsertSchema(users).omit({
   createdAt: true,
   updatedAt: true,
 });
-export const insertClanSchema = createInsertSchema(clans).omit({
+export const insertGroupSchema = createInsertSchema(groups).omit({
   id: true,
   createdAt: true,
   updatedAt: true,
@@ -370,8 +377,8 @@ export const insertPaymentSchema = createInsertSchema(payments).omit({
 export type User = typeof users.$inferSelect;
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type UpsertUser = Partial<User> & { id?: string };
-export type Clan = typeof clans.$inferSelect;
-export type InsertClan = z.infer<typeof insertClanSchema>;
+export type Groups = typeof groups.$inferSelect;
+export type InsertGroup = z.infer<typeof insertGroupSchema>;
 export type Build = typeof builds.$inferSelect;
 export type InsertBuild = z.infer<typeof insertBuildSchema>;
 export type BuildVote = typeof buildVotes.$inferSelect;

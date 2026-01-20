@@ -35,14 +35,16 @@ export default function UserProfile() {
 
   // Rank visibility logic
   const renderRank = (rank: string | null | undefined) => {
-    if (!rank || rank === "None" || rank === "member") return null;
+    if (!rank || rank === "None" || rank === "Member") return null;
 
     return (
       <Badge
         variant="outline"
         className="rounded-full px-3 py-0.5 text-[11px] font-bold border-slate-200 bg-white shadow-sm text-slate-600"
       >
-        {rank.replace(/_/g, " ").replace(/\b\w/g, (l: string) => l.toUpperCase())}
+        {rank
+          .replace(/_/g, " ")
+          .replace(/\b\w/g, (l: string) => l.toUpperCase())}
       </Badge>
     );
   };
@@ -51,7 +53,10 @@ export default function UserProfile() {
     <div className="max-w-5xl mx-auto p-4 sm:p-8 space-y-8 animate-in fade-in duration-700">
       {/* Breadcrumbs */}
       <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">
-        <Link href="/dashboard" className="hover:text-slate-900 transition-colors">
+        <Link
+          href="/dashboard"
+          className="hover:text-slate-900 transition-colors"
+        >
           Home
         </Link>
         <ChevronRight className="w-3 h-3" />
@@ -72,7 +77,7 @@ export default function UserProfile() {
 
             <div className="flex-1 pb-2">
               <div className="flex flex-col md:flex-row md:items-center gap-3 justify-center md:justify-start">
-                <h1 className="text-4xl font-black tracking-tight text-slate-900 uppercase">
+                <h1 className="text-4xl font-black tracking-tight text-slate-900 case-sensitive">
                   {profile.username}
                 </h1>
                 {profile.vipTier !== "none" && (
@@ -83,7 +88,9 @@ export default function UserProfile() {
               </div>
 
               <div className="flex flex-wrap justify-center md:justify-start gap-2 mt-4">
-                {renderRank(profile.vipTier !== "none" ? profile.vipTier : null)}
+                {renderRank(
+                  profile.vipTier !== "none" ? profile.vipTier : null,
+                )}
                 {renderRank(profile.userRank)}
                 {(profile as any).additionalRanks?.map((rank: string) => (
                   <span key={rank}>{renderRank(rank)}</span>
@@ -95,21 +102,33 @@ export default function UserProfile() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 pt-12 border-t border-slate-50">
             <div className="space-y-6">
               <div className="space-y-1">
-                <p className="text-xs font-black uppercase tracking-widest text-slate-400">Join Date</p>
+                <p className="text-xs font-black uppercase tracking-widest text-slate-400">
+                  Join Date
+                </p>
                 <p className="text-slate-900 font-bold">
                   {profile.createdAt
-                    ? new Date(profile.createdAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })
+                    ? new Date(profile.createdAt).toLocaleDateString("en-US", {
+                        month: "long",
+                        day: "numeric",
+                        year: "numeric",
+                      })
                     : "January 26, 2025"}
                 </p>
               </div>
               <div className="space-y-1">
-                <p className="text-xs font-black uppercase tracking-widest text-slate-400">Member ID</p>
-                <p className="text-slate-900 font-mono text-xs font-bold">{profile.id}</p>
+                <p className="text-xs font-black uppercase tracking-widest text-slate-400">
+                  Member ID
+                </p>
+                <p className="text-slate-900 font-mono text-xs font-bold">
+                  {profile.id}
+                </p>
               </div>
             </div>
 
             <div className="md:col-span-2 space-y-4">
-              <p className="text-xs font-black uppercase tracking-widest text-slate-400">About Me</p>
+              <p className="text-xs font-black uppercase tracking-widest text-slate-400">
+                About Me
+              </p>
               <div className="bg-slate-50 rounded-2xl p-6">
                 <p className="text-slate-600 font-medium leading-relaxed">
                   {profile.bio || "No bio information provided."}
@@ -123,9 +142,11 @@ export default function UserProfile() {
       {/* Signature Card */}
       <Card className="border-none bg-white shadow-xl rounded-[2rem] overflow-hidden">
         <CardContent className="p-8 space-y-4">
-          <p className="text-xs font-black uppercase tracking-widest text-slate-400">Community Signature</p>
+          <p className="text-xs font-black uppercase tracking-widest text-slate-400">
+            Community Signature
+          </p>
           <div className="text-sm text-slate-500 italic font-bold border-l-4 border-slate-900 pl-6 py-2">
-            {profile.signature || "― RIVET Studios Community Member"}
+            {profile.signature || " "}
           </div>
         </CardContent>
       </Card>

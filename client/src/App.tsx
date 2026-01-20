@@ -15,7 +15,7 @@ import Landing from "@/pages/landing";
 import Login from "@/pages/login";
 import Signup from "@/pages/signup";
 import Dashboard from "@/pages/dashboard";
-import Clans from "@/pages/clans";
+import Groups from "@/pages/groups";
 import ForumHome from "@/pages/forums/home";
 import ForumCategory from "@/pages/forums/category";
 import ForumThread from "@/pages/forums/thread";
@@ -37,7 +37,7 @@ import VolunteerStaffAgreement from "@/pages/volunteer-staff-agreement";
 import LEOGuidelines from "@/pages/leo-guidelines";
 import CommunityRules from "@/pages/community-rules";
 import AboutRS from "@/pages/about-rs";
-import FortLoredo from "@/pages/fort-loredo";
+import Catalina from "@/pages/catalina";
 import Chat from "@/pages/chat";
 import Admin from "@/pages/admin";
 import ModCP from "@/pages/modcp";
@@ -237,13 +237,17 @@ function Router() {
         <Route path="/search" component={UserSearch} />
         <Route path="/builds" component={Builds} />
         <Route path="/chat" component={Chat} />
-        <Route path="/clans" component={Clans} />
+        <Route path="/groups" component={Groups} />
         <Route path="/admin" component={Admin} />
         <Route path="/modcp">
           {user?.isModerator || user?.isAdmin ? <ModCP /> : <Unauthorized />}
         </Route>
         <Route path="/admincp">
-          {user?.isAdmin || user?.email?.endsWith("@resyncstudios.com") ? <AdminCP /> : <Unauthorized />}
+          {user?.isAdmin || user?.email?.endsWith("@resyncstudios.com") ? (
+            <AdminCP />
+          ) : (
+            <Unauthorized />
+          )}
         </Route>
         <Route path="/guidelines" component={Guidelines} />
         <Route path="/privacy" component={Privacy} />
@@ -253,10 +257,7 @@ function Router() {
         <Route path="/support" component={Support} />
         <Route path="/volunteer" component={VolunteerModeration} />
         <Route path="/dmca" component={DMCA} />
-        <Route
-          path="/project-catalina-rules"
-          component={ProjectCatalinarules}
-        />
+        <Route path="/catalina-rules" component={ProjectCatalinarules} />
         <Route
           path="/volunteer-agreement"
           component={VolunteerStaffAgreement}
@@ -264,7 +265,7 @@ function Router() {
         <Route path="/leo-guidelines" component={LEOGuidelines} />
         <Route path="/community-rules" component={CommunityRules} />
         <Route path="/about" component={AboutRS} />
-        <Route path="/fort-loredo" component={FortLoredo} />
+        <Route path="/catalina" component={Catalina} />
         <Route path="/onboarding" component={Onboarding} />
         <Route component={NotFound} />
         <Route path="/unauthorized" component={Unauthorized} />
@@ -277,7 +278,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <ThemeProvider defaultTheme="light" storageKey="rivet-studios-theme">
+        <ThemeProvider defaultTheme="dark" storageKey="rivet-studios-theme">
           <TooltipProvider>
             <Router />
             <Toaster />

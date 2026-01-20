@@ -2,8 +2,8 @@ import { randomUUID } from "crypto";
 import {
   type User,
   type UpsertUser,
-  type Clan,
-  type InsertClan,
+  type Groups,
+  type InsertGroup,
   type Build,
   type InsertBuild,
   type BuildVote,
@@ -24,7 +24,7 @@ import {
   type Report,
   type InsertReport,
   users,
-  clans,
+  groups,
   builds,
   buildVotes,
   forumCategories,
@@ -51,11 +51,14 @@ export interface IStorage {
   createMagicLinkToken(email: string): Promise<string>;
   verifyMagicLinkToken(token: string): Promise<string | undefined>;
   markMagicLinkTokenAsUsed(token: string): Promise<void>;
-  getClans(): Promise<Clan[]>;
-  getClan(id: string): Promise<Clan | undefined>;
-  createClan(clan: InsertClan): Promise<Clan>;
-  updateClan(id: string, updates: Partial<Clan>): Promise<Clan | undefined>;
-  deleteClan(id: string): Promise<void>;
+  getGroups(): Promise<Groups[]>;
+  getGroup(id: string): Promise<Groups | undefined>;
+  createGroup(group: InsertGroup): Promise<Groups>;
+  updateGroup(
+    id: string,
+    updates: Partial<Groups>,
+  ): Promise<Groups | undefined>;
+  deleteGroup(id: string): Promise<void>;
   getBuilds(): Promise<Build[]>;
   getBuild(id: string): Promise<Build | undefined>;
   createBuild(build: InsertBuild): Promise<Build>;
@@ -77,7 +80,7 @@ export interface IStorage {
   createForumReply(reply: InsertForumReply): Promise<ForumReply>;
   getChatMessages(
     recipientId?: string,
-    clanId?: string,
+    groupId?: string,
   ): Promise<ChatMessage[]>;
   createChatMessage(message: InsertChatMessage): Promise<ChatMessage>;
   getAnnouncements(): Promise<Announcement[]>;
@@ -108,7 +111,7 @@ export interface IStorage {
   getStats(): Promise<{
     totalMembers: number;
     activeLfg: number;
-    totalClans: number;
+    totalGroups: number;
     totalBuilds: number;
   }>;
 }
@@ -172,11 +175,12 @@ export class DatabaseStorage implements IStorage {
     const current = await this.getUser(id);
     const [user] = await db
       .update(users)
-      .set({ 
-        ...updates, 
+      .set({
+        ...updates,
         updatedAt: new Date(),
         // Handle array merge for additionalRanks if provided as a single string
-        additionalRanks: updates.additionalRanks || current?.additionalRanks || [],
+        additionalRanks:
+          updates.additionalRanks || current?.additionalRanks || [],
       })
       .where(eq(users.id, id))
       .returning();
@@ -206,30 +210,30 @@ export class DatabaseStorage implements IStorage {
       .set({ usedAt: new Date() })
       .where(eq(magicLinkTokens.token, token));
   }
-  async getClans(): Promise<Clan[]> {
-    return db.select().from(clans).orderBy(desc(clans.memberCount));
+  async getGroups(): Promise<Groups[]> {
+    return db.select().from(groups).orderBy(desc(groups.memberCount));
   }
-  async getClan(id: string): Promise<Clan | undefined> {
-    const [clan] = await db.select().from(clans).where(eq(clans.id, id));
-    return clan;
+  async getGroup(id: string): Promise<Groups | undefined> {
+    const [group] = await db.select().from(groups).where(eq(groups.id, id));
+    return group;
   }
-  async createClan(clanData: InsertClan): Promise<Clan> {
-    const [clan] = await db.insert(clans).values(clanData).returning();
-    return clan;
+  async createGroup(groupData: InsertGroup): Promise<Groups> {
+    const [group] = await db.insert(groups).values(groupData).returning();
+    return group;
   }
-  async updateClan(
+  async updateGroup(
     id: string,
-    updates: Partial<Clan>,
-  ): Promise<Clan | undefined> {
-    const [clan] = await db
-      .update(clans)
+    updates: Partial<Groups>,
+  ): Promise<Groups | undefined> {
+    const [group] = await db
+      .update(groups)
       .set({ ...updates, updatedAt: new Date() })
-      .where(eq(clans.id, id))
+      .where(eq(groups.id, id))
       .returning();
-    return clan;
+    return group;
   }
-  async deleteClan(id: string): Promise<void> {
-    await db.delete(clans).where(eq(clans.id, id));
+  async deleteGroup(id: string): Promise<void> {
+    await db.delete(groups).where(eq(groups.id, id));
   }
   async getBuilds(): Promise<Build[]> {
     return db.select().from(builds).orderBy(desc(builds.createdAt));
@@ -370,13 +374,13 @@ export class DatabaseStorage implements IStorage {
   }
   async getChatMessages(
     recipientId?: string,
-    clanId?: string,
+    groupId?: string,
   ): Promise<ChatMessage[]> {
-    if (clanId)
+    if (groupId)
       return db
         .select()
         .from(chatMessages)
-        .where(eq(chatMessages.clanId, clanId))
+        .where(eq(chatMessages.groupId, groupId))
         .orderBy(desc(chatMessages.createdAt))
         .limit(100);
     if (recipientId)
@@ -509,16 +513,16 @@ export class DatabaseStorage implements IStorage {
   async getStats(): Promise<{
     totalMembers: number;
     activeLfg: number;
-    totalClans: number;
+    totalGroups: number;
     totalBuilds: number;
   }> {
     const [userCount] = await db.select({ count: sql`count(*)` }).from(users);
-    const [clanCount] = await db.select({ count: sql`count(*)` }).from(clans);
+    const [groupCount] = await db.select({ count: sql`count(*)` }).from(groups);
     const [buildCount] = await db.select({ count: sql`count(*)` }).from(builds);
     return {
       totalMembers: Number(userCount.count),
       activeLfg: 0,
-      totalClans: Number(clanCount.count),
+      totalGroups: Number(groupCount.count),
       totalBuilds: Number(buildCount.count),
     };
   }

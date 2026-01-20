@@ -11,6 +11,7 @@ import { Users, Crown, Shield, Headphones, Cpu, Trophy } from "lucide-react";
 interface TeamMember {
   name: string;
   role: string;
+  unit?: string;
   joinDate: string;
   endDate?: string;
 }
@@ -47,7 +48,7 @@ const departments: Department[] = [
       },
       {
         name: "ArielOperations",
-        role: "Company Representative, Company Advisor, Chief Development Officer, Team Member",
+        role: "Company Representative, Team Member",
         joinDate: "2024-Present",
       },
       {
@@ -77,16 +78,19 @@ const departments: Department[] = [
       {
         name: "bobby283543",
         role: "Customer Relations Director",
+        unit: "Customer Support & Account Support",
         joinDate: "2025-Present",
       },
       {
         name: "Vacant",
         role: "Unknown",
+        unit: " ",
         joinDate: "Unknown",
       },
       {
         name: "Vacant",
         role: "Unknown",
+        unit: " ",
         joinDate: "Unknown",
       },
     ],
@@ -99,31 +103,37 @@ const departments: Department[] = [
       {
         name: "ArielOperations",
         role: "Chief Development Officer, Lead Developer",
+        unit: "Overseeing all development operations",
         joinDate: "2024-Present",
       },
       {
         name: "cxiqlne",
         role: "Gameplay Systems Developer",
+        unit: "Handling Company-Wide Gameplay & Systems Development",
         joinDate: "2018-Present",
       },
       {
         name: "Reni",
-        role: "Gameplay Systems Developer @ Project Victoria",
+        role: "Gameplay Systems Developer @ Project Sydney",
+        unit: "Handling Project Sydney Systems & Gameplay Development",
         joinDate: "2019-Present",
       },
       {
         name: "silentdirective.",
         role: "Gameplay Systems Developer @ Project Sandy",
+        unit: "Handling Project Sandy Systems & Gameplay Development",
         joinDate: "2024-Present",
       },
       {
         name: "cxiqlne",
         role: "Programmer",
+        unit: "Handling Website Infrastructure, Data Migrations, OAuth, API, Backend & Frontend, Systems, Network, Software, Hardware, Datastores & databases, domain management",
         joinDate: "2018-Present",
       },
       {
         name: "cxiqlne",
         role: "Vehicle Engineer",
+        unit: "Handling Vehicle Development",
         joinDate: "2018-Present",
       },
     ],
@@ -147,7 +157,7 @@ const departments: Department[] = [
       },
       {
         name: "LA5TIC",
-        role: "Operations Manager & Lead Engineer",
+        role: "Developer",
         joinDate: "2018",
         endDate: "2023",
       },
@@ -167,7 +177,7 @@ export default function StaffDirectory() {
           Staff Directory
         </h1>
         <p className="text-lg text-muted-foreground">
-          Meet the passionate team behind Rivet Studios™
+          Meet the passionate team behind RIVET Studios™
         </p>
       </div>
 
@@ -223,12 +233,17 @@ export default function StaffDirectory() {
         <CardContent className="p-6 text-center">
           <p className="text-lg font-semibold mb-2">Join Our Team</p>
           <p className="text-muted-foreground">
-            Open Positions
-            <CardDescription className="text-xs"></CardDescription>• Vehicle
-            Artist • Gameplay Systems Developer • Programmer • Vehicle Engineer
-            • Customer Relations Specialist Agent (DMCA) • Customer Relations
-            Specialist Agent (Partnership) • Customer Relations Specialist Agent
-            (Takedown Requests)
+            Interested in joining RIVET Studios? Check out our career
+            opportunities. We're always looking for talented individuals to help
+            grow our community.
+            <CardDescription className="text-xs"></CardDescription> To become a
+            team member at RS, please contact us at{" "}
+            <a
+              href="mailto:recruitment@resyncstudios.com"
+              className="text-primary hover:underline"
+            >
+              recruitment@resyncstudios.com
+            </a>
           </p>
         </CardContent>
       </Card>
