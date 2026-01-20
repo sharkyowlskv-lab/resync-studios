@@ -121,7 +121,6 @@ export const users = pgTable("users", {
   profileImageUrl: varchar("profile_image_url"),
   username: varchar("username").unique(),
   bio: text("bio"),
-  signature: text("signature"),
   // VIP subscription
   vipTier: vipTierEnum("vip_tier").default("none"),
   stripeCustomerId: varchar("stripe_customer_id"),
