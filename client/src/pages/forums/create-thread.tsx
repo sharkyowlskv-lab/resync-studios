@@ -49,14 +49,17 @@ export default function CreateThread() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/forums/threads"] });
-      toast({ title: "Thread created successfully" });
+      toast({
+        title: "Success",
+        description: "Your discussion has been posted successfully!",
+      });
       setLocation("/forums");
     },
-    onError: (error: Error) => {
+    onError: (error: any) => {
       toast({
-        title: "Failed to create thread",
-        description: error.message,
+        title: "Error Posting Discussion",
         variant: "destructive",
+        description: `Failed to post: ${error.message || "Unknown error"}. Please try again later.`,
       });
     },
   });
@@ -83,11 +86,15 @@ export default function CreateThread() {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {categories?.map((cat) => (
-                          <SelectItem key={cat.id} value={cat.id}>
-                            {cat.name}
-                          </SelectItem>
-                        ))}
+                        {categories && categories.length > 0 ? (
+                          categories.map((cat) => (
+                            <SelectItem key={cat.id} value={cat.id} className="cursor-pointer">
+                              {cat.name}
+                            </SelectItem>
+                          ))
+                        ) : (
+                          <div className="p-2 text-sm text-slate-500">No categories found</div>
+                        )}
                       </SelectContent>
                     </Select>
                     <FormMessage />

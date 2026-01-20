@@ -63,120 +63,81 @@ const features = [
 
 export default function Landing() {
   return (
-    <div className="space-y-20">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="space-y-8 text-center max-w-3xl mx-auto">
-        <div className="space-y-4">
-          <Badge variant="outline" className="gap-2 mx-auto">
-            Now powering 15K+ members
-          </Badge>
-          <h1 className="text-5xl sm:text-6xl font-bold leading-tight">
-            The number one online gaming community platform
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            RIVET Studios™ creates an open gaming environment accessible to
-            everyone, delivering high-fidelity games through our exceptional
-            game development expertise and building online roleplay games.
-          </p>
+      <section className="relative h-[600px] flex items-center justify-center overflow-hidden">
+        <div 
+          className="absolute inset-0 z-0 bg-cover bg-center"
+          style={{ backgroundImage: 'url("https://i.imgur.com/a/car-fire-sbi-resync-studios-project-foxtrot-teaser-AjnovPK.png")' }}
+        >
+          <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-[2px]" />
         </div>
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Button size="lg" asChild data-testid="button-join-community">
-            <Link href="/signup">
-              <span>Join The Community</span>
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Link>
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            asChild
-            data-testid="button-browse-store"
-          >
-            <Link href="/store">Browse Store</Link>
-          </Button>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="grid grid-cols-2 md:grid-cols-6 gap-8 py-12 border-y border-border/50">
-        {stats.map((stat) => (
-          <div key={stat.label} className="text-center">
-            <div className="text-3xl sm:text-4xl font-bold mb-2">
-              <AnimatedCounter
-                end={stat.value}
-                suffix={stat.suffix}
-                duration={2000}
-              />
-            </div>
-            <p className="text-sm text-muted-foreground">{stat.label}</p>
+        
+        <div className="relative z-10 container mx-auto px-4 text-center space-y-8">
+          <div className="space-y-4 max-w-4xl mx-auto">
+            <Badge className="bg-white/10 text-white border-white/20 backdrop-blur-md px-4 py-1">
+              Building the Future of Digital Experiences
+            </Badge>
+            <h1 className="text-5xl sm:text-7xl font-bold tracking-tight text-white leading-tight">
+              RIVET Studios™
+            </h1>
+            <p className="text-xl text-white/80 max-w-2xl mx-auto font-medium">
+              We create open gaming environments accessible to everyone, delivering high-fidelity games through exceptional expertise.
+            </p>
           </div>
-        ))}
-      </section>
-
-      {/* Features Section */}
-      <section className="space-y-12">
-        <div className="text-center space-y-4 max-w-2xl mx-auto">
-          <h2 className="text-4xl font-bold">
-            Everything you need for thriving communities
-          </h2>
-          <p className="text-lg text-muted-foreground">
-            Our gaming platform provides all the essential tools needed to build
-            thriving communities and deliver exceptional gaming experiences.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feature) => {
-            const Icon = feature.icon;
-            return (
-              <Card
-                key={feature.title}
-                className="hover:border-primary/50 transition-colors"
-              >
-                <CardContent className="p-6 space-y-3">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <Icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <h3 className="font-semibold text-lg">{feature.title}</h3>
-                  <p className="text-sm text-muted-foreground">
-                    {feature.description}
-                  </p>
-                </CardContent>
-              </Card>
-            );
-          })}
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+            <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100 px-8 h-14 text-lg font-bold shadow-2xl" asChild>
+              <Link href="/signup">Join Community</Link>
+            </Button>
+            <Button size="lg" variant="outline" className="border-white/30 bg-white/5 text-white hover:bg-white/10 backdrop-blur-md px-8 h-14 text-lg font-bold" asChild>
+              <Link href="/about">Learn More</Link>
+            </Button>
+          </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-card border border-border/50 rounded-lg p-8 sm:p-12 text-center space-y-6">
-        <div className="space-y-2">
-          <h2 className="text-3xl sm:text-4xl font-bold">
-            Ready to join our community?
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Join thousands of community members at RIVET Studios™ to experience
-            roleplay & realism like never before!
-          </p>
-        </div>
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Button size="lg" asChild data-testid="button-get-started">
-            <Link href="/signup">
-              Get Started Free
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Link>
-          </Button>
-          <Button size="lg" variant="outline" asChild>
-            <a
-              href="https://support.resyncstudios.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Contact Support
-            </a>
-          </Button>
-        </div>
-      </section>
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-4 py-20 space-y-32">
+        {/* Stats Section */}
+        <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+          {stats.map((stat) => (
+            <div key={stat.label} className="text-center space-y-2">
+              <div className="text-4xl font-black text-slate-900 tracking-tighter">
+                <AnimatedCounter end={stat.value} suffix={stat.suffix} />
+              </div>
+              <p className="text-sm font-bold uppercase tracking-widest text-slate-400">{stat.label}</p>
+            </div>
+          ))}
+        </section>
+
+        {/* Features Grid */}
+        <section className="space-y-16">
+          <div className="text-center space-y-4 max-w-3xl mx-auto">
+            <h2 className="text-4xl font-extrabold tracking-tight text-slate-900">Innovative Solutions</h2>
+            <p className="text-lg text-slate-500 font-medium">Our platform provides the essential tools needed to build thriving communities.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {features.map((feature) => {
+              const Icon = feature.icon;
+              return (
+                <Card key={feature.title} className="border-none shadow-sm bg-slate-50/50 hover:bg-white hover:shadow-xl transition-all duration-300 group">
+                  <CardContent className="p-8 space-y-6">
+                    <div className="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <Icon className="w-7 h-7 text-slate-900" />
+                    </div>
+                    <div className="space-y-3">
+                      <h3 className="text-xl font-bold text-slate-900">{feature.title}</h3>
+                      <p className="text-slate-500 leading-relaxed font-medium">{feature.description}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </section>
+      </div>
     </div>
   );
 }

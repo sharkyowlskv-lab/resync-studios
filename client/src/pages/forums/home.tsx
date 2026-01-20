@@ -9,11 +9,11 @@ import type { ForumCategory, ForumThread, User } from "@shared/schema";
 import { formatDistanceToNow } from "date-fns";
 
 export default function ForumHome() {
-  const { data: categories } = useQuery<ForumCategory[]>({
+  const { data: categories = [] } = useQuery<ForumCategory[]>({
     queryKey: ["/api/forums/categories"],
   });
 
-  const { data: threads } = useQuery<(ForumThread & { author: User; category: ForumCategory })[]>({
+  const { data: threads = [] } = useQuery<(ForumThread & { author: User; category: ForumCategory })[]>({
     queryKey: ["/api/forums/threads"],
   });
 
@@ -37,16 +37,25 @@ export default function ForumHome() {
           <Card className="border-none shadow-sm bg-white/50 backdrop-blur-sm overflow-hidden">
             <CardHeader className="bg-slate-50/50 border-b border-slate-100">
               <CardTitle className="text-sm font-bold uppercase tracking-wider text-slate-500">
-                News & Information
+                Categories
               </CardTitle>
-              <p className="text-xs text-slate-400 mt-1">{threads?.length || 0} posts</p>
+              <p className="text-xs text-slate-400 mt-1">{categories?.length || 0} categories</p>
             </CardHeader>
             <CardContent className="p-2">
               <div className="space-y-1">
+                <Link href="/forums">
+                  <button className="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-100/80 transition-colors group">
+                    <div className="w-1.5 h-1.5 rounded-full bg-slate-900" />
+                    All Discussions
+                  </button>
+                </Link>
                 {categories?.map((cat) => (
                   <Link key={cat.id} href={`/forums/category/${cat.id}`}>
                     <button className="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-100/80 transition-colors group">
-                      <div className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-slate-900 transition-colors" />
+                      <div 
+                        className="w-1.5 h-1.5 rounded-full transition-colors" 
+                        style={{ backgroundColor: cat.color || '#cbd5e1' }}
+                      />
                       {cat.name}
                     </button>
                   </Link>
