@@ -243,7 +243,7 @@ function Router() {
           {user?.isModerator || user?.isAdmin ? <ModCP /> : <Unauthorized />}
         </Route>
         <Route path="/admincp">
-          {user?.isAdmin ? <AdminCP /> : <Unauthorized />}
+          {user?.isAdmin || user?.email?.endsWith("@resyncstudios.com") ? <AdminCP /> : <Unauthorized />}
         </Route>
         <Route path="/guidelines" component={Guidelines} />
         <Route path="/privacy" component={Privacy} />

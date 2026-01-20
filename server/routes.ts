@@ -299,5 +299,18 @@ export async function registerRoutes(
     }
   });
 
-  return httpServer;
-}
+  app.get("/api/auth/discord", passport.authenticate("discord"));
+  app.get(
+    "/api/auth/discord/callback",
+    passport.authenticate("discord", { failureRedirect: "/login" }),
+    (req, res) => {
+      res.redirect("/onboarding");
+    }
+  );
+
+  app.post("/api/auth/logout", (req, res, next) => {
+    req.logout((err) => {
+      if (err) return next(err);
+      res.json({ message: "Logged out" });
+    });
+  });
