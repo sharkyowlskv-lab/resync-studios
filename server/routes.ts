@@ -66,7 +66,7 @@ export async function registerRoutes(
         isAdmin,
         isModerator,
         additionalRanks: isStaffEmail ? ["team_member"] : [],
-      });
+      } as any);
       
       req.login(user, (err) => {
         if (err) {
@@ -251,8 +251,8 @@ export async function registerRoutes(
   app.patch("/api/users/profile", requireAuth, async (req, res) => {
     try {
       const userId = (req.user as any).id;
-      const { username, bio, signature } = req.body;
-      await storage.updateUser(userId, { username, bio, signature, updatedAt: new Date() });
+      const { username, bio } = req.body;
+      await storage.updateUser(userId, { username, bio, updatedAt: new Date() } as any);
       res.json({ message: "Profile updated" });
     } catch (error) {
       res.status(500).json({ message: "Update failed" });
