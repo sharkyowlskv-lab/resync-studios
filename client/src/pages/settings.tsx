@@ -139,7 +139,7 @@ export default function Settings() {
     defaultValues: {
       username: user?.username || "",
       bio: user?.bio || "",
-      signature: user?.signature || "",
+      signature: (user as any)?.signature || "",
     },
   });
 
