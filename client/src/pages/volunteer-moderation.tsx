@@ -369,7 +369,7 @@ export default function VolunteerModeration() {
 
         <Card className="overflow-hidden border-0">
           <iframe
-            src="https://resyncstudios.fillout.com/apply"
+            src="https://rivetstudios.fillout.com/apply"
             style={{
               width: "100%",
               height: "800px",
