@@ -10,7 +10,7 @@ import { AlertCircle, Shield, Mail, FileText } from "lucide-react";
 
 export default function DMCAPolicy() {
   return (
-    <div className="space-y-8 max-w-4xl">
+    <div className="space-y-8 max-w-4xl mx-auto py-12 px-4">
       <div className="text-center space-y-2">
         <Badge variant="outline" className="mx-auto gap-2">
           <Shield className="w-3.5 h-3.5" />

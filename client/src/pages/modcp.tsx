@@ -66,7 +66,7 @@ interface ForumReply {
 }
 
 export default function ModCP() {
-  const { user } = useAuth();
+  const { user, isLoading: authLoading } = useAuth();
   const { toast } = useToast();
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -93,6 +93,14 @@ export default function ModCP() {
     user?.email?.endsWith("@resyncstudios.com") ||
     staffRanks.includes(user?.userRank || "") ||
     (user?.additionalRanks || []).some((r) => staffRanks.includes(r));
+
+  if (authLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <Skeleton className="h-[400px] w-full max-w-4xl" />
+      </div>
+    );
+  }
 
   if (!isMod) {
     return (

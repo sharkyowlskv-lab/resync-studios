@@ -67,7 +67,7 @@ const RANK_OPTIONS = [
 ];
 
 export default function AdminPanel() {
-  const { user: currentUser } = useAuth();
+  const { user: currentUser, isLoading: authLoading } = useAuth();
   const { toast } = useToast();
 
   const staffRanks = [
@@ -85,6 +85,14 @@ export default function AdminPanel() {
       staffRanks.includes(r),
     );
 
+  if (authLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <Skeleton className="h-[400px] w-full max-w-4xl" />
+      </div>
+    );
+  }
+
   if (!hasAccess) {
     return <Unauthorized />;
   }
@@ -95,11 +103,13 @@ export default function AdminPanel() {
 
   const {
     data: users = [],
-    isLoading,
+    isLoading: usersLoading,
     error: queryError,
   } = useQuery<User[]>({
     queryKey: ["/api/admin/users"],
   });
+
+  const isLoading = usersLoading || authLoading;
 
   // Show error toast if there's a query error
   useEffect(() => {

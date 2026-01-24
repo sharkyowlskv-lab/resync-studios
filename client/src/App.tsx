@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
 import { MainHeader } from "@/components/main-header";
+import { ScrollToTop } from "@/components/scroll-to-top";
 import { useAuth } from "@/hooks/useAuth";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AuthProvider } from "@/components/auth-provider";
@@ -229,66 +230,68 @@ function Router() {
 
   return (
     <PublicLayout>
-      <Switch>
-        <Route path="/" component={Landing} />
-        <Route path="/dashboard" component={Dashboard} />
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
-        <Route path="/blog" component={Blog} />
-        <Route path="/store" component={Store} />
-        <Route path="/store/subscriptions" component={Subscriptions} />
-        <Route path="/checkout/:tierId" component={Checkout} />
-        <Route path="/policies" component={Policies} />
-        <Route path="/forums" component={ForumHome} />
-        <Route path="/forums/category/:id" component={ForumCategory} />
-        <Route path="/forums/thread/:id" component={ForumThread} />
-        <Route path="/forums/new">{user ? <CreateThread /> : <Login />}</Route>
-        <Route path="/subscriptions">
-          <Redirect to="/store/subscriptions" />
-        </Route>
-        <Route path="/vip">
-          <Redirect to="/store/subscriptions" />
-        </Route>
-        <Route path="/user" component={UserProfile} />
-        <Route path="/profile/:id" component={UserProfile} />
-        <Route path="/settings" component={Settings} />
-        <Route path="/team" component={StaffDirectory} />
-        <Route path="/search" component={UserSearch} />
-        <Route path="/builds" component={Builds} />
-        <Route path="/chat" component={Chat} />
-        <Route path="/groups" component={Groups} />
-        <Route path="/admin" component={Admin} />
-        <Route path="/modcp">
-          {user?.isModerator || user?.isAdmin ? <ModCP /> : <Unauthorized />}
-        </Route>
-        <Route path="/admincp">
-          {user?.isAdmin || user?.email?.endsWith("@resyncstudios.com") ? (
-            <AdminCP />
-          ) : (
-            <Unauthorized />
-          )}
-        </Route>
-        <Route path="/guidelines" component={Guidelines} />
-        <Route path="/privacy" component={Privacy} />
-        <Route path="/terms" component={Terms} />
-        <Route path="/news" component={News} />
-        <Route path="/projects" component={Projects} />
-        <Route path="/support" component={Support} />
-        <Route path="/volunteer" component={VolunteerModeration} />
-        <Route path="/dmca" component={DMCA} />
-        <Route path="/catalina-rules" component={ProjectCatalinarules} />
-        <Route
-          path="/volunteer-agreement"
-          component={VolunteerStaffAgreement}
-        />
-        <Route path="/leo-guidelines" component={LEOGuidelines} />
-        <Route path="/community-rules" component={CommunityRules} />
-        <Route path="/about" component={AboutRS} />
-        <Route path="/catalina" component={Catalina} />
-        <Route path="/onboarding" component={Onboarding} />
-        <Route component={NotFound} />
-        <Route path="/unauthorized" component={Unauthorized} />
-      </Switch>
+      <div className="container mx-auto">
+        <Switch>
+          <Route path="/" component={Landing} />
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/blog" component={Blog} />
+          <Route path="/store" component={Store} />
+          <Route path="/store/subscriptions" component={Subscriptions} />
+          <Route path="/checkout/:tierId" component={Checkout} />
+          <Route path="/policies" component={Policies} />
+          <Route path="/forums" component={ForumHome} />
+          <Route path="/forums/category/:id" component={ForumCategory} />
+          <Route path="/forums/thread/:id" component={ForumThread} />
+          <Route path="/forums/new">{user ? <CreateThread /> : <Login />}</Route>
+          <Route path="/subscriptions">
+            <Redirect to="/store/subscriptions" />
+          </Route>
+          <Route path="/vip">
+            <Redirect to="/store/subscriptions" />
+          </Route>
+          <Route path="/user" component={UserProfile} />
+          <Route path="/profile/:id" component={UserProfile} />
+          <Route path="/settings" component={Settings} />
+          <Route path="/team" component={StaffDirectory} />
+          <Route path="/search" component={UserSearch} />
+          <Route path="/builds" component={Builds} />
+          <Route path="/chat" component={Chat} />
+          <Route path="/groups" component={Groups} />
+          <Route path="/admin" component={Admin} />
+          <Route path="/modcp">
+            {user?.isModerator || user?.isAdmin ? <ModCP /> : <Unauthorized />}
+          </Route>
+          <Route path="/admincp">
+            {user?.isAdmin || user?.email?.endsWith("@resyncstudios.com") ? (
+              <AdminCP />
+            ) : (
+              <Unauthorized />
+            )}
+          </Route>
+          <Route path="/guidelines" component={Guidelines} />
+          <Route path="/privacy" component={Privacy} />
+          <Route path="/terms" component={Terms} />
+          <Route path="/news" component={News} />
+          <Route path="/projects" component={Projects} />
+          <Route path="/support" component={Support} />
+          <Route path="/volunteer" component={VolunteerModeration} />
+          <Route path="/dmca" component={DMCA} />
+          <Route path="/catalina-rules" component={ProjectCatalinarules} />
+          <Route
+            path="/volunteer-agreement"
+            component={VolunteerStaffAgreement}
+          />
+          <Route path="/leo-guidelines" component={LEOGuidelines} />
+          <Route path="/community-rules" component={CommunityRules} />
+          <Route path="/about" component={AboutRS} />
+          <Route path="/catalina" component={Catalina} />
+          <Route path="/onboarding" component={Onboarding} />
+          <Route component={NotFound} />
+          <Route path="/unauthorized" component={Unauthorized} />
+        </Switch>
+      </div>
     </PublicLayout>
   );
 }
@@ -299,6 +302,7 @@ function App() {
       <AuthProvider>
         <ThemeProvider defaultTheme="dark" storageKey="rivet-studios-theme">
           <TooltipProvider>
+            <ScrollToTop />
             <Router />
             <Toaster />
           </TooltipProvider>

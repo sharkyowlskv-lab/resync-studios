@@ -127,7 +127,7 @@ function AnnouncementForm({ initialData, onSubmit, isLoading }: any) {
 }
 
 export default function AdminCP() {
-  const { user } = useAuth();
+  const { user, isLoading: authLoading } = useAuth();
   const { toast } = useToast();
   
   const [subscriptionSearch, setSubscriptionSearch] = useState("");
@@ -154,6 +154,14 @@ export default function AdminCP() {
     user?.email?.endsWith("@resyncstudios.com") ||
     adminRanks.includes(user?.userRank || "") ||
     (user?.additionalRanks || []).some((r) => adminRanks.includes(r));
+
+  if (authLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <Skeleton className="h-[400px] w-full max-w-4xl" />
+      </div>
+    );
+  }
 
   if (!isAdmin) {
     return (
