@@ -25,7 +25,7 @@ const RS_PROJECTS = [
     status: "active",
     location: "External",
     notes:
-      "Project Sundown is no longer owned under the company. A Team Member has taken ownership but RS still holds the license.",
+      "Project Sundown is one of our flagship roleplay games based on the real-world location Sandy Shores, located in the county of Los Angeles, California",
     banner:
       "https://media.discordapp.net/attachments/1428251062078410845/1463818518255374398/RS-DOJ.png?ex=6974883b&is=697336bb&hm=80122861df33fa806aa288f57b59b5092fb2a75803a7c51b1b911efdfd626a80&=&format=webp&quality=lossless&width=1692&height=348",
   },
@@ -35,7 +35,8 @@ const RS_PROJECTS = [
     game: "ROBLOX",
     status: "development",
     location: "Catalina Islands, California",
-    notes: "Project Catalina is the core focus for RIVET Studios.",
+    notes:
+      "Project Catalina is our main flagship roleplay games based on the real-world location Catalina Islands, California",
     banner:
       "https://media.discordapp.net/attachments/1428251062078410845/1463818773894266969/RS-CATALINA_1.png?ex=69748878&is=697336f8&hm=96470f949e15690ede51d09741675c03bd0cbf4589a428d719369b36e5e3f08e&=&format=webp&quality=lossless&width=1692&height=348",
   },
@@ -116,14 +117,7 @@ export default function Projects() {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent flex items-end p-6">
-                  <div className="text-white space-y-1">
-                    <Badge
-                      variant="secondary"
-                      className="bg-primary text-white border-none mb-2"
-                    >
-                      {project.status === "active" ? "PLAY NOW" : "COMING SOON"}
-                    </Badge>
-                    <h3 className="text-2xl font-bold">{project.name}</h3>
+                  <div className="text-gray space-y-1">
                     <p className="text-white/80 text-sm font-medium">
                       {project.location} • {project.game}
                     </p>
@@ -141,7 +135,7 @@ export default function Projects() {
                     </p>
                   </div>
                   <Badge variant="outline" className="text-xs">
-                    {project.game} Engine
+                    {project.game}
                   </Badge>
                 </div>
               </CardContent>
